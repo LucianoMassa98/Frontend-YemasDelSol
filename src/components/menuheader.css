@@ -1,0 +1,32 @@
+.menu-header{
+    display: flex;
+    flex-direction: row;
+    justify-items: flex-start;
+    background-color: green;
+    box-shadow: rgba(0, 0, 0, 0.15) 1.95px 1.95px 2.6px;
+}
+
+.burgercontent{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.burgeroptions{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-items: flex-end;
+}
+
+.burgeroption{
+    background-color: transparent;
+    text-decoration: underline;
+}
+
+@media(min-width: 700px){
+    .menu-header{
+        height: 10vh;
+        font-size: xx-large;
+    }
+}

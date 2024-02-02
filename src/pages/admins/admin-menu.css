@@ -1,0 +1,20 @@
+.a-menu-lc{
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    justify-items: flex-start;
+    align-items: center;
+    padding: 20px;
+}
+
+.amenucontainer{
+    width:100vw;
+    min-height: 90vw;
+}
+
+@media(min-width: 700px){
+    .amenucontainer{
+        width:100vw;
+        min-height: 90vw;
+    }
+}
