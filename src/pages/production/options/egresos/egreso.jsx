@@ -1,6 +1,6 @@
 import NavigateBeforeIcon from "@mui/icons-material/NavigateBefore";
-import "./ingreso.css";
-import { Menuheader } from "../../../components/menuheader";
+import "./egreso.css";
+import { Menuheader } from "../../../../components/menuheader";
 import {
   Alert,
   Button,
@@ -8,18 +8,18 @@ import {
   Stack,
   TextField,
 } from "@mui/material";
-import { Form } from "../../../components/form/form";
-import { Autocomplete } from "../../../components/form/autocomplete";
-import { TextInput } from "../../../components/form/text-input";
-import { Listproductitem } from "../../../components/productlist/listproductitem/listproductitem";
+import { Form } from "../../../../components/form/form";
+import { Autocomplete } from "../../../../components/form/autocomplete";
+import { TextInput } from "../../../../components/form/text-input";
+import { Listproductitem } from "../../../../components/productlist/listproductitem/listproductitem";
 import { useState } from "react";
-import { useProducts } from "../../../components/hooks/use-products";
-import { useGalpones } from "../../../components/hooks/use-galpones";
-import { useNewproduct } from "../../../components/hooks/use-new-product";
-import { useEditproduct } from "../../../components/hooks/use-edit-product";
-import { useDeleteproduct } from "../../../components/hooks/use-delete-product";
+import { useProducts } from "../../../../components/hooks/use-products";
+import { useGalpones } from "../../../../components/hooks/use-galpones";
+import { useNewproduct } from "../../../../components/hooks/use-new-product";
+import { useEditproduct } from "../../../../components/hooks/use-edit-product";
+import { useDeleteproduct } from "../../../../components/hooks/use-delete-product";
 import dayjs from "dayjs";
-import { useNewproduction } from "../../../components/hooks/use-create-production";
+import { useNewproduction } from "../../../../components/hooks/use-create-production";
 
 const buscarposicion = (texto, lista) => {
   let max = lista.length;
@@ -35,7 +35,7 @@ const buscarposicion = (texto, lista) => {
   return pos;
 };
 
-export const Ingreso = () => {
+export const Egreso = () => {
   const data = useProducts();
   const galpones = useGalpones();
   const nuevoproducto = useNewproduct();
@@ -117,9 +117,9 @@ export const Ingreso = () => {
   };
 
   return (
-    <div className="ingresocontainer">
+    <div className="egresocontainer">
       <Menuheader />
-      <div className="ingresocontent">
+      <div className="egresocontent">
         <Button
           variant="outlined"
           startIcon={<NavigateBeforeIcon />}
@@ -128,12 +128,12 @@ export const Ingreso = () => {
         >
           Volver
         </Button>
-        <h1>Ingreso</h1>
+        <h1>Egreso / Producciones</h1>
         <h2>Datos generales</h2>
         <h4 style={{ fontStyle: "italic" }}>fecha: {now}</h4>
         <h4 style={{ fontStyle: "italic" }}>operador: nombre de usuario</h4>
         <hr></hr>
-        <div className="ingresoform">
+        <div className="egresoform">
           <Form
             onSubmit={handleSubmit}
             defaultValues={{
@@ -144,7 +144,7 @@ export const Ingreso = () => {
           >
             <Stack spacing={3} padding={2}>
               <Stack>
-                <label className="i-labels">Galpon</label>
+                <label className="e-labels">Galpon</label>
                 <Autocomplete
                   name="galpon"
                   options={galpones.data ?? []}
@@ -156,7 +156,7 @@ export const Ingreso = () => {
                 />
               </Stack>
               <Stack>
-                <label className="i-labels">Producto</label>
+                <label className="e-labels">Producto</label>
                 <Autocomplete
                   name="producto"
                   options={productnames}
@@ -169,7 +169,7 @@ export const Ingreso = () => {
                 />
               </Stack>
               <Stack>
-                <label className="i-labels">Cantidad</label>
+                <label className="e-labels">Cantidad</label>
                 <TextInput
                   name="cantidad"
                   type="number"
@@ -194,9 +194,9 @@ export const Ingreso = () => {
           </Form>
         </div>
         <hr></hr>
-        <div className="ingresoform">
-          <div className="i-resumen">
-            <h3 className="i-labels">Resumen</h3>
+        <div className="egresoform">
+          <div className="e-resumen">
+            <h3 className="e-labels">Resumen</h3>
             <div className="p-lista">
               <Listproductitem producto="Producto" cantidad="Cantidad" />
               <hr id="pldivision"></hr>

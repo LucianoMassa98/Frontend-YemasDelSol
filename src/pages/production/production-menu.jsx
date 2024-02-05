@@ -23,6 +23,7 @@ export const Productionmenu = () => {
           <LinkCard
             icon={<AllInboxIcon sx={{ fontSize: "inherit" }} />}
             title="Producción"
+            href="/productionmenu/egreso"
           >
             En este modulo podras registrar el egreso de cartones producidos.
           </LinkCard>

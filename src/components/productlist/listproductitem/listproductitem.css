@@ -11,3 +11,19 @@
     overflow: hidden;
     text-overflow: ellipsis;
 }
+
+@media (min-width: 700px){
+    .l-p-item{
+        display: flex;
+        flex-direction: row;
+        gap: 4vh;
+    }
+    
+    .l-pname{
+        white-space: nowrap;
+        width: 40vh;
+        height: 5vh;
+        overflow: hidden;
+        text-overflow: ellipsis;
+    }
+}

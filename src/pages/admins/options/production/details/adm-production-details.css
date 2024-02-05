@@ -1,0 +1,50 @@
+.admproddetailcontainer{
+    width:100vw;
+    min-height: 90vw;
+}
+
+.a-p-d-content{
+    gap: 20px;
+    padding: 20px;
+}
+
+.listadeop{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+}
+
+.datacard{
+    display: flex;
+    flex-direction: column;
+    flex-wrap: nowrap;
+    padding: 10px;
+    align-items: flex-start;
+    align-content: flex-start;
+    border-style: solid; 
+    border-width: 1px; 
+    border-radius: 10px;
+    box-shadow: aqua; }
+
+    .apddataline{
+        margin: 0px;
+    }
+
+    .a-p-d-buttoncontainer{
+        display: flex;
+        flex-direction: row;
+        gap: 50px;
+        padding: 5px;
+    }
+
+@media(min-width: 700px){
+    .admproddetailcontainer{
+        width:100vw;
+        min-height: 90vw;
+    }
+
+    .datacard{
+        min-width: 300px;
+    }
+}

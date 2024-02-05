@@ -1,0 +1,23 @@
+.admprodcontainer{
+    width:100vw;
+    min-height: 90vw;
+}
+
+.a-p-content{
+    gap: 20px;
+    padding: 20px;
+}
+
+.listadeprod{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+
+@media(min-width: 700px){
+    .admprodcontainer{
+        width:100vw;
+        min-height: 90vw;
+    }
+}

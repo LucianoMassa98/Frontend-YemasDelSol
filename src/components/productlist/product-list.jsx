@@ -8,8 +8,13 @@ export const Productlist = () => {
 
   return (
     <div className="p-lista">
-      <Listproductitem producto="Producto" cantidad="Cantidad" />
-      <hr id="pldivision"></hr>
+      <div id="headerslpi">
+        <Listproductitem
+          producto="Producto"
+          cantidad="Cantidad"
+          istitle={true}
+        />
+      </div>
       {datos.status === "pending" && (
         <div>
           <CircularProgress />

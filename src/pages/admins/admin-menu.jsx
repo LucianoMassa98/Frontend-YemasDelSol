@@ -15,6 +15,7 @@ export const Adminmenu = () => {
           <LinkCard
             icon={<HardwareIcon sx={{ fontSize: "inherit" }} />}
             title="Producción"
+            href="/adminmenu/production"
           >
             En este modulo podras monitorear las operaciones que ocurren dentro
             del area de producción.
