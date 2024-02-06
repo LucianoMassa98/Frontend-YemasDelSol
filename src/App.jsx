@@ -2,7 +2,7 @@ import { QueryClientProvider } from "@tanstack/react-query";
 import { queryClient } from "./libs/tanstack-query";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { Helmet, HelmetProvider } from "react-helmet-async";
-//import './App.css';
+import './App.css';
 import { Loginpage } from "./pages/login/login-page";
 import { Productionmenu } from "./pages/production/production-menu";
 import { Adminmenu } from "./pages/admins/admin-menu";
