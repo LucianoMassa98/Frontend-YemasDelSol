@@ -15,8 +15,8 @@ function App() {
   return (
     <HelmetProvider>
       <Helmet
-        titleTemplate="%s | AConex - Boot & Calendar"
-        defaultTitle="AConex - Boot & Calendar"
+        titleTemplate="%s | Yemas Del Sol"
+        defaultTitle="Yemas Del Sol"
       />
 
       <QueryClientProvider client={queryClient}>
