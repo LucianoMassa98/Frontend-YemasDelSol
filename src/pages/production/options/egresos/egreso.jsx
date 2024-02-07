@@ -15,76 +15,28 @@ import { Listproductitem } from "../../../../components/productlist/listproducti
 import { useState } from "react";
 import { useProducts } from "../../../../components/hooks/use-products";
 import { useGalpones } from "../../../../components/hooks/use-galpones";
-import { useNewproduct } from "../../../../components/hooks/use-new-product";
-import { useEditproduct } from "../../../../components/hooks/use-edit-product";
-import { useDeleteproduct } from "../../../../components/hooks/use-delete-product";
 import dayjs from "dayjs";
 import { useNewproduction } from "../../../../components/hooks/use-create-production";
-
-const buscarposicion = (texto, lista) => {
-  let max = lista.length;
-  let i = 0;
-  let pos = -1;
-  while (i < max) {
-    if (texto === lista[i]) {
-      pos = i;
-      i = max;
-    }
-    i = i + 1;
-  }
-  return pos;
-};
+import { useAdditem } from "../../../../components/hooks/use-add-item-production";
 
 export const Egreso = () => {
   const data = useProducts();
   const galpones = useGalpones();
-  const nuevoproducto = useNewproduct();
-  const editarproducto = useEditproduct();
-  const borrarproducto = useDeleteproduct();
   const nuevaproduccion = useNewproduction();
-  let productnames = [];
+  const agregaritem = useAdditem();
   let today = new Date();
   let now = dayjs(today).format("DD/MM/YYYY");
 
   const [selectedrow, setSelectedrow] = useState([-1, "text"]); //Contiene el numero de producto seleccionado en la lista obtenida y la variante del boton eliminar
-  const [selectedgalpon, setSelectedgalpon] = useState(null);
-  const [selectedproduct, setSelectedproduct] = useState(null);
-
-  const handleSelectedgalpon = (event, value) => {
-    setSelectedgalpon(value);
-  };
-
-  const handleSelectedproduct = (event, value) => {
-    setSelectedproduct(value);
-  };
-
-  if (data.status === "success") {
-    let max = data.data.length;
-    let i = 0;
-    for (i = 0; i < max; i++) {
-      productnames.push(data.data[i].nombre);
-    }
-  }
+  const [itemstoadd, setItemstoadd] = useState([]);
+  const [itemsflag, setItemsflag] = useState(0);
 
   const handleSubmit = (entrada) => {
-    console.log(selectedproduct);
-    if (data.status === "success") {
-      let lugar = buscarposicion(selectedproduct, productnames);
-      if (lugar === -1) {
-        console.log("se llego");
-        let productonuevo = { nombre: selectedproduct, categoryId: 2 };
-        nuevoproducto.mutate(productonuevo, {
-          onSuccess: (data) =>
-            editarproducto.mutate([data.id, Number(entrada.cantidad)]),
-        });
-      } else {
-        let encontrado = data.data[lugar];
-        console.log(encontrado.cnt);
-        editarproducto.mutate([encontrado.id, Number(entrada.cantidad)]);
-      }
-    } else {
-      alert("Aun no se cargan los elementos");
-    }
+    console.log(entrada);
+    let templist = [...itemstoadd];
+    entrada.producto.cnt = entrada.cantidad;
+    templist.push(entrada.producto);
+    setItemstoadd(templist);
   };
 
   const handleClick = (datos, llave) => {
@@ -97,22 +49,39 @@ export const Egreso = () => {
 
   const handleDelete = () => {
     if (selectedrow[0] != -1) {
-      let productox = data.data[selectedrow[0]];
-      borrarproducto.mutate(productox.id);
+      let templist = [];
+      let max = itemstoadd.length;
+      let i = 0;
+      for (i = 0; i < max; i++) {
+        if (i != selectedrow[0]) {
+          templist.push(itemstoadd[i]);
+        }
+      }
+      setItemstoadd(templist);
       setSelectedrow([-1, "text"]);
     }
   };
 
-  const handleguardaringreso = () => {
-    if (galpones.status === "success") {
-      let galponesnames = [];
-      let max = galpones.data.length;
-      let i = 0;
-      for (i = 0; i < max; i++) {
-        galponesnames.push(galpones.data[i].nombre);
-      }
-      let lugar = buscarposicion(selectedgalpon, galponesnames);
-      nuevaproduccion.mutate(galpones.data[lugar].id);
+  const handleguardaringreso = (valor) => {
+    nuevaproduccion.mutate(valor.galpon.id, {
+      onSuccess: (data) => saveitemstrigger(data.id, itemstoadd),
+    });
+  };
+
+  const saveitemstrigger = (prodid, lista) => {
+    setItemsflag(1);
+    saveallitems(prodid, lista, lista.length - 1);
+  };
+
+  const saveallitems = (prodId, lista, iter) => {
+    if (iter != -1) {
+      let prod = lista[iter];
+      let item = { cnt: prod.cnt, produccionId: prodId, productoId: prod.id };
+      agregaritem.mutate(item, {
+        onSettled: () => saveallitems(prodId, lista, iter - 1),
+      });
+    } else {
+      setItemsflag(2);
     }
   };
 
@@ -144,28 +113,15 @@ export const Egreso = () => {
           >
             <Stack spacing={3} padding={2}>
               <Stack>
-                <label className="e-labels">Galpon</label>
-                <Autocomplete
-                  name="galpon"
-                  options={galpones.data ?? []}
-                  onInputChange={handleSelectedgalpon}
-                  getOptionLabel={(option) => option.nombre}
-                  renderInput={(params) => (
-                    <TextField {...params} label="Seleccionar Galpon" />
-                  )}
-                />
-              </Stack>
-              <Stack>
                 <label className="e-labels">Producto</label>
                 <Autocomplete
                   name="producto"
-                  options={productnames}
-                  onInputChange={handleSelectedproduct}
-                  rules={{ required: false }}
+                  options={data.data ?? []}
+                  getOptionLabel={(option) => option.nombre}
+                  rules={{ required: true }}
                   renderInput={(params) => (
                     <TextField {...params} label="Seleccionar producto" />
                   )}
-                  freeSolo
                 />
               </Stack>
               <Stack>
@@ -200,8 +156,8 @@ export const Egreso = () => {
             <div className="p-lista">
               <Listproductitem producto="Producto" cantidad="Cantidad" />
               <hr id="pldivision"></hr>
-              {data.status === "success" ? (
-                data.data.map((objeto, key) =>
+              {itemstoadd.length > 0 ? (
+                itemstoadd.map((objeto, key) =>
                   key === selectedrow[0] ? (
                     <div
                       style={{
@@ -225,28 +181,48 @@ export const Egreso = () => {
                     </div>
                   )
                 )
-              ) : data.status === "error" ? (
-                <Alert severity="error">Error al cargar datos</Alert>
               ) : (
-                <CircularProgress />
+                <h2>Agrega un producto</h2>
               )}
             </div>
           </div>
+          <Form onSubmit={handleguardaringreso}>
+            <Stack padding={2}>
+              <label className="e-labels">Galpon</label>
+              <Autocomplete
+                name="galpon"
+                options={galpones.data ?? []}
+                getOptionLabel={(option) => option.nombre}
+                renderInput={(params) => (
+                  <TextField {...params} label="Seleccionar Galpon" />
+                )}
+              />
+            </Stack>
+            <Button color="primary" variant="contained" type="submit">
+              Guardar Datos de Ingreso
+            </Button>
+          </Form>
+          {nuevaproduccion.status === "pending" ? (
+            <div>
+              <CircularProgress />
+              <Alert severity="info">Guardando...</Alert>
+            </div>
+          ) : nuevaproduccion.status === "success" ? (
+            <Alert severity="success">Cambios Guardados con exito</Alert>
+          ) : nuevaproduccion.status === "error" ? (
+            <Alert severity="error">Error al Guardar datos</Alert>
+          ) : (
+            <p></p>
+          )}
+
+          {itemsflag === 1 ? (
+            <Alert severity="info">Guardando productos...</Alert>
+          ) : itemsflag === 2 ? (
+            <Alert severity="info">Carga de productos Finalizada</Alert>
+          ) : (
+            <p> </p>
+          )}
         </div>
-        <Button
-          color="primary"
-          variant="contained"
-          onClick={handleguardaringreso}
-        >
-          Guardar Datos de Ingreso
-        </Button>
-        {nuevaproduccion.status === "pending" ? (
-          <CircularProgress />
-        ) : nuevaproduccion.status === "success" ? (
-          <Alert severity="success">Cambios Guardados con exito</Alert>
-        ) : (
-          <p> </p>
-        )}
       </div>
     </div>
   );
