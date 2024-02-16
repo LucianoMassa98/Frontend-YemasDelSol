@@ -1,4 +1,4 @@
-.ingresoform{
+.egresoform{
     display: flex;
     flex-direction: column;
     gap: 20px;
@@ -7,7 +7,7 @@
     padding: 20px;
 }
 
-.i-labels{
+.e-labels{
     font-weight: bold;
     display: flex;
     flex-direction: column;
@@ -17,7 +17,7 @@
     width: 80vh;
 }
 
-.i-resumen{
+.e-resumen{
     display: flex;
     flex-direction: column;
     justify-items: flex-start;
@@ -25,12 +25,12 @@
     padding: 20px;
 }
 
-.ingresocontent{
+.egresocontent{
     gap: 20px;
     padding: 20px;
 }
 
-.ingresocontainer{
+.egresocontainer{
     width:100vw;
     min-height: 90vw;
 }
@@ -57,7 +57,7 @@
 }
 
 @media(min-width: 700px){
-    .ingresocontainer{
+    .egresocontainer{
         width:100vw;
         min-height: 90vw;
     }

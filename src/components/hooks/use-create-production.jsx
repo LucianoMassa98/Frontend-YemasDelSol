@@ -1,16 +1,17 @@
 import { useMutation } from "@tanstack/react-query";
 import { api } from "../../services/api";
 
-const newproduction = async (produccion) => {
-  const response = await api.post("/remitosProduccion", produccion);
+const newproduction = async (userid) => {
+  const response = await api.post("/remitosProduccion", userid);
   return response.data;
 };
 
 export const useNewproduction = () => {
-  const mutationFn = (produccion) => {
-    let prod = { galponId: produccion, userId: 1 };
-    return newproduction(prod);
+  const mutationFn = (userid) => {
+    return newproduction(userid);
   };
 
-  return useMutation({ mutationFn });
+  return useMutation({
+    mutationFn,
+  });
 };
