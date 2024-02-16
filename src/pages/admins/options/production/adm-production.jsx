@@ -69,8 +69,8 @@ export const AdmProduction = () => {
   };
 
   const handleVerdetalle = () => {
-    localStorage.setItem("egresos", prodcompleto.current);
-    localStorage.setItem("Ingresos", ingrcompleto.current);
+    localStorage.setItem("egresos", JSON.stringify(prodcompleto.current));
+    localStorage.setItem("Ingresos", JSON.stringify(ingrcompleto.current));
     window.location.href = "/adminmenu/production/details";
   };
 
@@ -163,6 +163,7 @@ export const AdmProduction = () => {
           Volver
         </Button>
         <h1>Producción</h1>
+        <h4>Fecha: {now.format("DD/MM/YYYY")}</h4>
         <hr></hr>
         {producciones.isSuccess && ingresos.isSuccess && isreadyflag.current ? (
           <div>

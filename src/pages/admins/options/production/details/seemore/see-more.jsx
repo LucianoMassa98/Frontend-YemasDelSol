@@ -11,6 +11,12 @@ import {
 import { Productlist } from "../../../../../../components/productlist/product-list";
 
 export const Vermasdialog = ({ open, onClose, objeto }) => {
+  let estado = null;
+  if (objeto.tipo === "Ingreso") {
+    estado = "ingreso";
+  } else {
+    estado = "egreso";
+  }
   return (
     <Dialog open={open} onClose={onClose}>
       <DialogTitle>Datos Generales</DialogTitle>
@@ -29,7 +35,7 @@ export const Vermasdialog = ({ open, onClose, objeto }) => {
             <ListItemText primary="Galpon:" secondary={`${objeto.galpon}`} />
           </ListItem>
           <ListItem>
-            <Productlist />
+            <Productlist datos={objeto.items} estado={estado} />
           </ListItem>
         </List>
       </DialogContent>
