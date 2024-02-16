@@ -12,31 +12,111 @@ import { Form } from "../../../../components/form/form";
 import { Autocomplete } from "../../../../components/form/autocomplete";
 import { TextInput } from "../../../../components/form/text-input";
 import { Listproductitem } from "../../../../components/productlist/listproductitem/listproductitem";
-import { useState } from "react";
+import { useRef, useState } from "react";
 import { useProducts } from "../../../../components/hooks/use-products";
 import { useGalpones } from "../../../../components/hooks/use-galpones";
 import dayjs from "dayjs";
 import { useNewproduction } from "../../../../components/hooks/use-create-production";
 import { useAdditem } from "../../../../components/hooks/use-add-item-production";
+import { useProductions } from "../../../../components/hooks/use-get-productions";
+import { useOneproduction } from "../../../../components/hooks/use-get-one-production";
+import { useDeleteitem } from "../../../../components/hooks/use-delete-item-production";
+import { useSetgalponproduction } from "../../../../components/hooks/use-set-galpon-production";
+
+/* Se muestra durante la carga o si hay un error */
+
+const Dataloadingstatus = ({ estado, stage, now }) => {
+  /* Estado opciones loading y error */
+  /* Stage number 1: Cargando todo, 2: Cargando lista de productos, 3: Galpon guardado */
+  let message = "Cargando datos...";
+  if (stage === 2) {
+    message = "Cargando lista de productos...";
+  }
+
+  return (
+    <div className="egresocontainer">
+      <Menuheader />{" "}
+      <div className="egresocontent">
+        <Button
+          variant="outlined"
+          startIcon={<NavigateBeforeIcon />}
+          sx={{ display: "flex", flexDirection: "row", justifySelf: "left" }}
+          onClick={() => (window.location.href = "./")}
+        >
+          Volver
+        </Button>
+        <h1>Egreso / Producciones</h1>
+        {stage === 2 ? (
+          <div>
+            <h2>Datos generales</h2>
+            <h4 style={{ fontStyle: "italic" }}>fecha: {now}</h4>
+            <h4 style={{ fontStyle: "italic" }}>operador: nombre de usuario</h4>
+          </div>
+        ) : stage === 3 ? (
+          <Alert severity="success">Produccion Guardada</Alert>
+        ) : (
+          <div> </div>
+        )}
+        <hr></hr>
+        {estado === "loading" ? (
+          <div>
+            <Alert severity="info">{message}</Alert>
+            <CircularProgress />
+          </div>
+        ) : estado === "error" ? (
+          <Alert severity="error">Error al obtener datos</Alert>
+        ) : (
+          <div> </div>
+        )}
+      </div>
+    </div>
+  );
+};
+
+/* Componente principal */
 
 export const Egreso = () => {
   const data = useProducts();
   const galpones = useGalpones();
+  const userid = 1; /* Esto debe obtenerse a traves de un hook */
+  const producciones = useProductions();
+  const productionmutation = useOneproduction();
+  if (producciones.status === "success") {
+    console.log(producciones.data, "producciones obtenidas");
+  }
+  /* to modify */
   const nuevaproduccion = useNewproduction();
   const agregaritem = useAdditem();
+  const borraritem = useDeleteitem();
+  const finalizar = useSetgalponproduction();
   let today = new Date();
   let now = dayjs(today).format("DD/MM/YYYY");
 
   const [selectedrow, setSelectedrow] = useState([-1, "text"]); //Contiene el numero de producto seleccionado en la lista obtenida y la variante del boton eliminar
   const [itemstoadd, setItemstoadd] = useState([]);
-  const [itemsflag, setItemsflag] = useState(0);
+  let productosc2 = useRef(undefined);
+  let prodflag = useRef(false);
+  let egresoid = useRef(null);
+  let prodfilterflag = useRef(true);
+
+  /* funciones interactivas */
 
   const handleSubmit = (entrada) => {
-    console.log(entrada);
-    let templist = [...itemstoadd];
     entrada.producto.cnt = entrada.cantidad;
+    let templist = [];
+    templist = templist.concat(itemstoadd);
+    let selectedproduct = {
+      cnt: entrada.producto.cnt,
+      produccionId: egresoid.current,
+      productoId: entrada.producto.id,
+    };
     templist.push(entrada.producto);
-    setItemstoadd(templist);
+    agregaritem.mutate(selectedproduct, {
+      onSuccess: () =>
+        productionmutation.mutate(egresoid.current, {
+          onSuccess: (data) => setItemstoadd(data.items),
+        }),
+    });
   };
 
   const handleClick = (datos, llave) => {
@@ -49,41 +129,105 @@ export const Egreso = () => {
 
   const handleDelete = () => {
     if (selectedrow[0] != -1) {
-      let templist = [];
-      let max = itemstoadd.length;
-      let i = 0;
-      for (i = 0; i < max; i++) {
-        if (i != selectedrow[0]) {
-          templist.push(itemstoadd[i]);
-        }
-      }
-      setItemstoadd(templist);
+      borraritem.mutate(itemstoadd[selectedrow[0]].id, {
+        onSuccess: () =>
+          productionmutation.mutate(egresoid.current, {
+            onSuccess: (data) => setItemstoadd(data.items),
+          }),
+      });
       setSelectedrow([-1, "text"]);
     }
   };
 
-  const handleguardaringreso = (valor) => {
-    nuevaproduccion.mutate(valor.galpon.id, {
-      onSuccess: (data) => saveitemstrigger(data.id, itemstoadd),
+  const handlefnegreso = (galp) => {
+    finalizar.mutate([galp.galpon.id, egresoid.current], {
+      onSuccess: () => window.scrollTo(0, 0),
     });
   };
 
-  const saveitemstrigger = (prodid, lista) => {
-    setItemsflag(1);
-    saveallitems(prodid, lista, lista.length - 1);
-  };
+  /* Verificar si existe una produccion en progreso */
 
-  const saveallitems = (prodId, lista, iter) => {
-    if (iter != -1) {
-      let prod = lista[iter];
-      let item = { cnt: prod.cnt, produccionId: prodId, productoId: prod.id };
-      agregaritem.mutate(item, {
-        onSettled: () => saveallitems(prodId, lista, iter - 1),
+  const verifyproduction = () => {
+    let i = 0;
+    let max = producciones.data.length;
+    while (i < max) {
+      let prodactual = producciones.data[i];
+      if (prodactual.userId === userid && prodactual.galponId === null) {
+        i = max;
+        prodflag.current = true;
+        egresoid.current = prodactual.id;
+        productionmutation.mutate(prodactual.id, {
+          onSuccess: (data) => setItemstoadd(data.items),
+        });
+      }
+      i = i + 1;
+    }
+
+    if (!prodflag.current) {
+      let userobjeto = { userId: userid };
+      prodflag.current = true;
+      nuevaproduccion.mutate(userobjeto, {
+        onSuccess: (data) => {
+          egresoid.current = data.id;
+          productionmutation.mutate(data.id, {
+            onSuccess: (data) => setItemstoadd(data.items),
+          });
+        },
       });
-    } else {
-      setItemsflag(2);
     }
   };
+
+  /* loading or error status */
+
+  if (
+    data.status === "error" ||
+    galpones.status === "error" ||
+    producciones.status === "error" ||
+    productionmutation.status === "error"
+  ) {
+    return <Dataloadingstatus estado="error" stage={1} now={now} />;
+  }
+
+  if (
+    data.status === "pending" ||
+    galpones.status === "pending" ||
+    producciones.status === "pending" ||
+    productionmutation.status === "pending"
+  ) {
+    if (productionmutation.status === "pending" && prodflag.current === true) {
+      return <Dataloadingstatus estado="loading" stage={2} now={now} />;
+    }
+    return <Dataloadingstatus estado="loading" stage={1} now={now} />;
+  }
+
+  //filtrarlista
+
+  if (prodfilterflag.current && data.status === "success") {
+    prodfilterflag.current = false;
+    let i = 0;
+    let max = data.data.length;
+    let templist = [];
+    for (i = 0; i < max; i++) {
+      if (data.data[i].categoryId === 2) {
+        templist.push(data.data[i]);
+      }
+    }
+    console.log(templist, "listacompletada");
+    productosc2.current = templist;
+  }
+
+  /* Verificacion de produccion */
+  if (!prodflag.current && producciones.isSuccess) {
+    verifyproduction();
+  }
+
+  /* Finalizacion */
+
+  if (finalizar.isSuccess) {
+    return <Dataloadingstatus estado="none" stage={3} now={now} />;
+  }
+
+  /* Todo Listo */
 
   return (
     <div className="egresocontainer">
@@ -116,7 +260,7 @@ export const Egreso = () => {
                 <label className="e-labels">Producto</label>
                 <Autocomplete
                   name="producto"
-                  options={data.data ?? []}
+                  options={productosc2.current ?? []}
                   getOptionLabel={(option) => option.nombre}
                   rules={{ required: true }}
                   renderInput={(params) => (
@@ -169,14 +313,14 @@ export const Egreso = () => {
                     >
                       <Listproductitem
                         producto={objeto.nombre}
-                        cantidad={objeto.cnt}
+                        cantidad={objeto.ProduccionProducto.cnt}
                       />
                     </div>
                   ) : (
                     <div onClick={(event) => handleClick(event, key)} key={key}>
                       <Listproductitem
                         producto={objeto.nombre}
-                        cantidad={objeto.cnt}
+                        cantidad={objeto.ProduccionProducto.cnt}
                       />
                     </div>
                   )
@@ -186,7 +330,7 @@ export const Egreso = () => {
               )}
             </div>
           </div>
-          <Form onSubmit={handleguardaringreso}>
+          <Form onSubmit={handlefnegreso}>
             <Stack padding={2}>
               <label className="e-labels">Galpon</label>
               <Autocomplete
@@ -199,28 +343,16 @@ export const Egreso = () => {
               />
             </Stack>
             <Button color="primary" variant="contained" type="submit">
-              Guardar Datos de Ingreso
+              Guardar Datos de Egreso
             </Button>
           </Form>
-          {nuevaproduccion.status === "pending" ? (
+          {finalizar.status === "pending" ? (
             <div>
+              <Alert severity="info">Guardando Produccion...</Alert>
               <CircularProgress />
-              <Alert severity="info">Guardando...</Alert>
             </div>
-          ) : nuevaproduccion.status === "success" ? (
-            <Alert severity="success">Cambios Guardados con exito</Alert>
-          ) : nuevaproduccion.status === "error" ? (
-            <Alert severity="error">Error al Guardar datos</Alert>
           ) : (
-            <p></p>
-          )}
-
-          {itemsflag === 1 ? (
-            <Alert severity="info">Guardando productos...</Alert>
-          ) : itemsflag === 2 ? (
-            <Alert severity="info">Carga de productos Finalizada</Alert>
-          ) : (
-            <p> </p>
+            <div> </div>
           )}
         </div>
       </div>
