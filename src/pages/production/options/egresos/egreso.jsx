@@ -129,7 +129,8 @@ export const Egreso = () => {
 
   const handleDelete = () => {
     if (selectedrow[0] != -1) {
-      borraritem.mutate(itemstoadd[selectedrow[0]].id, {
+      let datadeletion = [egresoid.current, itemstoadd[selectedrow[0]].id];
+      borraritem.mutate(datadeletion, {
         onSuccess: () =>
           productionmutation.mutate(egresoid.current, {
             onSuccess: (data) => setItemstoadd(data.items),
