@@ -132,7 +132,8 @@ export const Ingreso = () => {
 
   const handleDelete = () => {
     if (selectedrow[0] != -1) {
-      borraritem.mutate(itemstoadd[selectedrow[0]].id, {
+      let datadeletion = [ingresoid.current, itemstoadd[selectedrow[0]].id];
+      borraritem.mutate(datadeletion, {
         onSuccess: () =>
           ingresomutation.mutate(ingresoid.current, {
             onSuccess: (data) => setItemstoadd(data.items),
