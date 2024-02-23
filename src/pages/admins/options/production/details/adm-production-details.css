@@ -8,6 +8,13 @@
     padding: 20px;
 }
 
+.listascont{
+    display: flex;
+    flex-direction: row;
+    gap: 3px;
+    overflow: scroll;
+}
+
 .listadeop{
     display: flex;
     flex-direction: column;
@@ -47,5 +54,10 @@
 
     .datacard{
         min-width: 300px;
+    }
+
+    .listascont{
+        overflow: hidden;
+        justify-content: center;
     }
 }
