@@ -2,7 +2,7 @@ import { QueryClientProvider } from "@tanstack/react-query";
 import { queryClient } from "./libs/tanstack-query";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { Helmet, HelmetProvider } from "react-helmet-async";
-import './App.css';
+import "./App.css";
 import { Loginpage } from "./pages/login/login-page";
 import { Productionmenu } from "./pages/production/production-menu";
 import { Adminmenu } from "./pages/admins/admin-menu";
@@ -10,14 +10,13 @@ import { Ingreso } from "./pages/production/options/ingresos/ingreso";
 import { AdmProduction } from "./pages/admins/options/production/adm-production";
 import { Egreso } from "./pages/production/options/egresos/egreso";
 import { AdmProductionDetails } from "./pages/admins/options/production/details/adm-production-details";
+import { Admuserspage } from "./pages/admins/options/users/adm-users";
+import { Admgalponespage } from "./pages/admins/options/galpones/adm-galpones";
 
 function App() {
   return (
     <HelmetProvider>
-      <Helmet
-        titleTemplate="%s | Yemas Del Sol"
-        defaultTitle="Yemas Del Sol"
-      />
+      <Helmet titleTemplate="%s | Yemas Del Sol" defaultTitle="Yemas Del Sol" />
 
       <QueryClientProvider client={queryClient}>
         <BrowserRouter>
@@ -30,6 +29,8 @@ function App() {
               path="/adminmenu/production/details"
               element={<AdmProductionDetails />}
             />
+            <Route path="/adminmenu/users" element={<Admuserspage />} />
+            <Route path="/adminmenu/galpones" element={<Admgalponespage />} />
             <Route path="/productionmenu/ingreso" element={<Ingreso />} />
             <Route path="/productionmenu/egreso" element={<Egreso />} />
           </Routes>

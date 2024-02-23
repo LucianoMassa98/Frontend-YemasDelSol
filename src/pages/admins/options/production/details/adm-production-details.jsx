@@ -171,14 +171,7 @@ export const AdmProductionDetails = () => {
         <h1>Detalles</h1>
         <hr></hr>
         {usuarios.isSuccess && galpones.isSuccess ? (
-          <div
-            style={{
-              display: "flex",
-              flexDirection: "row",
-              justifyContent: "center",
-              gap: "3vw",
-            }}
-          >
+          <div className="listascont">
             <div className="listadeop">
               <h4>Egresos</h4>
               {datap.current.map((objeto, key) => (
