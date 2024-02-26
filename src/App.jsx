@@ -12,6 +12,7 @@ import { Egreso } from "./pages/production/options/egresos/egreso";
 import { AdmProductionDetails } from "./pages/admins/options/production/details/adm-production-details";
 import { Admuserspage } from "./pages/admins/options/users/adm-users";
 import { Admgalponespage } from "./pages/admins/options/galpones/adm-galpones";
+import { Admnewuserpage } from "./pages/admins/options/users/newuser/adm-new-user";
 
 function App() {
   return (
@@ -30,6 +31,10 @@ function App() {
               element={<AdmProductionDetails />}
             />
             <Route path="/adminmenu/users" element={<Admuserspage />} />
+            <Route
+              path="/adminmenu/users/newuser"
+              element={<Admnewuserpage />}
+            />
             <Route path="/adminmenu/galpones" element={<Admgalponespage />} />
             <Route path="/productionmenu/ingreso" element={<Ingreso />} />
             <Route path="/productionmenu/egreso" element={<Egreso />} />
