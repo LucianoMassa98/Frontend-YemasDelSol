@@ -7,3 +7,37 @@
     gap: 20px;
     padding: 20px;
 }
+
+#galponboxx{
+    align-self: center;
+    border-style: ridge;
+    border-color: rgb(255, 255, 255);
+    min-width: 50vw;
+    min-height: 30vw;
+    border-radius: 5px;
+}
+
+.galponoption{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    padding: 10px;
+    background-color: rgb(255, 255, 255);
+    border-radius: 5px;
+    height: 5vw;
+    border-style: inset;
+    border-top: 0px;
+    border-left: 0px;
+    border-right: 0px;
+    border-color: black;
+}
+
+.galponoption:hover{
+    background-color: rgb(218, 220, 221);
+    transition-duration: 700ms;
+}
+
+.arrowgalpon{
+    justify-self: right;
+}
