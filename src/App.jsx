@@ -13,6 +13,7 @@ import { AdmProductionDetails } from "./pages/admins/options/production/details/
 import { Admuserspage } from "./pages/admins/options/users/adm-users";
 import { Admgalponespage } from "./pages/admins/options/galpones/adm-galpones";
 import { Admnewuserpage } from "./pages/admins/options/users/newuser/adm-new-user";
+import { Logoff } from "./components/logoff/log-off";
 
 function App() {
   return (
@@ -22,6 +23,7 @@ function App() {
       <QueryClientProvider client={queryClient}>
         <BrowserRouter>
           <Routes>
+            <Route path="/" element={<Logoff />} />
             <Route path="/login" element={<Loginpage />} />
             <Route path="/productionmenu" element={<Productionmenu />} />
             <Route path="/adminmenu" element={<Adminmenu />} />
