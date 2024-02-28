@@ -7,6 +7,7 @@ import { useGetallusers } from "../../../../components/hooks/admins/use-get-user
 import { RightDrawer } from "../../../../components/drawers/right-drawer";
 import { Form, TextInput } from "../../../../components/form";
 import { useRef, useState } from "react";
+import { useEdituser } from "../../../../components/hooks/admins/use-edit-user";
 
 export const Admuserspage = () => {
   const [isopen, setIsopen] = useState(false);
@@ -14,19 +15,19 @@ export const Admuserspage = () => {
     customer: { nombre: "", apellido: "", celular: "", email: "" },
     userName: "",
   });
+  const usereditmutation = useEdituser();
 
   const handleClose = () => {
     setIsopen(false);
   };
 
   const handleEdituser = (datauseredit) => {
-    console.log(datauseredit);
+    let userdata = [actualuser.current.id, datauseredit];
+    usereditmutation.mutate(userdata);
   };
 
   const users = useGetallusers();
-  if (users.isSuccess) {
-    console.log(users.data, "datos de usuario");
-  }
+
   return (
     <div id="admuserscontainer">
       <Menuheader />
@@ -96,35 +97,36 @@ export const Admuserspage = () => {
             <Form
               onSubmit={handleEdituser}
               defaultValues={{
-                enombre: actualuser.current.customer.nombre,
-                eapellido: actualuser.current.customer.apellido,
-                ecelular: actualuser.current.customer.celular,
-                eusuario: actualuser.current.userName,
-                econtra: "",
+                nombre: actualuser.current.customer.nombre,
+                apellido: actualuser.current.customer.apellido,
+                celular: actualuser.current.customer.celular,
               }}
               PaperProps={{
                 sx: { backgroundColor: "orange", height: 200, borderRadius: 6 },
               }}
             >
               <Stack spacing={3} sx={{ mb: 3 }}>
-                <TextInput name="enombre" label="Nombre" variant="standard" />
+                <TextInput name="nombre" label="Nombre" variant="standard" />
                 <TextInput
-                  name="eapellido"
+                  name="apellido"
                   label="Apellido"
                   variant="standard"
                 />
-                <TextInput name="ecelular" label="Celular" variant="standard" />
-                <TextInput name="eusuario" label="Usuario" variant="standard" />
-                <TextInput
-                  name="econtra"
-                  label="Contraseña"
-                  variant="standard"
-                />
+                <TextInput name="celular" label="Celular" variant="standard" />
               </Stack>
               <Button type="submit" variant="contained">
                 Guardar
               </Button>
             </Form>
+            {usereditmutation.isSuccess ? (
+              <Alert>Usuario Editado con exito</Alert>
+            ) : usereditmutation.isPending ? (
+              <CircularProgress />
+            ) : usereditmutation.isError ? (
+              <Alert severity="error">{usereditmutation.error.message}</Alert>
+            ) : (
+              <div />
+            )}
           </RightDrawer>
         </div>
       </div>
