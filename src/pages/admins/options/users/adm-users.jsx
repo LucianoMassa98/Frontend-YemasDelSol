@@ -7,23 +7,32 @@ import { useGetallusers } from "../../../../components/hooks/admins/use-get-user
 import { RightDrawer } from "../../../../components/drawers/right-drawer";
 import { Form, TextInput } from "../../../../components/form";
 import { useRef, useState } from "react";
-import { useEdituser } from "../../../../components/hooks/admins/use-edit-user";
+import { useEditcustomer } from "../../../../components/hooks/admins/use-edit-customer";
 
 export const Admuserspage = () => {
   const [isopen, setIsopen] = useState(false);
+  let recentflag = useRef(false); // This flag detects whether the info box is from a current user petition or not, so it will hide info when the drawer is closed
   let actualuser = useRef({
     customer: { nombre: "", apellido: "", celular: "", email: "" },
     userName: "",
   });
-  const usereditmutation = useEdituser();
+  const usereditmutation = useEditcustomer();
 
   const handleClose = () => {
     setIsopen(false);
+    recentflag.current = false;
   };
 
   const handleEdituser = (datauseredit) => {
-    let userdata = [actualuser.current.id, datauseredit];
+    console.log(datauseredit, "A mandar");
+    let objetouser = {
+      nombre: datauseredit.nombre,
+      apellido: datauseredit.apellido,
+      celular: datauseredit.celular,
+    };
+    let userdata = [actualuser.current.customer.id, objetouser];
     usereditmutation.mutate(userdata);
+    recentflag.current = true;
   };
 
   const users = useGetallusers();
@@ -65,6 +74,8 @@ export const Admuserspage = () => {
                       display: "flex",
                       flexDirection: "row",
                       gap: "1vw",
+                      whiteSpace: "nowrap",
+                      overflow: "hidden",
                     }}
                   >
                     <p style={{ fontWeight: "bold" }}>{"Usuario: "}</p>
@@ -87,9 +98,9 @@ export const Admuserspage = () => {
             )}
           </div>
           <Button
+            className="crearnuevobutton"
             href="/adminmenu/users/newuser"
             variant="contained"
-            style={{ maxWidth: "20vw" }}
           >
             Crear nuevo Usuario
           </Button>
@@ -118,11 +129,11 @@ export const Admuserspage = () => {
                 Guardar
               </Button>
             </Form>
-            {usereditmutation.isSuccess ? (
+            {usereditmutation.isSuccess && recentflag.current ? (
               <Alert>Usuario Editado con exito</Alert>
-            ) : usereditmutation.isPending ? (
+            ) : usereditmutation.isPending && recentflag.current ? (
               <CircularProgress />
-            ) : usereditmutation.isError ? (
+            ) : usereditmutation.isError && recentflag.current ? (
               <Alert severity="error">{usereditmutation.error.message}</Alert>
             ) : (
               <div />

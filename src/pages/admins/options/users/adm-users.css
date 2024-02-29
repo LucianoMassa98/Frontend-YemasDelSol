@@ -1,5 +1,5 @@
 #admuserscontainer{
-    width:100vw;
+    min-width:100vw;
     min-height: 90vw;
 }
 
@@ -31,6 +31,7 @@
     border-left: 0px;
     border-right: 0px;
     border-color: black;
+    gap: 2px;
 }
 
 .useroption:hover{
@@ -40,4 +41,55 @@
 
 .arrowuser{
     justify-self: right;
+}
+
+@media(min-width: 700px){
+    #admuserscontainer{
+        min-width:100vw;
+        min-height: 90vw;
+    }
+    
+    #admuserscontent{
+        gap: 20px;
+        padding: 20px;
+    }
+    
+    #usersboxx{
+        align-self: center;
+        border-style: ridge;
+        border-color: rgb(255, 255, 255);
+        min-width: 50vw;
+        min-height: 30vw;
+        border-radius: 5px;
+    }
+    
+    .useroption{
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        justify-content: space-between;
+        padding: 10px;
+        background-color: rgb(255, 255, 255);
+        border-radius: 5px;
+        height: 5vw;
+        border-style: inset;
+        border-top: 0px;
+        border-left: 0px;
+        border-right: 0px;
+        border-color: black;
+        gap: 2px;
+    }
+    
+    .useroption:hover{
+        background-color: rgb(218, 220, 221);
+        transition-duration: 700ms;
+    }
+    
+    .arrowuser{
+        justify-self: right;
+    }
+
+    .crearnuevobutton{
+        max-width: 20vw;
+    }
 }

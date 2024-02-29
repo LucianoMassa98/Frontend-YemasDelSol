@@ -190,7 +190,7 @@ export const Admnewuserpage = () => {
           variant="outlined"
           startIcon={<NavigateBeforeIcon />}
           sx={{ display: "flex", flexDirection: "row", justifySelf: "left" }}
-          onClick={() => (window.location.href = "/adminmenu")}
+          onClick={() => (window.location.href = "/adminmenu/users")}
         >
           Volver
         </Button>
