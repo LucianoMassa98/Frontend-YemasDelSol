@@ -14,6 +14,9 @@ import { Admuserspage } from "./pages/admins/options/users/adm-users";
 import { Admgalponespage } from "./pages/admins/options/galpones/adm-galpones";
 import { Admnewuserpage } from "./pages/admins/options/users/newuser/adm-new-user";
 import { Logoff } from "./components/logoff/log-off";
+import { Productiondesechos } from "./pages/production/options/desechos/p-desechos";
+import { Productionbajas } from "./pages/production/options/bajas/p-bajas";
+import { Dailydetails } from "./pages/production/options/detallesdia/p-dailydetails";
 
 function App() {
   return (
@@ -40,6 +43,15 @@ function App() {
             <Route path="/adminmenu/galpones" element={<Admgalponespage />} />
             <Route path="/productionmenu/ingreso" element={<Ingreso />} />
             <Route path="/productionmenu/egreso" element={<Egreso />} />
+            <Route
+              path="/productionmenu/desechos"
+              element={<Productiondesechos />}
+            />
+            <Route path="/productionmenu/bajas" element={<Productionbajas />} />
+            <Route
+              path="/productionmenu/verdetallesdeldia"
+              element={<Dailydetails />}
+            />
           </Routes>
         </BrowserRouter>
       </QueryClientProvider>
