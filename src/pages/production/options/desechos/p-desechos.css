@@ -1,0 +1,33 @@
+.pdesechoscontainer{
+    width:100vw;
+    min-height: 90vw;
+}
+
+.pdesechoscontent{
+    gap: 20px;
+    padding: 20px;
+}
+
+.desechoform{
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    justify-items: flex-start;
+    align-items: center;
+    padding: 20px;
+}
+
+.d-labels{
+    font-weight: bold;
+    display: flex;
+    flex-direction: column;
+    align-self: flex-start;
+}
+
+
+@media(min-width: 700px){
+    .pdesechoscontainer{
+        width:100vw;
+        min-height: 90vw;
+    }
+}
