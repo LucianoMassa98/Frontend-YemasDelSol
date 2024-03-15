@@ -1,161 +1,66 @@
-import { Alert, Button } from "@mui/material";
+import {
+  Alert,
+  Button,
+  Dialog,
+  DialogActions,
+  DialogContent,
+  DialogTitle,
+  List,
+  ListItem,
+  ListItemText,
+} from "@mui/material";
 import { Menuheader } from "../../../../../components/menuheader";
 import "./adm-production-details.css";
 import NavigateBeforeIcon from "@mui/icons-material/NavigateBefore";
-import { useRef, useState } from "react";
-import { Vermasdialog } from "./seemore/see-more";
-import { useGetallusers } from "../../../../../components/hooks/admins/use-get-users";
-import { useGalpones } from "../../../../../components/hooks/use-galpones";
+import { useEffect, useRef, useState } from "react";
 import dayjs from "dayjs";
-import utc from "dayjs/plugin/utc";
-
-const findencargado = (userid, listausuarios) => {
-  let i = 0;
-  let max = listausuarios.length;
-  let tempuser = null;
-  while (i < max) {
-    tempuser = listausuarios[i];
-    if (tempuser.id === userid) {
-      i = max;
-    }
-    i = i + 1;
-  }
-
-  return tempuser.customer.nombre;
-};
-
-const findgalpon = (galponid, listagalpones) => {
-  let i = 0;
-  let max = listagalpones.length;
-  let tempgalpon = null;
-  while (i < max) {
-    tempgalpon = listagalpones[i];
-    if (tempgalpon.id === galponid) {
-      i = max;
-    }
-    i = i + 1;
-  }
-
-  return tempgalpon.nombre;
-};
-
-const cuttime = (time) => {
-  dayjs.extend(utc);
-  let date = dayjs.utc(time).utcOffset(-3);
-  let fecha = date.format("DD/MM/YYYY");
-  let hora = date.format("HH:mm:ss");
-
-  return [fecha, hora];
-};
+import { useGetinformedetalles } from "../../../../../components/hooks/admins/use-get-informe-detalles";
+import { useDeletecompa } from "../../../../../components/hooks/admins/use-delete-compra";
+import { useDeleteegreso } from "../../../../../components/hooks/admins/use-delete-egreso";
 
 export const AdmProductionDetails = () => {
-  const [dataproduction, setDataproduction] = useState([]);
-  const datap = useRef([]);
-  const [dataingresos, setDataingresos] = useState([]);
-  const datai = useRef([]);
-  const [isopen, setIsopen] = useState(false);
-  const [lobjeto, setLobjeto] = useState({});
-  const egresoss = JSON.parse(localStorage.getItem("egresos"));
-  const ingresos = JSON.parse(localStorage.getItem("Ingresos"));
-  const usuarios = useGetallusers();
-  const galpones = useGalpones();
-  let isparsed = useRef(false);
+  const [isopen, setIsopen] = useState("cerrado");
+  const lobjeto = useRef({
+    ingresos: [],
+    egresos: [],
+    desechos: [],
+    bajas: [],
+  });
+  const detallemutation = useGetinformedetalles();
+  const deletecompramutation = useDeletecompa();
+  const deleteegresomutation = useDeleteegreso();
+  const fechasdata = JSON.parse(localStorage.getItem("fechas"));
 
-  const handleOpen = (objeto) => {
-    setLobjeto(objeto);
-    setIsopen(true);
+  useEffect(() => {
+    detallemutation.mutate(fechasdata);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
+
+  const handleOpen = (llave, tipo) => {
+    lobjeto.current = llave;
+    setIsopen(tipo);
   };
 
   const handleClose = () => {
-    setIsopen(false);
+    setIsopen("cerrado");
   };
 
-  const handleDeletion = (num, column) => {
-    let newlist = [];
-    let max = 0;
-    let i = 0;
-    if (column === 1) {
-      max = datap.current.length;
-      for (i = 0; i < max; i++) {
-        if (i != num) {
-          newlist.push(datap.current[i]);
-        }
-      }
-      datap.current = newlist;
-      setDataproduction(newlist);
-    } else {
-      max = datai.current.length;
-      for (i = 0; i < max; i++) {
-        if (i != num) {
-          newlist.push(datai.current[i]);
-        }
-      }
-      datai.current = newlist;
-      setDataingresos(newlist);
+  const handleDeletion = (tipo, id) => {
+    if (tipo === "ingreso") {
+      deletecompramutation.mutate(id, {
+        onSuccess: () => detallemutation.mutate(fechasdata),
+      });
     }
 
-    setDataproduction(newlist);
+    if (tipo === "egreso") {
+      deleteegresomutation.mutate(id, {
+        onSuccess: () => detallemutation.mutate(fechasdata),
+      });
+    }
   };
-
-  if (usuarios.isSuccess && galpones.isSuccess && !isparsed.current) {
-    let tempegreso = [];
-    let tempingreso = [];
-    let i = 0;
-    let max = egresoss.length;
-    let objeto = null;
-    let tempobj = null;
-    let nomenc = null;
-    let nomgalp = null;
-    let fechahora = null;
-    for (i = 0; i < max; i++) {
-      tempobj = egresoss[i];
-      nomenc = findencargado(tempobj.userId, usuarios.data);
-      nomgalp = findgalpon(tempobj.galponId, galpones.data);
-      fechahora = cuttime(tempobj.createdAt);
-      objeto = {
-        id: tempobj.id,
-        encargado: nomenc,
-        galpon: nomgalp,
-        fecha: fechahora[0],
-        hora: fechahora[1],
-        tipo: "Produccion",
-        items: tempobj.items,
-      };
-      tempegreso.push(objeto);
-    }
-
-    max = ingresos.length;
-
-    for (i = 0; i < max; i++) {
-      tempobj = ingresos[i];
-      nomenc = findencargado(tempobj.userId, usuarios.data);
-      nomgalp = findgalpon(tempobj.galponId, galpones.data);
-      fechahora = cuttime(tempobj.createdAt);
-      objeto = {
-        id: tempobj.id,
-        encargado: nomenc,
-        galpon: nomgalp,
-        fecha: fechahora[0],
-        hora: fechahora[1],
-        tipo: "Ingreso",
-        items: tempobj.items,
-      };
-      tempingreso.push(objeto);
-    }
-
-    console.log(tempegreso, "egresoss");
-    console.log(tempingreso, "ingresoss");
-    setDataproduction(tempegreso);
-    datap.current = tempegreso;
-    setDataingresos(tempingreso);
-    datai.current = tempingreso;
-
-    isparsed.current = true;
+  if (detallemutation.isSuccess) {
+    console.log(detallemutation.data);
   }
-
-  console.log(ingresos, "uno");
-  console.log(egresoss, "dos");
-
   return (
     <div className="admproddetailcontainer">
       <Menuheader />
@@ -170,71 +75,249 @@ export const AdmProductionDetails = () => {
         </Button>
         <h1>Detalles</h1>
         <hr></hr>
-        {usuarios.isSuccess && galpones.isSuccess ? (
+        {detallemutation.isSuccess ? (
           <div className="listascont">
             <div className="listadeop">
               <h4>Egresos</h4>
-              {datap.current.map((objeto, key) => (
+              {detallemutation.data.egresos.map((objeto, key) => (
                 <div key={key} className="datacard">
-                  <h4 className="apddataline">Tipo: {objeto.tipo}</h4>
-                  <h4 className="apddataline">Galpon: {objeto.galpon} </h4>
+                  <h4 className="apddataline">Tipo: Egreso</h4>
+                  {objeto.galpon === null ? (
+                    <h4 className="apddataline">
+                      Carga de datos No finalizada
+                    </h4>
+                  ) : (
+                    <h4 className="apddataline">
+                      Galpon: {objeto.galpon.nombre}{" "}
+                    </h4>
+                  )}
                   <h4 className="apddataline">
-                    Fecha: -{objeto.fecha}- -{objeto.hora}-
+                    Fecha: -{dayjs(objeto.createdAt).format("DD/MM/YYYY")}- -
+                    {dayjs(objeto.createdAt).add(3, "hour").format("HH:mm:ss")}-
                   </h4>
                   <h4 className="apddataline">
-                    Encargado: -{objeto.encargado}-
+                    Encargado: -{objeto.user.customer.nombre} ,{" "}
+                    {objeto.user.customer.apellido}-
                   </h4>
                   <div className="a-p-d-buttoncontainer">
                     <Button
-                      onClick={() => handleDeletion(key, 1)}
+                      onClick={() => handleDeletion("egreso", objeto.id)}
                       variant="text"
                       color="error"
                     >
                       Eliminar
                     </Button>{" "}
-                    <Button variant="text" onClick={() => handleOpen(objeto)}>
+                    <Button
+                      variant="text"
+                      onClick={() => handleOpen(key, "egreso")}
+                    >
                       Ver
                     </Button>
                   </div>
                 </div>
               ))}
-              <Vermasdialog
-                open={isopen}
-                onClose={handleClose}
-                objeto={lobjeto}
-              />
+              {/* due to an error of deeply nested object the dialog had to be extended without using components */}
+
+              <Dialog open={isopen === "egreso"} onClose={handleClose}>
+                <DialogTitle>Datos Generales</DialogTitle>
+                <DialogContent dividers>
+                  <List disablePadding>
+                    <ListItem disableGutters disablePadding>
+                      <ListItemText
+                        primary="Fecha:"
+                        secondary={`${dayjs(
+                          detallemutation.data.egresos[lobjeto.current]
+                            ?.createdAt
+                        ).format("DD/MM/YYYY")}`}
+                      />
+                    </ListItem>
+                    <ListItem disableGutters disablePadding>
+                      <ListItemText
+                        primary="Operador:"
+                        secondary={`${
+                          detallemutation.data.egresos[lobjeto.current]?.user
+                            .customer.nombre
+                        } - ${
+                          detallemutation.data.egresos[lobjeto.current]?.user
+                            .customer.apellido
+                        }`}
+                      />
+                    </ListItem>
+                    <ListItem disableGutters disablePadding>
+                      {detallemutation.data.egresos[lobjeto.current]?.galpon !=
+                      null ? (
+                        <ListItemText
+                          primary="Galpon:"
+                          secondary={`${
+                            detallemutation.data.egresos[lobjeto.current]
+                              ?.galpon.nombre
+                          }`}
+                        />
+                      ) : (
+                        <ListItemText
+                          primary="Galpon: No definido"
+                          secondary="Carga en progreso"
+                        />
+                      )}
+                    </ListItem>
+                    <ListItem>
+                      <div className="p-lista">
+                        <div id="headerslpi">
+                          <div className="l-p-item">
+                            <h2 className="l-pname">Producto</h2>
+                            <h2 className="l-pname">Cantidad</h2>
+                          </div>
+                        </div>
+                        {detallemutation.data.egresos[lobjeto.current]?.items
+                          ?.length === 0 ? (
+                          <p>Sin Elementos</p>
+                        ) : (
+                          <p
+                            style={{
+                              height: "0px",
+                              width: "0px",
+                              margin: "0px",
+                            }}
+                          ></p>
+                        )}
+                        {detallemutation.data.egresos[
+                          lobjeto.current
+                        ]?.items.map((objeto, key) => (
+                          <div className="l-p-item" key={key}>
+                            <h4 className="l-pname">{objeto.nombre}</h4>
+                            <h4 className="l-pname">
+                              {objeto.ProduccionProducto.cnt}
+                            </h4>
+                          </div>
+                        ))}
+                      </div>
+                    </ListItem>
+                  </List>
+                </DialogContent>
+                <DialogActions>
+                  <Button onClick={handleClose}>Cerrar</Button>
+                </DialogActions>
+              </Dialog>
             </div>
             <div className="listadeop">
               <h4>Ingresos</h4>
-              {datai.current.map((objeto, key) => (
+              {detallemutation.data.ingresos.map((objeto, key) => (
                 <div key={key} className="datacard">
-                  <h4 className="apddataline">Tipo: {objeto.tipo}</h4>
-                  <h4 className="apddataline">Galpon: {objeto.galpon} </h4>
+                  <h4 className="apddataline">Tipo: Ingreso</h4>
+                  {objeto.galpon === null ? (
+                    <h4 className="apddataline">
+                      Carga de datos No finalizada
+                    </h4>
+                  ) : (
+                    <h4 className="apddataline">
+                      Galpon: {objeto.galpon.nombre}{" "}
+                    </h4>
+                  )}
                   <h4 className="apddataline">
-                    Fecha: -{objeto.fecha}- -{objeto.hora}-
+                    Fecha: -{dayjs(objeto.createdAt).format("DD/MM/YYYY")}- -
+                    {dayjs(objeto.createdAt).format("HH:mm:ss")}-
                   </h4>
                   <h4 className="apddataline">
-                    Encargado: -{objeto.encargado}-
+                    Encargado: -{objeto.user.customer.nombre} ,{" "}
+                    {objeto.user.customer.apellido}-
                   </h4>
                   <div className="a-p-d-buttoncontainer">
                     <Button
-                      onClick={() => handleDeletion(key, 2)}
+                      onClick={() => handleDeletion("ingreso", objeto.id)}
                       variant="text"
                       color="error"
                     >
                       Eliminar
                     </Button>{" "}
-                    <Button variant="text" onClick={() => handleOpen(objeto)}>
+                    <Button
+                      variant="text"
+                      onClick={() => handleOpen(key, "ingreso")}
+                    >
                       Ver
                     </Button>
                   </div>
                 </div>
               ))}
-              <Vermasdialog
-                open={isopen}
-                onClose={handleClose}
-                objeto={lobjeto}
-              />
+              <Dialog open={isopen === "ingreso"} onClose={handleClose}>
+                <DialogTitle>Datos Generales</DialogTitle>
+                <DialogContent dividers>
+                  <List disablePadding>
+                    <ListItem disableGutters disablePadding>
+                      <ListItemText
+                        primary="Fecha:"
+                        secondary={`${dayjs(
+                          detallemutation.data.ingresos[lobjeto.current]
+                            ?.createdAt
+                        ).format("DD/MM/YYYY")}`}
+                      />
+                    </ListItem>
+                    <ListItem disableGutters disablePadding>
+                      <ListItemText
+                        primary="Operador:"
+                        secondary={`${
+                          detallemutation.data.ingresos[lobjeto.current]?.user
+                            .customer.nombre
+                        } - ${
+                          detallemutation.data.ingresos[lobjeto.current]?.user
+                            .customer.apellido
+                        }`}
+                      />
+                    </ListItem>
+                    <ListItem disableGutters disablePadding>
+                      {detallemutation.data.ingresos[lobjeto.current]?.galpon !=
+                      null ? (
+                        <ListItemText
+                          primary="Galpon:"
+                          secondary={`${
+                            detallemutation.data.ingresos[lobjeto.current]
+                              ?.galpon.nombre
+                          }`}
+                        />
+                      ) : (
+                        <ListItemText
+                          primary="Galpon: No definido"
+                          secondary="Carga en progreso"
+                        />
+                      )}
+                    </ListItem>
+                    <ListItem>
+                      <div className="p-lista">
+                        <div id="headerslpi">
+                          <div className="l-p-item">
+                            <h2 className="l-pname">Producto</h2>
+                            <h2 className="l-pname">Cantidad</h2>
+                          </div>
+                        </div>
+                        {detallemutation.data.ingresos[lobjeto.current]?.items
+                          ?.length === 0 ? (
+                          <p>Sin Elementos</p>
+                        ) : (
+                          <p
+                            style={{
+                              height: "0px",
+                              width: "0px",
+                              margin: "0px",
+                            }}
+                          ></p>
+                        )}
+                        {detallemutation.data.ingresos[
+                          lobjeto.current
+                        ]?.items.map((objeto, key) => (
+                          <div className="l-p-item" key={key}>
+                            <h4 className="l-pname">{objeto.nombre}</h4>
+                            <h4 className="l-pname">
+                              {objeto.CompraProducto?.cnt}
+                            </h4>
+                          </div>
+                        ))}
+                      </div>
+                    </ListItem>
+                  </List>
+                </DialogContent>
+                <DialogActions>
+                  <Button onClick={handleClose}>Cerrar</Button>
+                </DialogActions>
+              </Dialog>
             </div>
           </div>
         ) : (
