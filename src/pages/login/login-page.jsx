@@ -6,17 +6,47 @@ import Typography from "@mui/material/Typography";
 import { Helmet } from "react-helmet-async";
 import { Form, TextInput } from "../../components/form";
 import { useState } from "react";
+import { Alert, Collapse } from "@mui/material";
+import { useGetallusers } from "../../components/hooks/admins/use-get-users";
 
 export const Loginpage = () => {
-  const [usertype, Setusertype] = useState(null);
-  const handleLogin = (credentials) => {
-    //console.log(credentials);
-    if (usertype === "product") {
-      window.location.href = "/productionmenu";
-    }
+  const [hasFailedOnce, setHasFailedOnce] = useState(false);
+  const getusers = useGetallusers();
 
-    if (usertype === "admin") {
-      window.location.href = "/adminmenu";
+  if (getusers.isSuccess) {
+    console.log(getusers.data, "usuarios obtenidos");
+  }
+
+  const handleLogin = (credentials) => {
+    console.log(credentials);
+    if (getusers.isSuccess) {
+      let resultado = null;
+      let i = 0;
+      let max = getusers.data.length;
+      let flag = false;
+      while (i < max) {
+        let obj = getusers.data[i];
+        if (
+          credentials.username === obj.userName &&
+          credentials.password === obj.password
+        ) {
+          i = max;
+          flag = true;
+          resultado = obj;
+        }
+        i = i + 1;
+      }
+
+      if (flag) {
+        if (resultado.roleId === 1) {
+          window.location.href = "/adminmenu";
+        }
+        if (resultado.roleId === 2) {
+          window.location.href = "/productionmenu";
+        }
+      } else {
+        setHasFailedOnce(true);
+      }
     }
   };
 
@@ -50,7 +80,6 @@ export const Loginpage = () => {
             />
             <Button
               name="admin"
-              onClick={() => Setusertype("admin")}
               type="submit"
               variant="contained"
               sx={{
@@ -59,21 +88,14 @@ export const Loginpage = () => {
                 backgroundColor: "deepskyblue",
               }}
             >
-              Continuar como administrador
+              Ingresar
             </Button>
-            <Button
-              name="product"
-              onClick={() => Setusertype("product")}
-              type="submit"
-              variant="contained"
-              sx={{
-                textTransform: "capitalize",
-                fontSize: 16,
-                backgroundColor: "deepskyblue",
-              }}
-            >
-              Continuar como Produccion
-            </Button>
+            <Collapse in={hasFailedOnce}>
+              <Alert severity="error">
+                Las credenciales ingresadas no coinciden. Por favor, revisa los
+                datos ingresados e intenta de nuevo.
+              </Alert>
+            </Collapse>
           </Stack>
         </Form>
         <Typography variant="body1" mt={3} align="center">
