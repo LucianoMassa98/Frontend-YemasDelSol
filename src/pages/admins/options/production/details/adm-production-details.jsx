@@ -12,11 +12,14 @@ import {
 import { Menuheader } from "../../../../../components/menuheader";
 import "./adm-production-details.css";
 import NavigateBeforeIcon from "@mui/icons-material/NavigateBefore";
+import SentimentDissatisfiedIcon from "@mui/icons-material/SentimentDissatisfied";
 import { useEffect, useRef, useState } from "react";
 import dayjs from "dayjs";
 import { useGetinformedetalles } from "../../../../../components/hooks/admins/use-get-informe-detalles";
 import { useDeletecompa } from "../../../../../components/hooks/admins/use-delete-compra";
 import { useDeleteegreso } from "../../../../../components/hooks/admins/use-delete-egreso";
+import { useDeletebaja } from "../../../../../components/hooks/admins/use-delete-baja";
+import { useDeletedesecho } from "../../../../../components/hooks/admins/use-delete-desecho";
 
 export const AdmProductionDetails = () => {
   const [isopen, setIsopen] = useState("cerrado");
@@ -29,6 +32,8 @@ export const AdmProductionDetails = () => {
   const detallemutation = useGetinformedetalles();
   const deletecompramutation = useDeletecompa();
   const deleteegresomutation = useDeleteegreso();
+  const deletebajamutation = useDeletebaja();
+  const deletedesechomutation = useDeletedesecho();
   const fechasdata = JSON.parse(localStorage.getItem("fechas"));
 
   useEffect(() => {
@@ -57,6 +62,18 @@ export const AdmProductionDetails = () => {
         onSuccess: () => detallemutation.mutate(fechasdata),
       });
     }
+
+    if (tipo === "baja") {
+      deletebajamutation.mutate(id, {
+        onSuccess: () => detallemutation.mutate(fechasdata),
+      });
+    }
+
+    if (tipo === "desecho") {
+      deletedesechomutation.mutate(id, {
+        onSuccess: () => detallemutation.mutate(fechasdata),
+      });
+    }
   };
   if (detallemutation.isSuccess) {
     console.log(detallemutation.data);
@@ -78,7 +95,11 @@ export const AdmProductionDetails = () => {
         {detallemutation.isSuccess ? (
           <div className="listascont">
             <div className="listadeop">
-              <h4>Egresos</h4>
+              {detallemutation.data.egresos.length != 0 ? (
+                <h4>Egresos</h4>
+              ) : (
+                <div />
+              )}
               {detallemutation.data.egresos.map((objeto, key) => (
                 <div key={key} className="datacard">
                   <h4 className="apddataline">Tipo: Egreso</h4>
@@ -200,7 +221,11 @@ export const AdmProductionDetails = () => {
               </Dialog>
             </div>
             <div className="listadeop">
-              <h4>Ingresos</h4>
+              {detallemutation.data.ingresos.length != 0 ? (
+                <h4>Ingresos</h4>
+              ) : (
+                <div />
+              )}
               {detallemutation.data.ingresos.map((objeto, key) => (
                 <div key={key} className="datacard">
                   <h4 className="apddataline">Tipo: Ingreso</h4>
@@ -215,7 +240,7 @@ export const AdmProductionDetails = () => {
                   )}
                   <h4 className="apddataline">
                     Fecha: -{dayjs(objeto.createdAt).format("DD/MM/YYYY")}- -
-                    {dayjs(objeto.createdAt).format("HH:mm:ss")}-
+                    {dayjs(objeto.createdAt).add(3, "hour").format("HH:mm:ss")}-
                   </h4>
                   <h4 className="apddataline">
                     Encargado: -{objeto.user.customer.nombre} ,{" "}
@@ -319,6 +344,218 @@ export const AdmProductionDetails = () => {
                 </DialogActions>
               </Dialog>
             </div>
+            {/* BAJAS */}
+            <div className="listadeop">
+              {detallemutation.data.bajas.length != 0 ? (
+                <h4>Bajas</h4>
+              ) : (
+                <div />
+              )}
+              {detallemutation.data.bajas.map((objeto, key) => (
+                <div key={key} className="datacard">
+                  <h4 className="apddataline">Tipo: Baja</h4>
+                  {objeto.galpon === null ? (
+                    <h4 className="apddataline">
+                      Carga de datos No finalizada
+                    </h4>
+                  ) : (
+                    <h4 className="apddataline">
+                      Galpon: {objeto.galpon.nombre}{" "}
+                    </h4>
+                  )}
+                  <h4 className="apddataline">
+                    Fecha: -{dayjs(objeto.createdAt).format("DD/MM/YYYY")}- -
+                    {dayjs(objeto.createdAt).add(3, "hour").format("HH:mm:ss")}-
+                  </h4>
+                  <h4 className="apddataline">
+                    Encargado: -{objeto.user.customer.nombre} ,{" "}
+                    {objeto.user.customer.apellido}-
+                  </h4>
+                  <div className="a-p-d-buttoncontainer">
+                    <Button
+                      onClick={() => handleDeletion("baja", objeto.id)}
+                      variant="text"
+                      color="error"
+                    >
+                      Eliminar
+                    </Button>{" "}
+                    <Button
+                      variant="text"
+                      onClick={() => handleOpen(key, "baja")}
+                    >
+                      Ver
+                    </Button>
+                  </div>
+                </div>
+              ))}
+              <Dialog open={isopen === "baja"} onClose={handleClose}>
+                <DialogTitle>Datos Generales</DialogTitle>
+                <DialogContent dividers>
+                  <List disablePadding>
+                    <ListItem disableGutters disablePadding>
+                      <ListItemText
+                        primary="Fecha:"
+                        secondary={`${dayjs(
+                          detallemutation.data.bajas[lobjeto.current]?.createdAt
+                        ).format("DD/MM/YYYY")}`}
+                      />
+                    </ListItem>
+                    <ListItem disableGutters disablePadding>
+                      <ListItemText
+                        primary="Operador:"
+                        secondary={`${
+                          detallemutation.data.bajas[lobjeto.current]?.user
+                            .customer.nombre
+                        } - ${
+                          detallemutation.data.bajas[lobjeto.current]?.user
+                            .customer.apellido
+                        }`}
+                      />
+                    </ListItem>
+                    <ListItem disableGutters disablePadding>
+                      {detallemutation.data.bajas[lobjeto.current]?.galpon !=
+                      null ? (
+                        <ListItemText
+                          primary="Galpon:"
+                          secondary={`${
+                            detallemutation.data.bajas[lobjeto.current]?.galpon
+                              .nombre
+                          }`}
+                        />
+                      ) : (
+                        <ListItemText
+                          primary="Galpon: No definido"
+                          secondary="Carga en progreso"
+                        />
+                      )}
+                    </ListItem>
+                    <ListItem>
+                      <ListItemText
+                        primary={`Cantidad de bajas: ${
+                          detallemutation.data.bajas[lobjeto.current]?.cantidad
+                        }`}
+                        secondary=""
+                      />
+                    </ListItem>
+                  </List>
+                </DialogContent>
+                <DialogActions>
+                  <Button onClick={handleClose}>Cerrar</Button>
+                </DialogActions>
+              </Dialog>
+            </div>
+            {/* DESECHOS */}
+            <div className="listadeop">
+              {detallemutation.data.desechos.length != 0 ? (
+                <h4>Desechos</h4>
+              ) : (
+                <div />
+              )}
+              {detallemutation.data.desechos.map((objeto, key) => (
+                <div key={key} className="datacard">
+                  <h4 className="apddataline">Tipo: Desecho</h4>
+                  {objeto.galpon === null ? (
+                    <h4 className="apddataline">
+                      Carga de datos No finalizada
+                    </h4>
+                  ) : (
+                    <h4 className="apddataline">
+                      Galpon: {objeto.galpon.nombre}{" "}
+                    </h4>
+                  )}
+                  <h4 className="apddataline">
+                    Fecha: -{dayjs(objeto.createdAt).format("DD/MM/YYYY")}- -
+                    {dayjs(objeto.createdAt).add(3, "hour").format("HH:mm:ss")}-
+                  </h4>
+                  <h4 className="apddataline">
+                    Encargado: -{objeto.user.customer.nombre} ,{" "}
+                    {objeto.user.customer.apellido}-
+                  </h4>
+                  <div className="a-p-d-buttoncontainer">
+                    <Button
+                      onClick={() => handleDeletion("desecho", objeto.id)}
+                      variant="text"
+                      color="error"
+                    >
+                      Eliminar
+                    </Button>{" "}
+                    <Button
+                      variant="text"
+                      onClick={() => handleOpen(key, "desecho")}
+                    >
+                      Ver
+                    </Button>
+                  </div>
+                </div>
+              ))}
+              <Dialog open={isopen === "desecho"} onClose={handleClose}>
+                <DialogTitle>Datos Generales</DialogTitle>
+                <DialogContent dividers>
+                  <List disablePadding>
+                    <ListItem disableGutters disablePadding>
+                      <ListItemText
+                        primary="Fecha:"
+                        secondary={`${dayjs(
+                          detallemutation.data.desechos[lobjeto.current]
+                            ?.createdAt
+                        ).format("DD/MM/YYYY")}`}
+                      />
+                    </ListItem>
+                    <ListItem disableGutters disablePadding>
+                      <ListItemText
+                        primary="Operador:"
+                        secondary={`${
+                          detallemutation.data.desechos[lobjeto.current]?.user
+                            .customer.nombre
+                        } - ${
+                          detallemutation.data.desechos[lobjeto.current]?.user
+                            .customer.apellido
+                        }`}
+                      />
+                    </ListItem>
+                    <ListItem disableGutters disablePadding>
+                      {detallemutation.data.desechos[lobjeto.current]?.galpon !=
+                      null ? (
+                        <ListItemText
+                          primary="Galpon:"
+                          secondary={`${
+                            detallemutation.data.desechos[lobjeto.current]
+                              ?.galpon.nombre
+                          }`}
+                        />
+                      ) : (
+                        <ListItemText
+                          primary="Galpon: No definido"
+                          secondary="Carga en progreso"
+                        />
+                      )}
+                    </ListItem>
+                    <ListItem>
+                      <ListItemText
+                        primary={`Cantidad de desechos: ${
+                          detallemutation.data.desechos[lobjeto.current]
+                            ?.cantidad
+                        }`}
+                        secondary=""
+                      />
+                    </ListItem>
+                  </List>
+                </DialogContent>
+                <DialogActions>
+                  <Button onClick={handleClose}>Cerrar</Button>
+                </DialogActions>
+              </Dialog>
+            </div>
+            {detallemutation.data.egresos.length === 0 &&
+            detallemutation.data.ingresos.length === 0 &&
+            detallemutation.data.bajas.length === 0 &&
+            detallemutation.data.desechos.length === 0 ? (
+              <div>
+                <h2>Sin datos Cargados</h2> <SentimentDissatisfiedIcon />
+              </div>
+            ) : (
+              <div />
+            )}
           </div>
         ) : (
           <Alert severity="info">Cargando datos...</Alert>

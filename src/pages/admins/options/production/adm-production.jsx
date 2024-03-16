@@ -56,6 +56,10 @@ export const AdmProduction = () => {
     window.location.href = "/adminmenu/production/details";
   };
 
+  if (informemutation.isSuccess) {
+    console.log(informemutation.data, "datos recibidos");
+  }
+
   return (
     <div className="admprodcontainer">
       <Menuheader />
