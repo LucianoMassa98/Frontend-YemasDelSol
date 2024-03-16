@@ -1,7 +1,6 @@
 import { LinkCard } from "../../common/linkcard";
 import ArticleIcon from "@mui/icons-material/Article";
 import AllInboxIcon from "@mui/icons-material/AllInbox";
-import WarehouseIcon from "@mui/icons-material/Warehouse";
 import DeleteIcon from "@mui/icons-material/Delete";
 import LocalHospitalIcon from "@mui/icons-material/LocalHospital";
 import TodayIcon from "@mui/icons-material/Today";
@@ -29,14 +28,6 @@ export const Productionmenu = () => {
             href="/productionmenu/egreso"
           >
             En este modulo podras registrar el egreso de cartones producidos.
-          </LinkCard>
-          <LinkCard
-            icon={
-              <WarehouseIcon sx={{ fontSize: "inherit", color: "inherit" }} />
-            }
-            title="Galpones"
-          >
-            En este modulo podras gestionar los galpones.
           </LinkCard>
           <LinkCard
             icon={
