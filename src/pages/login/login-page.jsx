@@ -8,10 +8,12 @@ import { Form, TextInput } from "../../components/form";
 import { useState } from "react";
 import { Alert, Collapse } from "@mui/material";
 import { useGetallusers } from "../../components/hooks/admins/use-get-users";
+import { useStore } from "../../store/use-store";
 
 export const Loginpage = () => {
   const [hasFailedOnce, setHasFailedOnce] = useState(false);
   const getusers = useGetallusers();
+  const { setUser, setIsLoggedIn } = useStore();
 
   if (getusers.isSuccess) {
     console.log(getusers.data, "usuarios obtenidos");
@@ -33,6 +35,8 @@ export const Loginpage = () => {
           i = max;
           flag = true;
           resultado = obj;
+          setUser(resultado);
+          setIsLoggedIn(true);
         }
         i = i + 1;
       }

@@ -4,14 +4,18 @@ import HardwareIcon from "@mui/icons-material/Hardware";
 import WarehouseIcon from "@mui/icons-material/Warehouse";
 import "./admin-menu.css";
 import { Menuheader } from "../../components/menuheader";
+import { useStore } from "../../store/use-store";
+import { Loader } from "../login/loader";
 
 export const Adminmenu = () => {
+  const loggeduser = useStore((state) => state.user);
+  Loader("admin");
   return (
     <div className="amenucontainer">
       <Menuheader />
       <div>
         <h1>Administracion</h1>
-        <h2>hola -nombre de usuario-</h2>
+        <h2>Bienvenido, {loggeduser?.userName}!</h2>
         <div className="a-menu-lc">
           <LinkCard
             icon={<HardwareIcon sx={{ fontSize: "inherit" }} />}

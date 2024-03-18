@@ -19,12 +19,12 @@ export const useStore = create(
     (set) => ({
       isLoggedIn: false,
       user: null,
-      setUser: (state) => set(() => ({ user: state })),
+      setUser: (status) => set(() => ({ ...status.user, user: status })),
       setIsLoggedIn: (status) => set(() => ({ isLoggedIn: status })),
       doLogout: () => set(() => ({ isLoggedIn: false, user: null })),
     }),
     {
-      name: "userRol-storage",
+      name: "userrol-storage",
       storage: createJSONStorage(() => sessionStorage),
     }
   )

@@ -22,6 +22,8 @@ import { useOneingreso } from "../../../../components/hooks/ingreso/use-get-one-
 import { useAdditemingreso } from "../../../../components/hooks/ingreso/use-additem-ingreso";
 import { useDeleteitemingreso } from "../../../../components/hooks/ingreso/use-deleteitem-ingreso";
 import { useSetgalponingreso } from "../../../../components/hooks/ingreso/use-set-galpon-ingreso";
+import { useStore } from "../../../../store/use-store";
+import { Loader } from "../../../login/loader";
 
 /* Se muestra durante la carga o si hay un error */
 
@@ -78,7 +80,7 @@ const Dataloadingstatus = ({ estado, stage, now }) => {
 export const Ingreso = () => {
   const data = useProducts();
   const galpones = useGalpones();
-  const userid = 1; /* Esto debe obtenerse a traves de un hook */
+  const loggeduser = useStore((state) => state.user);
   const ingresos = useIngresos();
   const ingresomutation = useOneingreso();
 
@@ -101,6 +103,8 @@ export const Ingreso = () => {
     useRef(null); /* Contiene la id de la operacion de ingreso en progreso */
   let prodfilterflag =
     useRef(true); /* indica si ya se filtraron los productos con categoria 1 */
+
+  Loader("production");
 
   /* funciones interactivas */
 
@@ -156,7 +160,7 @@ export const Ingreso = () => {
     let max = ingresos.data.length;
     while (i < max) {
       let ingractual = ingresos.data[i];
-      if (ingractual.userId === userid && ingractual.galponId === null) {
+      if (ingractual.userId === loggeduser.id && ingractual.galponId === null) {
         i = max;
         prodflag.current = true;
         ingresoid.current = ingractual.id;
@@ -168,7 +172,7 @@ export const Ingreso = () => {
     }
 
     if (!prodflag.current) {
-      let userobjeto = { userId: userid };
+      let userobjeto = { userId: loggeduser.id };
       prodflag.current = true;
       nuevoingreso.mutate(userobjeto, {
         onSuccess: (data) => {
@@ -248,7 +252,10 @@ export const Ingreso = () => {
         <h1>Ingresos</h1>
         <h2>Datos generales</h2>
         <h4 style={{ fontStyle: "italic" }}>fecha: {now}</h4>
-        <h4 style={{ fontStyle: "italic" }}>operador: nombre de usuario</h4>
+        <h4 style={{ fontStyle: "italic" }}>
+          operador:{" "}
+          {` ${loggeduser.customer.nombre} , ${loggeduser.customer.apellido}`}
+        </h4>
         <hr></hr>
         <div className="egresoform">
           <Form

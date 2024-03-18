@@ -6,14 +6,19 @@ import LocalHospitalIcon from "@mui/icons-material/LocalHospital";
 import TodayIcon from "@mui/icons-material/Today";
 import "./production-menu.css";
 import { Menuheader } from "../../components/menuheader";
+import { useStore } from "../../store/use-store";
+import { Loader } from "../login/loader";
 
 export const Productionmenu = () => {
+  const loggeduser = useStore((state) => state.user);
+  console.log(loggeduser, "usuarioobtenido");
+  Loader("production");
   return (
     <div className="pmenucontainer">
       <Menuheader />
       <div>
         <h1>Producción</h1>
-        <h2>hola -nombre de usuario-</h2>
+        <h2>Bienvenido, {loggeduser?.userName}!</h2>
         <div className="p-menu-lc">
           <LinkCard
             icon={<ArticleIcon sx={{ fontSize: "inherit" }} />}

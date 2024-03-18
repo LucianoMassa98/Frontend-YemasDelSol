@@ -14,9 +14,14 @@ import {
 import NavigateBeforeIcon from "@mui/icons-material/NavigateBefore";
 import { useSetbajas } from "../../../../components/hooks/production/use-set-bajas";
 import { useEffect } from "react";
+import dayjs from "dayjs";
+import { useStore } from "../../../../store/use-store";
+import { Loader } from "../../../login/loader";
 
 export const Productionbajas = () => {
-  const usuarioid = 1; //modificar al realizar el login
+  let today = new Date();
+  let now = dayjs(today).format("DD/MM/YYYY");
+  const loggeduser = useStore((state) => state.user);
   const galpones = useGalpones();
   const bajasmutation = useSetbajas();
 
@@ -24,11 +29,13 @@ export const Productionbajas = () => {
     window.scrollTo(0, 0);
   }, []);
 
+  Loader("production");
+
   const handleSubmit = (datos) => {
     let numero = Number(datos.cantidad);
     let objeto = {
       galponId: datos.galpon.id,
-      userId: usuarioid,
+      userId: loggeduser.id,
       cantidad: numero,
     };
     bajasmutation.mutate(objeto);
@@ -47,6 +54,12 @@ export const Productionbajas = () => {
           Volver
         </Button>
         <h1>Bajas</h1>
+        <h2>Datos generales</h2>
+        <h4 style={{ fontStyle: "italic" }}>fecha: {now}</h4>
+        <h4 style={{ fontStyle: "italic" }}>
+          operador:{" "}
+          {` ${loggeduser.customer.nombre} , ${loggeduser.customer.apellido}`}
+        </h4>
         <hr />
         {bajasmutation.isPending ? (
           <div>
