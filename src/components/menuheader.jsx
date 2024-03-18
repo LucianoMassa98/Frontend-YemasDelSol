@@ -1,11 +1,12 @@
-import { IconButton, Typography } from "@mui/material";
-import EggIcon from "@mui/icons-material/Egg";
+import { IconButton } from "@mui/material";
 import DehazeIcon from "@mui/icons-material/Dehaze";
 import "./menuheader.css";
 import { useState } from "react";
 import { RightDrawer } from "./drawers/right-drawer";
+import { useStore } from "../store/use-store";
 export const Menuheader = () => {
   const [isopen, setIsopen] = useState(false);
+  const logout = useStore((state) => state.doLogout);
 
   const handleOpening = () => {
     if (isopen) {
@@ -37,10 +38,7 @@ export const Menuheader = () => {
           {/*<EggIcon sx={{ fontSize: 40, zIndex: 1201 }} />*/}
         </div>
         <div className="burgeroptions">
-          <button
-            className="burgeroption"
-            onClick={() => (window.location.href = "/login")}
-          >
+          <button className="burgeroption" onClick={() => logout()}>
             Cerrar sesion
           </button>
           <button className="burgeroption">Soporte</button>

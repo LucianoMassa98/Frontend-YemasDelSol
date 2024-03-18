@@ -20,6 +20,7 @@ import { useDeletecompa } from "../../../../../components/hooks/admins/use-delet
 import { useDeleteegreso } from "../../../../../components/hooks/admins/use-delete-egreso";
 import { useDeletebaja } from "../../../../../components/hooks/admins/use-delete-baja";
 import { useDeletedesecho } from "../../../../../components/hooks/admins/use-delete-desecho";
+import { Loader } from "../../../../login/loader";
 
 export const AdmProductionDetails = () => {
   const [isopen, setIsopen] = useState("cerrado");
@@ -37,9 +38,13 @@ export const AdmProductionDetails = () => {
   const fechasdata = JSON.parse(localStorage.getItem("fechas"));
 
   useEffect(() => {
-    detallemutation.mutate(fechasdata);
+    detallemutation.mutate(fechasdata, {
+      onSuccess: (datos) => console.log(datos, "datosconexito"),
+    });
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
+
+  Loader("admin");
 
   const handleOpen = (llave, tipo) => {
     lobjeto.current = llave;
@@ -114,11 +119,11 @@ export const AdmProductionDetails = () => {
                   )}
                   <h4 className="apddataline">
                     Fecha: -{dayjs(objeto.createdAt).format("DD/MM/YYYY")}- -
-                    {dayjs(objeto.createdAt).add(3, "hour").format("HH:mm:ss")}-
+                    {dayjs(objeto.createdAt).format("HH:mm:ss")}-
                   </h4>
                   <h4 className="apddataline">
-                    Encargado: -{objeto.user.customer.nombre} ,{" "}
-                    {objeto.user.customer.apellido}-
+                    Encargado: -{objeto.user?.customer?.nombre} ,{" "}
+                    {objeto.user?.customer?.apellido}-
                   </h4>
                   <div className="a-p-d-buttoncontainer">
                     <Button
@@ -240,11 +245,11 @@ export const AdmProductionDetails = () => {
                   )}
                   <h4 className="apddataline">
                     Fecha: -{dayjs(objeto.createdAt).format("DD/MM/YYYY")}- -
-                    {dayjs(objeto.createdAt).add(3, "hour").format("HH:mm:ss")}-
+                    {dayjs(objeto.createdAt).format("HH:mm:ss")}-
                   </h4>
                   <h4 className="apddataline">
-                    Encargado: -{objeto.user.customer.nombre} ,{" "}
-                    {objeto.user.customer.apellido}-
+                    Encargado: -{objeto.user?.customer?.nombre} ,{" "}
+                    {objeto.user?.customer?.apellido}-
                   </h4>
                   <div className="a-p-d-buttoncontainer">
                     <Button
@@ -281,10 +286,10 @@ export const AdmProductionDetails = () => {
                         primary="Operador:"
                         secondary={`${
                           detallemutation.data.ingresos[lobjeto.current]?.user
-                            .customer.nombre
+                            ?.customer.nombre
                         } - ${
                           detallemutation.data.ingresos[lobjeto.current]?.user
-                            .customer.apellido
+                            ?.customer.apellido
                         }`}
                       />
                     </ListItem>
@@ -365,11 +370,11 @@ export const AdmProductionDetails = () => {
                   )}
                   <h4 className="apddataline">
                     Fecha: -{dayjs(objeto.createdAt).format("DD/MM/YYYY")}- -
-                    {dayjs(objeto.createdAt).add(3, "hour").format("HH:mm:ss")}-
+                    {dayjs(objeto.createdAt).format("HH:mm:ss")}-
                   </h4>
                   <h4 className="apddataline">
                     Encargado: -{objeto.user.customer.nombre} ,{" "}
-                    {objeto.user.customer.apellido}-
+                    {objeto.user?.customer.apellido}-
                   </h4>
                   <div className="a-p-d-buttoncontainer">
                     <Button
@@ -465,11 +470,11 @@ export const AdmProductionDetails = () => {
                   )}
                   <h4 className="apddataline">
                     Fecha: -{dayjs(objeto.createdAt).format("DD/MM/YYYY")}- -
-                    {dayjs(objeto.createdAt).add(3, "hour").format("HH:mm:ss")}-
+                    {dayjs(objeto.createdAt).format("HH:mm:ss")}-
                   </h4>
                   <h4 className="apddataline">
-                    Encargado: -{objeto.user.customer.nombre} ,{" "}
-                    {objeto.user.customer.apellido}-
+                    Encargado: -{objeto.user?.customer.nombre} ,{" "}
+                    {objeto.user?.customer.apellido}-
                   </h4>
                   <div className="a-p-d-buttoncontainer">
                     <Button

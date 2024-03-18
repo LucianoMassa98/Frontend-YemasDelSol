@@ -20,11 +20,13 @@ import CategoryIcon from "@mui/icons-material/Category";
 import "./adm-galpones.css";
 import { useGalpones } from "../../../../components/hooks/use-galpones";
 import { useRef, useState } from "react";
+import { Loader } from "../../../login/loader";
 
 export const Admgalponespage = () => {
   const [isopen, setIsopen] = useState(false);
   const actualgalpon = useRef({ id: 0, nombre: " ", enProduccion: 0 });
   const getgalpones = useGalpones();
+  Loader("admin");
 
   const handleClose = () => {
     setIsopen(false);

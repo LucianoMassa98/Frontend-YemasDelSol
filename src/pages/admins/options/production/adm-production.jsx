@@ -12,6 +12,7 @@ import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs";
 import { useRef, useState } from "react";
 import { useGetinforme } from "../../../../components/hooks/admins/use-get-informe";
 import { useEffect } from "react";
+import { Loader } from "../../../login/loader";
 
 export const AdmProduction = () => {
   const informemutation = useGetinforme();
@@ -27,6 +28,8 @@ export const AdmProduction = () => {
     handleBuscar();
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
+
+  Loader("admin");
 
   const handleChange = (date, time) => {
     if (time === "Desde") {
