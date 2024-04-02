@@ -1,23 +1,32 @@
-.egresoform{
+.egresoform {
     display: flex;
     flex-direction: column;
     gap: 20px;
     justify-items: flex-start;
     align-items: center;
-    padding: 20px;
+
 }
 
-.e-labels{
+.e-labels {
     font-weight: bold;
     display: flex;
+    margin-bottom: 10px;
     flex-direction: column;
     align-self: flex-start;
 }
-.i-cantidad{
+
+.i-cantidad {
     width: 80vh;
 }
 
-.e-resumen{
+.egres {
+    font-size: x-large;
+    font-weight: bold;
+    ;
+}
+
+.e-resumen {
+    width: 80vw;
     display: flex;
     flex-direction: column;
     justify-items: flex-start;
@@ -25,17 +34,26 @@
     padding: 20px;
 }
 
-.egresocontent{
-    gap: 20px;
-    padding: 20px;
-}
+.egresocontent {
 
-.egresocontainer{
-    width:100vw;
+
+    padding: 0px;
+}
+.cont-form{
+    display: flex;
+    width: 100vw;
+    justify-content: start;
+    text-align: center;
+    align-items: center;
+ 
+}
+.egresocontainer {
+    width: 100vw;
     min-height: 90vw;
 }
 
-.p-lista{
+.p-lista {
+    width: 100%;
     display: flex;
     flex-direction: column;
     gap: 2px;
@@ -50,15 +68,32 @@
     overflow-x: hidden;
 }
 
-#pldivision{
+#pldivision {
     min-width: 400px;
     position: relative;
     bottom: 30px;
 }
 
-@media(min-width: 700px){
-    .egresocontainer{
-        width:100vw;
+@media(min-width: 700px) {
+    .egresocontainer {
+        width: 100vw;
         min-height: 90vw;
+    }
+}
+.check label{
+    font-size: 400;
+    font-weight: bold;
+}
+
+.cont-date {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+   
+}
+@media screen and (min-width: 780px) {
+    .e-resumen {
+        width: 40vw;
     }
 }

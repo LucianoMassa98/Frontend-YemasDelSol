@@ -20,7 +20,6 @@ export const Loginpage = () => {
   }
 
   const handleLogin = (credentials) => {
-    console.log(credentials);
     if (getusers.isSuccess) {
       let resultado = null;
       let i = 0;
@@ -104,7 +103,7 @@ export const Loginpage = () => {
         </Form>
         <Typography variant="body1" mt={3} align="center">
           Todavía no tienes una cuenta?{" "}
-          <Link href="#" underline="hover" color="#5d8bff">
+          <Link href="/register" underline="hover" color="#5d8bff">
             Regístrate
           </Link>
         </Typography>

@@ -4,6 +4,7 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { Helmet, HelmetProvider } from "react-helmet-async";
 import "./App.css";
 import { Loginpage } from "./pages/login/login-page";
+import Register from "./pages/register/Register";
 import { Productionmenu } from "./pages/production/production-menu";
 import { Adminmenu } from "./pages/admins/admin-menu";
 import { Ingreso } from "./pages/production/options/ingresos/ingreso";
@@ -28,6 +29,7 @@ function App() {
           <Routes>
             <Route path="/" element={<Logoff />} />
             <Route path="/login" element={<Loginpage />} />
+            <Route path="/register" element={<Register />} />
             <Route path="/productionmenu" element={<Productionmenu />} />
             <Route path="/adminmenu" element={<Adminmenu />} />
             <Route path="/adminmenu/production" element={<AdmProduction />} />
