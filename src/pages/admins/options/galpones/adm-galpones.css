@@ -12,12 +12,13 @@
     align-self: center;
     border-style: ridge;
     border-color: rgb(255, 255, 255);
-    min-width: 50vw;
-    min-height: 30vw;
+    min-width: 75vw;
+   
     border-radius: 5px;
 }
 
 .galponoption{
+    
     display: flex;
     flex-direction: row;
     align-items: center;
@@ -32,7 +33,50 @@
     border-right: 0px;
     border-color: black;
 }
+.campos{
+    display: flex;
+    align-items: start;
+    justify-content: center;
+    flex-direction: column;
+    gap: 22px;
+    background-color: rgb(221, 218, 218);
+    padding: 10px;
+    border-radius: 10px;
+}
+.name-actual{
+    display: flex;
+    gap: 12px;
+}
+.name-new{
+    display: flex;
+    gap: 15px;
 
+}
+.name-new input{
+  outline: none;
+  padding: 5px;
+  font-size: 16px;
+  border: none;
+  border-radius: 5px;
+}
+.name-new label{
+    font-size: 15px;
+  
+}
+.name-new-dos{
+    display: flex;
+    gap: 15px;
+}
+.name-new-dos label{
+    font-size: 15px;
+}
+.name-new-dos input{
+    outline: none;
+    padding: 5px;
+    font-size: 16px;
+    border: none;
+    border-radius: 5px;
+}
 .galponoption:hover{
     background-color: rgb(218, 220, 221);
     transition-duration: 700ms;

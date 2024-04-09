@@ -56,7 +56,7 @@
         border-width: 1px;
         border-radius: 5px;
         border-color: black;
-        overflow: hidden;
+        /* overflow: hidden; */
     }
     
     #headerslpi{
