@@ -1,99 +1,151 @@
-.egresoform {
+.btn-back {
     display: flex;
-    flex-direction: column;
-    gap: 20px;
-    justify-items: flex-start;
-    align-items: center;
-
-}
-
-.e-labels {
-    font-weight: bold;
-    display: flex;
-    margin-bottom: 10px;
-    flex-direction: column;
-    align-self: flex-start;
-}
-
-.i-cantidad {
-    width: 80vh;
-}
-
-.egres {
-    font-size: x-large;
-    font-weight: bold;
-    ;
-}
-
-.e-resumen {
-    width: 80vw;
-    display: flex;
-    flex-direction: column;
-    justify-items: flex-start;
-    align-items: center;
-    padding: 20px;
-}
-
-.egresocontent {
-
-
-    padding: 0px;
-}
-.cont-form{
-    display: flex;
-    width: 100vw;
-    justify-content: start;
-    text-align: center;
-    align-items: center;
- 
-}
-.egresocontainer {
-    width: 100vw;
-    min-height: 90vw;
-}
-
-.p-lista {
     width: 100%;
+    justify-content: start;
+}
+
+.datos-grales {
     display: flex;
     flex-direction: column;
-    gap: 2px;
-    padding: 5px;
-    max-height: 350px;
-    border-style: solid;
-    border-width: 1px;
-    border-radius: 5px;
-    border-color: black;
-    box-shadow: 10px 10px lightblue;
-    overflow-y: scroll;
-    overflow-x: hidden;
-}
-
-#pldivision {
-    min-width: 400px;
-    position: relative;
-    bottom: 30px;
-}
-
-@media(min-width: 700px) {
-    .egresocontainer {
-        width: 100vw;
-        min-height: 90vw;
-    }
-}
-.check label{
-    font-size: 400;
-    font-weight: bold;
-}
-
-.cont-date {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
     align-items: center;
-   
+    gap: 12px;
+    font-size: 20px;
+
 }
-@media screen and (min-width: 780px) {
-    .e-resumen {
-        width: 40vw;
-    }
+
+.datos-grales h2 {
+    font-size: 24px;
+    margin: 8px;
+}
+
+.datos-grales span {
+    margin-bottom: 6px;
+    display: flex;
+    gap: 13px;
+
+    font-weight: 500;
+}
+
+.date {
+    display: flex;
+    justify-content: center;
+    gap: 12px;
+    font-weight: 500;
+    width: 90%;
+    border-bottom: 1px solid black;
+    padding-bottom: 15px;
+
+}
+
+.date div label {
+    font-size: 17px;
+}
+
+
+
+/* Estilos para el contenedor del select */
+.select-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: start;
+    width: 90%;
+    margin-bottom: 8px;
+}
+
+/* Estilos para el select */
+.select-container select {
+    display: flex;
+    flex-direction: column;
+    gap: 7px;
+
+    padding: 10px;
+    font-size: 16px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    /* Oculta la flecha del select en algunos navegadores */
+    background-color: #fff;
+    cursor: pointer;
+}
+
+.select-container select option {
+    font-size: 15px;
+    margin: 5px;
+}
+
+.select-container label {
+    text-align: start;
+    width: 100%;
+    font-size: 17px;
+    font-weight: 500;
+}
+
+.select-container input {
+    display: flex;
+    flex-direction: column;
+    gap: 7px;
+
+    padding: 10px;
+    font-size: 16px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    /* Oculta la flecha del select en algunos navegadores */
+    background-color: #fff;
+    cursor: pointer;
+}
+
+.btns {
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+    width: 100%;
+    margin-top: 15px;
+    margin-bottom: 15px;
+
+}
+
+.section-table {
+    width: 90vw;
+}
+
+.section-table table {
+    width: 100%;
+    border: 1px solid black;
+    box-shadow: 0px 0px 30px rgba(0.3, 0.3, 0.3, 0.3);
+    margin-top: 15px;
+    margin-bottom: 15px;
+}
+
+.section-table table {
+    border-collapse: separate;
+    /* Esto permite espaciar las filas */
+    border-spacing: 0 15px;
+    /* Aquí defines la distancia vertical entre las filas */
+}
+
+
+.section-table table tbody tr:hover {
+    background-color: rgb(223, 222, 222);
+}
+
+.section-table table tbody tr td {
+    font-size: 18px;
+    font-weight: 500;
+}
+
+.btn-delete {
+    border-radius: 5px;
+    border: 1px solid transparent;
+    padding: 0 0;
+    font-size: 12px;
+    font-weight: 900;
+    font-family: inherit;
+
+    color: white;
+    cursor: pointer;
+    transition: border-color 0.25s;
+}
+
+.tr-rare{
+
+
 }

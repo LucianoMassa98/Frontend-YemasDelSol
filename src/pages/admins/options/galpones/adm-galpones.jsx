@@ -42,7 +42,12 @@ export const Admgalponespage = () => {
     bgcolor: 'background.paper',
     border: '1px solid #000',
     boxShadow: 24,
+ 
     p: 4,
+    '@media (max-width: 600px)': {
+      width: '90%', // Cambiar el ancho del elemento cuando el ancho de la pantalla es menor o igual a 600px
+    }
+
   };
   const abrirEditor = () => {
     setEdit(true)
@@ -126,9 +131,13 @@ export const Admgalponespage = () => {
 
         <Dialog open={isopen} onClose={handleClose}>
           <DialogTitle>Detalles</DialogTitle>
-          <Stack spacing={3} sx={{ mb: 3, width: "40vw" }}>
+          <Stack spacing={3} sx={{
+            mb: 3, width: "40vw", '@media screen and (max-width: 768px)': {
+              width: "80vw", // Cambia el ancho del Stack cuando el ancho de la pantalla sea menor o igual a 768px
+            }
+          }}>
             <List>
-              <ListItem sx={{ border: "1px solid black" }}>
+              <ListItem sx={{ borderBottom: "1px solid black" ,borderTop: "1px solid black"  }}>
                 <ListItemAvatar>
                   <Avatar>
                     <NumbersIcon />
@@ -140,7 +149,7 @@ export const Admgalponespage = () => {
                 />
 
               </ListItem >
-              <ListItem sx={{ border: "1px solid black" }}>
+              <ListItem sx={{ borderBottom: "1px solid black" ,borderTop: "1px solid black"  }}>
                 <ListItemAvatar>
                   <Avatar>
                     <DriveFileRenameOutlineIcon />
@@ -154,7 +163,7 @@ export const Admgalponespage = () => {
                   Editar
                 </Button>
               </ListItem>
-              <ListItem sx={{ border: "1px solid black" }}>
+              <ListItem sx={{ borderBottom: "1px solid black" ,borderTop: "1px solid black"  }}>
                 <ListItemAvatar>
                   <Avatar>
                     <CategoryIcon />
@@ -178,6 +187,7 @@ export const Admgalponespage = () => {
             onClose={handleCloseDos}
             aria-labelledby="modal-modal-title"
             aria-describedby="modal-modal-description"
+            
           >
             <Box sx={style}>
               <Typography id="modal-modal-title" variant="h6" component="h2">
