@@ -18,6 +18,10 @@ import { Logoff } from "./components/logoff/log-off";
 import { Productiondesechos } from "./pages/production/options/desechos/p-desechos";
 import { Productionbajas } from "./pages/production/options/bajas/p-bajas";
 import { Dailydetails } from "./pages/production/options/detallesdia/p-dailydetails";
+import HomeVendedor from "./pages/Vendedor/homeVendedor/HomeVendedor";
+import Checkout from "./pages/Vendedor/checkout/Checkout";
+
+
 
 function App() {
   return (
@@ -54,6 +58,9 @@ function App() {
               path="/productionmenu/verdetallesdeldia"
               element={<Dailydetails />}
             />
+            {/* VENDEDOR */}
+            <Route path="/vendedor" element={<HomeVendedor/>} />
+            <Route path="/vendedor/checkout" element={<Checkout/>} />
           </Routes>
         </BrowserRouter>
       </QueryClientProvider>
