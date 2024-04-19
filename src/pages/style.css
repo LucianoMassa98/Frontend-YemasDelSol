@@ -1,0 +1,53 @@
+.recuperar-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+    background-color: #fff; /* Amarillo */
+    color: #333;
+  }
+  
+  form {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    width: 100%; /* Ajusta el formulario al 100% del contenedor */
+    max-width: 400px; /* Máximo ancho del formulario */
+  }
+  
+  input, button {
+    padding: 10px;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+  }
+  
+  button {
+    background-color: orange; /* Botón negro */
+    color: #333; /* Texto blanco */
+    cursor: pointer;
+  }
+  
+  button:hover {
+    background-color: red;
+  }
+
+  h2{
+   color: gold;
+  }
+
+  form {
+    width: 90%; /* Hace el formulario más pequeño en dispositivos móviles */
+  }
+
+  @media (max-width: 600px) {
+    .recuperar-container {
+      padding: 10px;
+    }
+    
+  }
+
+  p {
+    margin-top: -21px; /* Ajusta el margen superior */
+    margin-bottom: -21px; /* Ajusta el margen inferior */
+  }
