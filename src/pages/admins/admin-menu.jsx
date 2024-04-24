@@ -9,13 +9,22 @@ import { Loader } from "../login/loader";
 
 export const Adminmenu = () => {
   const loggeduser = useStore((state) => state.user);
+
+  const loggedUser = useStore((state) => state.user);
+  
   Loader("admin");
+
   return (
     <div className="amenucontainer">
       <Menuheader />
       <div>
         <h1>Administracion</h1>
         <h2>Bienvenido, {loggeduser?.userName}!</h2>
+        <p>  <div>
+      {loggedUser && loggedUser.roleId === 1 && (
+        <p>¡Usted es administrador!</p>
+      )}
+    </div></p>
         <div className="a-menu-lc">
           <LinkCard
             icon={<HardwareIcon sx={{ fontSize: "inherit" }} />}

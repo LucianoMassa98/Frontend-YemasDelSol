@@ -35,6 +35,8 @@ export const Admgalponespage = () => {
   const loggeduser = useStore((state) => state.user);
   Loader("admin");
 
+  
+
   const style = {
     position: 'absolute',
     top: '50%',
@@ -70,6 +72,8 @@ export const Admgalponespage = () => {
 
   };
   console.log(getgalpones, "getgalpones");
+  console.log("Estado del almacén:", loggedUser);
+
 
   return (
     <div id="admgalponescontainer">
@@ -83,7 +87,9 @@ export const Admgalponespage = () => {
         >
           Volver
         </Button>
-        <h1>Galpones {loggeduser?.userName}!</h1>
+        <h1>Galpones </h1>
+        <p>{loggeduser?.userName}!</p>
+      
         <div
           style={{
             display: "flex",
