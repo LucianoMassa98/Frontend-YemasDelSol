@@ -7,21 +7,15 @@ import { Menuheader } from "../../components/menuheader";
 import { useStore } from "../../store/use-store";
 import { Loader } from "../login/loader";
 
-
 export const Adminmenu = () => {
   const loggeduser = useStore((state) => state.user);
-  const loggedUser = useStore((state) => state.user);
   Loader("admin");
-
   return (
-    <div className="menucontainer">
+    <div className="amenucontainer">
       <Menuheader />
       <div>
         <h1>Administracion</h1>
         <h2>Bienvenido, {loggeduser?.userName}!</h2>
-        <p>  <div>
-      
-    </div></p>
         <div className="a-menu-lc">
           <LinkCard
             icon={<HardwareIcon sx={{ fontSize: "inherit" }} />}

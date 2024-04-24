@@ -1,10 +1,7 @@
 import "./menuheader.css";
 import { useState } from "react";
-import { RightDrawer } from "./drawers/right-drawer";
 import { useStore } from "../store/use-store";
-import { Loader } from "../pages/login/loader";
 import { Link } from "react-router-dom";
-import { LinkCard } from "../common/linkcard";
 import GroupIcon from "@mui/icons-material/Group";
 import HardwareIcon from "@mui/icons-material/Hardware";
 import WarehouseIcon from "@mui/icons-material/Warehouse";
@@ -12,17 +9,16 @@ import WarehouseIcon from "@mui/icons-material/Warehouse";
 
 
 export const Menuheader = () => {
-  const [isopen, setIsopen] = useState(false);
+
 
 
   const logout = useStore((state) => state.doLogout);
-  const loggeduser = useStore((state) => state.user);
   const loggedUser = useStore((state) => state.user);
 
   const [menuVisible, setMenuVisible] = useState(false);
 
 
-  Loader("admin");
+  
   return (
     <>
       <div className="home">
@@ -33,7 +29,7 @@ export const Menuheader = () => {
         </div>
         
         <div className="menu-img">
-          <img src="yemaslogo.jpeg" width={56} height={56} />
+          <img src="../public/yemaslogo.jpeg"  className="img-logo"/>
         </div>
       </div>
       <div>
@@ -64,6 +60,25 @@ export const Menuheader = () => {
 
                       </Link>
                     </div>
+                    <div className="burgeroptions">
+                      <p className="burgeroption" onClick={() => logout()}>
+                        Cerrar sesión
+                      </p>
+                      <div className="border-line"></div>
+
+                      <p className="burgeroption">Soporte</p>
+                      <div className="border-line"></div>
+                    </div>
+
+                  </div>
+
+                </>
+              )}
+            </div>
+            <div>
+              {loggedUser && loggedUser.roleId === 2 && (
+                <>
+                  <div className="menu-container-main">
                     <div className="burgeroptions">
                       <p className="burgeroption" onClick={() => logout()}>
                         Cerrar sesión
