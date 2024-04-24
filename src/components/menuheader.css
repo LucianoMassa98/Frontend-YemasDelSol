@@ -1,3 +1,5 @@
+/*Navbar */
+
 .home {
     display: flex;
     width: 100% !important;
@@ -10,71 +12,8 @@
     font-size: 30px;
     padding-left: 30px;
     cursor: pointer;
-  }menu-desplegable
-
-
-
-  .home-body{
-    display: flex;
-
+   
   }
-
-
-  .home-administracion{
-    padding-left: 20px;
-  }
-
-  .home-administracion-titulo{
-   width: 263px;
-   height: 46px;
-   top: 108px;
-   left: 20px;
-   font-size: 30px;
-  }
-
-  .home-administracion-subtitulo{
-    width: 169px;
-    height: 19px;
-    top:163px;
-    left: 26px;
-  }
-  .home-administracion-components{
-    display: flex;
-    gap: 20px;
-  }
-
-  .home-administracion-component-produccion,
-  .home-administracion-component-usuario{
-    text-align: left; 
-    border: 2px solid black;
-    border-radius: 10px;
-    width: 320px;
-    height: 129.9px;
-    top: 224px;
-    left: 384px;
-  }
-
-  .component-produccion-subtitulo-1,
-  .component-usuarios-subtitulo{
-    margin:0;
-    padding-left: 10px;
-  }
-
-  .component-produccion-texto,
-  .component-usuarios-texto{
-    padding-left: 10px;
-  }
-
-
-
-  /*Para etiquetas link*/
-  .MuiLink-root:hover {
-    color: inherit; 
-    text-decoration: none; 
-    cursor:pointer
-  }
-
- 
 
 
   /*Para menu desplegable*/
@@ -86,10 +25,10 @@
     position: absolute;
     left: 0; 
     padding-left: 10px;
-    padding-right: 20px;
-    background-color: #ffffff;  
+    background-color: #F7A600;
     z-index: 1; 
     opacity: 1; 
+    width: 350px;
   }
   
   .menu-desplegable.hide {
@@ -123,56 +62,17 @@
 }
 
 .menu-container{
-    border: 2px solid rgb(201, 195, 195);
+    border: 1px solid rgb(0, 0, 0);
     border-radius: 10px;
-    padding: 15px;
+    padding: 10px;
     gap: 18px;
 
 }
-h4{
-  font-weight: 400;
-  font-size: 20px;
-  line-height: 23.44px;
-  gap: 5px;
-
-}
-
-
-.menu-link-desplegable{
-  width: 400px;
-  display: flex;
-  flex-direction: column;
-  gap: 20px;
-}
 
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-.border-line {
-    border-top: 1px solid #D1D5DB; 
-    width: 270px;
-}
-
-
-
-
-
+/*Para el cierre sesion y soporte */
 .burgeroptions {
     display: flex;
     flex-direction: column;
@@ -182,10 +82,53 @@ h4{
 .burgeroption {
     padding-top: 5px;
     cursor: pointer;
-    color:#ffffff;
+    color:#000000;
   
+}
+
+.border-line {
+  border-top: 1px solid #000000; 
+  width: 270px;
 }
 
 
 
+.link-menu{
+  color: black;
+}
+.titulo-link{
+  display: flex;
+  gap: 18px;
+}
 
+.texto-link{
+  display: flex;
+ 
+  text-align: left;
+}
+
+h4{
+  font-weight: 400;
+  font-size: 20px;
+  line-height: 23.44px;
+  gap: 5px;
+  color: black;
+
+}
+
+
+@media (max-width: 768px) {
+
+ .menu-desplegable{
+  width: 200px;
+ }
+ .menu-container{
+  border: 1px solid rgb(0, 0, 0);
+  border-radius: 10px;
+  padding: 8px;
+  gap: 18px;
+  width: 170px;
+
+}
+
+}
