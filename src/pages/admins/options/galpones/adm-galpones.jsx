@@ -24,7 +24,6 @@ import "./adm-galpones.css";
 import { useGalpones } from "../../../../components/hooks/use-galpones";
 import { useRef, useState } from "react";
 import { Loader } from "../../../login/loader";
-import { useStore } from "../../../../store/use-store";
 
 export const Admgalponespage = () => {
   const [edit, setEdit] = useState(false)
@@ -32,10 +31,7 @@ export const Admgalponespage = () => {
   const [isopen, setIsopen] = useState(false);
   const actualgalpon = useRef({ id: 0, nombre: " ", enProduccion: 0 });
   const getgalpones = useGalpones();
-  const loggeduser = useStore((state) => state.user);
   Loader("admin");
-
-  
 
   const style = {
     position: 'absolute',
@@ -72,8 +68,6 @@ export const Admgalponespage = () => {
 
   };
   console.log(getgalpones, "getgalpones");
-  console.log("Estado del almacén:", loggedUser);
-
 
   return (
     <div id="admgalponescontainer">
@@ -87,9 +81,7 @@ export const Admgalponespage = () => {
         >
           Volver
         </Button>
-        <h1>Galpones </h1>
-        <p>{loggeduser?.userName}!</p>
-      
+        <h1>Galpones</h1>
         <div
           style={{
             display: "flex",
