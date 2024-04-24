@@ -1,11 +1,12 @@
 .menu-header {
     margin: 0;
     padding: 0;
-    width: 100vw;
+    width: 100%;
     display: flex;
     flex-direction: row;
     justify-items: flex-start;
-    background-color: green;
+    background-color: #F7A600;
+
 
 }
 
@@ -15,21 +16,44 @@
     align-items: center;
 }
 
+.burguerlogged{
+    text-align: center;
+    position: relative;
+    top: -20px; 
+}
+
 .burgeroptions {
     display: flex;
     flex-direction: column;
-    align-items: center;
     justify-items: flex-end;
 }
 
 .burgeroption {
-    background-color: transparent;
-    text-decoration: underline;
+    padding-top: 5px;
+    cursor: pointer;
+    color:#ffffff;
+  
 }
+
+.button-menu{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding-left: 10px;
+
+}
+.border-line {
+    border-top: 1px solid #D1D5DB; 
+    width: 270px;
+}
+
+
 
 @media(min-width: 700px) {
     .menu-header {
         height: 10vh;
         font-size: xx-large;
+      
     }
 }
+
