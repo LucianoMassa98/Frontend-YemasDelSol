@@ -40,6 +40,9 @@ h2{
     border-radius:30%;
 
   }
+  .contenedor-img{
+    padding-top: 18px;
+  }
 
   .menu-desplegable {
     display: flex;
@@ -50,7 +53,7 @@ h2{
     padding-left: 10px;
     background-color: #010101;
     width: 60px;
-  
+    z-index: 2;
   } 
 
   .menu-container-main{

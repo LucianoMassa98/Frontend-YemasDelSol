@@ -41,7 +41,7 @@ export const Menuheader = () => {
         {loggedUser && (loggedUser.roleId === 1 || loggedUser.roleId === 2) && (
           <>
             <div className="menu-container-main">
-              <div>
+              <div className="contenedor-img">
                 <img src="../public/yemaslogo.jpeg" className="img-logo" />
               </div>
 
