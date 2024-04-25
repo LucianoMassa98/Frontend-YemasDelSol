@@ -13,45 +13,68 @@ import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
 import { CardActionArea } from '@mui/material';
 
-export default function ActionAreaCard({img , nombre,precio  }) {
-  const [cantidad ,setCantidad] = React.useState("1")
-  const handleChange = (event) => {
-    setCantidad(event.target.value); // Actualiza el estado con el valor del input
-};
+export default function ActionAreaCard({ img, nombre, precio, setAddToCart }) {
+
+    const [cantidad, setCantidad] = React.useState("1")
+    const handleChange = (event) => {
+        setCantidad(event.target.value);
+    };
+    const addToCart = () => {
+
+        setAddToCart(prevCart => [...prevCart, { id: Date.now(), nombre, cnt: cantidad, precio }]);
+    };
     return (
-        <Card sx={{ width: "30%",  '@media (max-width: 620px)': {
-            width: "90%", // Cambia el ancho a 100% cuando el ancho de la pantalla sea igual o menor a 600px
-        }, }}>
+        <Card sx={{
+            borderRadius: "15px",
+            width: "30%", '@media (max-width: 620px)': {
+                width: "90%",
+            },
+        }}>
             <CardActionArea sx={{ display: "flex" }}>
                 <CardMedia
                     component="img"
-                    height="140"
-                    image={img} 
-                    alt="green iguana"
-                
+                    height="210"
+                    image={img}
+                    sx={{
+                        padding: "22px",
+                        display: "flex",
+                        borderRadius: "35px",
+                        // backgroundColor: "red",
+
+                        justifyContent: "center",
+                        objectFit: "cover", // Controla cómo se ajusta la imagen dentro del contenedor
+                        overflow: "hidden", // Controla el desbordamiento de la imagen
+                    }} alt={nombre}
+
                 />
-                <CardContent sx={{ backgroundColor: "#E8E8E8",display:"flex", justifyContent:"start",padding:"20px" } }>
-                    <Box sx={{ minWidth: 180 , display:"flex" , flexDirection:"column" , alignItems:"start" }}>
-                    <Typography gutterBottom variant="h5" component="div">
-                        {nombre}
-                    </Typography>
-                    
-                        <TextField id="outlined-basic" label="Ingrese una cantidad" variant="outlined" value={cantidad} onChange={handleChange} />
-                            <Typography sx={{ color: "#0019F7" }} gutterBottom variant="h5" component="div">
-                                {precio}
-                            </Typography>
-                            <Button sx={{
-                                backgroundColor: "#FFA500", width: "100%", fontSize: "13px", '&:hover': {
-                                    backgroundColor: "#FFD100", 
-                                }
-                            }} variant="contained">Agregar al carrito</Button>
-              
+                <CardContent sx={{ backgroundColor: "#E8E8E8", display: "flex", justifyContent: "start", padding: "20px" }}>
+                    <Box sx={{ minWidth: 180, display: "flex", flexDirection: "column", alignItems: "start" }}>
+                        <Typography gutterBottom variant="h5" component="div">
+                            {nombre}
+                        </Typography>
+
+                        <TextField id="outlined-basic" label="Ingrese una cantidad" InputProps={{
+                            sx: {
+                                borderRadius: '80px', // Ajusta el valor según sea necesario
+                                backgroundColor: 'white',
+                                border: 'none'
+                            },
+                        }} variant="outlined" value={cantidad} onChange={handleChange} />
+                        <Typography sx={{ color: "#0019F7" }} gutterBottom variant="h5" component="div">
+                            ${precio}
+                        </Typography>
+                        <Button onClick={addToCart} sx={{
+                            backgroundColor: "#FFA500", width: "100%", fontSize: "13px", '&:hover': {
+                                backgroundColor: "#FFD100",
+                            }
+                        }} variant="contained">Agregar al carrito</Button>
+
 
                     </Box>
 
                 </CardContent>
             </CardActionArea>
-            
+
         </Card>
     );
 }

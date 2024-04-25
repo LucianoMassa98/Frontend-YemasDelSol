@@ -2,7 +2,7 @@ import NavigateBeforeIcon from "@mui/icons-material/NavigateBefore";
 import DeleteIcon from '@mui/icons-material/Delete';
 import "./ingreso.css";
 import { api } from "../../../../services/api";
-
+import Table from "../../../../components/Table/Table";
 import { Menuheader } from "../../../../components/menuheader";
 import {
   Alert,
@@ -94,10 +94,10 @@ export const Ingreso = () => {
     setCantidad(event.target.value);
   };
 
-  const deleteProduct = (id) => {
-    const updatedArray = arrayResumen.filter(product => product.id !== id);
-    setArrayResumen(updatedArray);
-  };
+  // const deleteProduct = (id) => {
+  //   const updatedArray = arrayResumen.filter(product => product.id !== id);
+  //   setArrayResumen(updatedArray);
+  // };
 
   const handleGalponChange = (event) => {
     setGalponSeleccionado(event.target.value);
@@ -108,9 +108,9 @@ export const Ingreso = () => {
     try {
       const data = {
 
-        userId: user.customer.id, // Suponiendo que el usuario tiene una propiedad 'id'
+        userId: user.customer.id, 
         galponId: galponSeleccionado,
-        // nazi: "AWdwadwad",
+
         items: arrayResumen.map((producto) => ({
           productoId: producto.productoId,
           cnt: producto.cnt
@@ -139,7 +139,7 @@ export const Ingreso = () => {
         setGalponSeleccionado("")
         setArrayResumen([])
       } else {
-        toast.error('Error al guardar el egreso. Por favor, inténtalo de nuevo más tarde.', {
+        toast.error('Error al guardar el ingreso. Por favor, inténtalo de nuevo más tarde.', {
           duration: 4000,
           style: {
             background: "black",
@@ -151,15 +151,7 @@ export const Ingreso = () => {
       }
     } catch (e) {
       console.error('Error en la solicitud POST:', e);
-      toast.error('Error al enviar el egreso. Por favor, inténtalo de nuevo más tarde.', {
-        duration: 5000,
-        style: {
-          background: "#ac1313",
-          color: "white",
-          fontSize: "15px",
-          fontWeight: "500"
-        }
-      });
+    
     }
   }
   return (
@@ -237,7 +229,8 @@ export const Ingreso = () => {
               <Button sx={{ width: "50%", fontSize: "12px" }} onClick={handleAgregarClick} variant="contained">Agregar Producto</Button>
             </div>
 
-            <section className="section-table">
+            <Table array={arrayResumen} setArrayResumen={setArrayResumen}></Table>
+            {/* <section className="section-table">
 
               <table>
                 <thead>
@@ -277,7 +270,7 @@ export const Ingreso = () => {
               </table>
 
 
-            </section>
+            </section> */}
             <div className="select-container">
               <label htmlFor="">
                 Galpon

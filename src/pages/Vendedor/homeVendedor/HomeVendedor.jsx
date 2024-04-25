@@ -26,13 +26,14 @@ export default function HomeVendedor() {
     const [huevos, setHUevos] = useState([])
     const [loading, setLoading] = useState(true);
 
+    const [addToCart, setAddToCart] = useState([])
     const handleOpen = () => setOpenModal(true);
     const handleClose = () => setOpenModal(false);
     const handleChange = (event) => {
         setCantidad(event.target.value); // Actualiza el estado con el valor del input
     };
 
-    const fakePromise = () => new Promise((resolve) => setTimeout(resolve, 2000));
+    const fakePromise = () => new Promise((resolve) => setTimeout(resolve, 1000));
 
     useEffect(() => {
         try {
@@ -50,7 +51,7 @@ export default function HomeVendedor() {
     }, []);
 
 
-    console.log(huevos);
+    console.log(addToCart, "esto es add to cart");
     return (
 
 
@@ -99,15 +100,14 @@ export default function HomeVendedor() {
 
                             </select>
                         </div>
+                        <div className='cont-btn'>
 
-
+                            <Button variant='contained' color='success'>Agregar</Button>
+                        </div>
                     </div>
                 </section>
                 <section className='section-cards' >
                     {loading ? (
-
-
-
                         Array.from(new Array(6)).map((_, i) => (
 
                             <SkeletonLoader key={i} />
@@ -117,33 +117,23 @@ export default function HomeVendedor() {
                         huevos.map((huevo, i) => (
                             i < 6 && (
 
-
-
                                 <ActionAreaCard
+                                    addToCart={addToCart}
+                                    setAddToCart={setAddToCart}
                                     cantidad={cantidad}
                                     handleChange={handleChange}
                                     setCantidad={setCantidad}
                                     key={huevo.id}
                                     nombre={huevo.nombre}
                                     precio={huevo.precio}
-                                    img={"https://s3-alpha-sig.figma.com/img/0565/2852/f02f48e0d05827dcf727670791e8b185?Expires=1713744000&Key-Pair-Id=APKAQ4GOSFWCVNEHN3O4&Signature=pcxNxSAYKdsilQvYNBaIyAZBdHNq~aN0MnZcUCu9RtFqbsjxVN0OCoCSgGUtPG2nJDaVRIh5Kd7tkl4PbxSFdZnEPywmyuoK~w5iqdmu91H2vBaPzv19sZJi9dMisgW8w5ZPEvwM-OZLQhwk9bB5Vg5~jExt~ytuxqk63x~kWe7WpVhOy7wslLbHQvJqxIlTDu5qVLvveGsRJHuzMGJSnO8-PSLQWMKOJSCjbdgGJEXXLsLDbmPaeIUSDusg~lQwfn8pg86EjMMNTXhHcOoMgGMpiFTca0fcGp8RcVJ0zu-N2aYOaSwGtBEdRh2m6-Eg5FYlFozGKa2VeFO4vsEeTg__"}
+                                    img={"https://th.bing.com/th/id/R.4298670ef7a0bccdacd20c6c6c7ad367?rik=1KPhok5EbBVWRg&pid=ImgRaw&r=0"}
                                 />
-
-
                             )
                         ))
                     )}
-
-
-
-
-
-
                 </section>
 
                 <div className='btn-ver-mas'>
-
-
                     <Button sx={{
                         backgroundColor: "#6170FA", width: "30%", height: "40px", fontSize: "13px", '&:hover': {
                             backgroundColor: "#6170FA",
@@ -154,19 +144,26 @@ export default function HomeVendedor() {
                 {/* <svg className='wave' xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320"><path fill="#0099ff" fill-opacity="1" d="M0,288L16,261.3C32,235,64,181,96,165.3C128,149,160,171,192,202.7C224,235,256,277,288,293.3C320,309,352,299,384,277.3C416,256,448,224,480,197.3C512,171,544,149,576,160C608,171,640,213,672,208C704,203,736,149,768,144C800,139,832,181,864,176C896,171,928,117,960,80C992,43,1024,21,1056,58.7C1088,96,1120,192,1152,234.7C1184,277,1216,267,1248,245.3C1280,224,1312,192,1344,160C1376,128,1408,96,1424,80L1440,64L1440,0L1424,0C1408,0,1376,0,1344,0C1312,0,1280,0,1248,0C1216,0,1184,0,1152,0C1120,0,1088,0,1056,0C1024,0,992,0,960,0C928,0,896,0,864,0C832,0,800,0,768,0C736,0,704,0,672,0C640,0,608,0,576,0C544,0,512,0,480,0C448,0,416,0,384,0C352,0,320,0,288,0C256,0,224,0,192,0C160,0,128,0,96,0C64,0,32,0,16,0L0,0Z"></path></svg> */}
             </div>
             <div className='contenedor-svg'></div>
-            {openModal === false && (
+            {!openModal && (
                 <div onClick={handleOpen} className="cart-icon-container">
+                    {
+                        addToCart.length > 0 && (
 
+                            <div className='number-to-cart'>
+                                <span>
+
+                                    {addToCart.length > 0 && addToCart.length}
+                                </span>
+                            </div>
+                        )
+                    }
                     <AddShoppingCartIcon sx={{ color: "white", fontSize: "50px" }} />
 
                 </div>
             )}
 
-            <ModalAddToCart handleClose={handleClose} openModal={openModal}></ModalAddToCart>
+            <ModalAddToCart addToCart={addToCart} setAddToCart={setAddToCart} handleClose={handleClose} openModal={openModal}></ModalAddToCart>
         </div>
-
-
-
 
     )
 }

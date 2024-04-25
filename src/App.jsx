@@ -19,7 +19,7 @@ import { Productiondesechos } from "./pages/production/options/desechos/p-desech
 import { Productionbajas } from "./pages/production/options/bajas/p-bajas";
 import { Dailydetails } from "./pages/production/options/detallesdia/p-dailydetails";
 import HomeVendedor from "./pages/Vendedor/homeVendedor/HomeVendedor";
-import Checkout from "./pages/Vendedor/checkout/Checkout";
+
 
 
 
@@ -60,7 +60,7 @@ function App() {
             />
             {/* VENDEDOR */}
             <Route path="/vendedor" element={<HomeVendedor/>} />
-            <Route path="/vendedor/checkout" element={<Checkout/>} />
+  
           </Routes>
         </BrowserRouter>
       </QueryClientProvider>
