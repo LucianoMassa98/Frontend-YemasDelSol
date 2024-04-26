@@ -16,13 +16,14 @@ export const Menuheader = () => {
   const logout = useStore((state) => state.doLogout);
   const loggedUser = useStore((state) => state.user);
 
+
   return (
     <>
       <div className="menu-horizontal">
         <div className="no">
           <h2>    Hola {loggedUser?.userName}!
             < AccountCircleOutlinedIcon  />
-          </h2>
+          </h2> 
           {loggedUser && (
             <>
               {loggedUser.roleId === 1 ? (
@@ -68,6 +69,7 @@ export const Menuheader = () => {
         </div>
 
       </div>
+
 
     </>
   );
