@@ -43,7 +43,7 @@ export const Menuheader = () => {
           <>
             <div className="menu-container-main">
               <div className="contenedor-img">
-                <img src="../public/yemaslogo.jpeg" className="img-logo" />
+                <img src="/yemaslogo.jpeg" className="img-logo" />
               </div>
 
               <div className="burgeroptions">
