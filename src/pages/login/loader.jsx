@@ -10,6 +10,6 @@ export const Loader = (usertype) => {
 
   if (!islogged || usertype != usertypes[user.roleId]) {
     logoff();
-    navigate('/login');
+     navigate('/login');
   }
 };

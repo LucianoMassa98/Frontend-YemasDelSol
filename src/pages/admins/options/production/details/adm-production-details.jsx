@@ -21,6 +21,10 @@ import { useDeleteegreso } from "../../../../../components/hooks/admins/use-dele
 import { useDeletebaja } from "../../../../../components/hooks/admins/use-delete-baja";
 import { useDeletedesecho } from "../../../../../components/hooks/admins/use-delete-desecho";
 import { Loader } from "../../../../login/loader";
+import { useNavigate } from 'react-router-dom';
+
+
+
 
 export const AdmProductionDetails = () => {
   const [isopen, setIsopen] = useState("cerrado");
@@ -36,6 +40,9 @@ export const AdmProductionDetails = () => {
   const deletebajamutation = useDeletebaja();
   const deletedesechomutation = useDeletedesecho();
   const fechasdata = JSON.parse(localStorage.getItem("fechas"));
+
+
+  const navigate = useNavigate();
 
   useEffect(() => {
     detallemutation.mutate(fechasdata, {
@@ -91,7 +98,7 @@ export const AdmProductionDetails = () => {
           variant="outlined"
           startIcon={<NavigateBeforeIcon />}
           sx={{ display: "flex", flexDirection: "row", justifySelf: "left" }}
-          onClick={() => (window.location.href = "./")}
+          onClick={() => (navigate = "./")}
         >
           Volver
         </Button>

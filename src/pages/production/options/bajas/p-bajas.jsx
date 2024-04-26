@@ -18,6 +18,8 @@ import dayjs from "dayjs";
 import { useStore } from "../../../../store/use-store";
 import { Loader } from "../../../login/loader";
 
+import { useNavigate } from 'react-router-dom';
+
 export const Productionbajas = () => {
   let today = new Date();
   let now = dayjs(today).format("DD/MM/YYYY");
@@ -41,6 +43,7 @@ export const Productionbajas = () => {
     bajasmutation.mutate(objeto);
   };
 
+  const navigate = useNavigate();
   return (
     <div className="pbajascontainer">
       <Menuheader />
@@ -49,7 +52,7 @@ export const Productionbajas = () => {
           variant="outlined"
           startIcon={<NavigateBeforeIcon />}
           sx={{ display: "flex", flexDirection: "row", justifySelf: "left" }}
-          onClick={() => (window.location.href = "/productionmenu")}
+          onClick={() => (navigate = "/productionmenu")}
         >
           Volver
         </Button>

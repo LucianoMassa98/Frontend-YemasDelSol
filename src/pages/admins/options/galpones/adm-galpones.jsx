@@ -24,6 +24,7 @@ import "./adm-galpones.css";
 import { useGalpones } from "../../../../components/hooks/use-galpones";
 import { useRef, useState } from "react";
 import { Loader } from "../../../login/loader";
+import { useNavigate } from 'react-router-dom';
 
 export const Admgalponespage = () => {
   const [edit, setEdit] = useState(false)
@@ -32,6 +33,9 @@ export const Admgalponespage = () => {
   const actualgalpon = useRef({ id: 0, nombre: " ", enProduccion: 0 });
   const getgalpones = useGalpones();
   Loader("admin");
+
+
+  const navigate = useNavigate();
 
   const style = {
     position: 'absolute',
@@ -77,7 +81,7 @@ export const Admgalponespage = () => {
           variant="outlined"
           startIcon={<NavigateBeforeIcon />}
           sx={{ display: "flex", flexDirection: "row", justifySelf: "left" }}
-          onClick={() => (window.location.href = "/adminmenu")}
+          onClick={() => (navigate = "/adminmenu")}
         >
           Volver
         </Button>

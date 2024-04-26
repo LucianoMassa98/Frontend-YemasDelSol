@@ -29,6 +29,8 @@ import { useSetgalponingreso } from "../../../../components/hooks/ingreso/use-se
 import { useStore } from "../../../../store/use-store";
 import { Loader } from "../../../login/loader";
 
+import { useNavigate } from 'react-router-dom';
+
 
 /* Componente principal */
 
@@ -42,6 +44,8 @@ export const Ingreso = () => {
   const [cantidad, setCantidad] = useState("")
   const user = useStore((state) => state.user);
   const now = dayjs().format("DD/MM/YYYY");
+
+  const navigate = useNavigate();
 
   useEffect(() => {
     try {
@@ -181,7 +185,7 @@ export const Ingreso = () => {
                   justifySelf: "left",
                   margin: "13px 0px 0px 0px",
                 }}
-                onClick={() => (window.location.href = "./")}
+                onClick={() => (navigate = "./")}
               >
                 <NavigateBeforeIcon />
                 Volver

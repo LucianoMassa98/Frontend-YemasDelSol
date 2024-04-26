@@ -18,12 +18,16 @@ import dayjs from "dayjs";
 import { useStore } from "../../../../store/use-store";
 import { Loader } from "../../../login/loader";
 
+import { useNavigate } from 'react-router-dom';
+
 export const Productiondesechos = () => {
   let today = new Date();
   let now = dayjs(today).format("DD/MM/YYYY");
   const loggeduser = useStore((state) => state.user);
   const galpones = useGalpones();
   const desechosmutation = useSetdesechos();
+
+  const navigate = useNavigate();
 
   useEffect(() => {
     window.scrollTo(0, 0);
@@ -49,7 +53,7 @@ export const Productiondesechos = () => {
           variant="outlined"
           startIcon={<NavigateBeforeIcon />}
           sx={{ display: "flex", flexDirection: "row", justifySelf: "left" }}
-          onClick={() => (window.location.href = "/productionmenu")}
+          onClick={() => (navigate = "/productionmenu")}
         >
           Volver
         </Button>

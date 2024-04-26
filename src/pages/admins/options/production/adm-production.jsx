@@ -13,6 +13,7 @@ import { useRef, useState } from "react";
 import { useGetinforme } from "../../../../components/hooks/admins/use-get-informe";
 import { useEffect } from "react";
 import { Loader } from "../../../login/loader";
+import { useNavigate } from 'react-router-dom';
 
 export const AdmProduction = () => {
   const informemutation = useGetinforme();
@@ -23,6 +24,9 @@ export const AdmProduction = () => {
   const [hasta, setHasta] = useState(tomorrow);
   let desderef = useRef(today);
   let hastaref = useRef(tomorrow);
+
+
+  const navigate = useNavigate();
 
   useEffect(() => {
     handleBuscar();
@@ -56,7 +60,7 @@ export const AdmProduction = () => {
       hastaref.current.format("MM-DD-YYYY"),
     ];
     localStorage.setItem("fechas", JSON.stringify(fechasdata));
-    window.location.href = "/adminmenu/production/details";
+    navigate = "/adminmenu/production/details";
   };
 
   if (informemutation.isSuccess) {
@@ -71,7 +75,7 @@ export const AdmProduction = () => {
           variant="outlined"
           startIcon={<NavigateBeforeIcon />}
           sx={{ display: "flex", flexDirection: "row", justifySelf: "left" }}
-          onClick={() => (window.location.href = "/adminmenu")}
+          onClick={() => (navigate = "/adminmenu")}
         >
           Volver
         </Button>

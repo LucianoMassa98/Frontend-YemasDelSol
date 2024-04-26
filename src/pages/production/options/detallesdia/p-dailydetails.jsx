@@ -13,6 +13,8 @@ import { Loader } from "../../../login/loader";
 //import { useProductions } from "../../../../components/hooks/use-get-productions";
 //import { useIngresos } from "../../../../components/hooks/ingreso/use-get-ingresos";
 
+import { useNavigate } from 'react-router-dom';
+
 export const Dailydetails = () => {
   const informemutation = useGetinforme();
   //const egresosf = useProductions();
@@ -27,6 +29,8 @@ export const Dailydetails = () => {
     handleBuscar();
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
+
+  const navigate = useNavigate();
 
   Loader("production");
 
@@ -47,7 +51,7 @@ export const Dailydetails = () => {
           variant="outlined"
           startIcon={<NavigateBeforeIcon />}
           sx={{ display: "flex", flexDirection: "row", justifySelf: "left" }}
-          onClick={() => (window.location.href = "/productionmenu")}
+          onClick={() => (navigate = "/productionmenu")}
         >
           Volver
         </Button>
