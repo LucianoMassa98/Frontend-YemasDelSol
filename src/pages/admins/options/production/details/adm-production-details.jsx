@@ -23,9 +23,6 @@ import { useDeletedesecho } from "../../../../../components/hooks/admins/use-del
 import { Loader } from "../../../../login/loader";
 import { useNavigate } from 'react-router-dom';
 
-
-
-
 export const AdmProductionDetails = () => {
   const [isopen, setIsopen] = useState("cerrado");
   const lobjeto = useRef({
@@ -41,9 +38,6 @@ export const AdmProductionDetails = () => {
   const deletedesechomutation = useDeletedesecho();
   const fechasdata = JSON.parse(localStorage.getItem("fechas"));
 
-
-  const navigate = useNavigate();
-
   useEffect(() => {
     detallemutation.mutate(fechasdata, {
       onSuccess: (datos) => console.log(datos, "datosconexito"),
@@ -52,6 +46,12 @@ export const AdmProductionDetails = () => {
   }, []);
 
   Loader("admin");
+
+
+  const navigate = useNavigate();
+
+
+
 
   const handleOpen = (llave, tipo) => {
     lobjeto.current = llave;
@@ -98,7 +98,7 @@ export const AdmProductionDetails = () => {
           variant="outlined"
           startIcon={<NavigateBeforeIcon />}
           sx={{ display: "flex", flexDirection: "row", justifySelf: "left" }}
-          onClick={() => (navigate = "./")}
+          onClick={() => navigate("./")}
         >
           Volver
         </Button>

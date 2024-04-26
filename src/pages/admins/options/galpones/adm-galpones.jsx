@@ -34,7 +34,6 @@ export const Admgalponespage = () => {
   const getgalpones = useGalpones();
   Loader("admin");
 
-
   const navigate = useNavigate();
 
   const style = {
@@ -81,7 +80,7 @@ export const Admgalponespage = () => {
           variant="outlined"
           startIcon={<NavigateBeforeIcon />}
           sx={{ display: "flex", flexDirection: "row", justifySelf: "left" }}
-          onClick={() => (navigate = "/adminmenu")}
+          onClick={() => navigate("/adminmenu")}
         >
           Volver
         </Button>

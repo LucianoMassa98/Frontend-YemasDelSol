@@ -15,7 +15,6 @@ import { useCreatecustomer } from "../usershooks/create-customer";
 import { useGetallcustomers } from "../../../../../components/hooks/admins/use-get-customers";
 import { useCreateuser } from "../../../../../components/hooks/admins/use-create-user";
 import { Loader } from "../../../../login/loader";
-
 import { useNavigate } from 'react-router-dom';
 
 export const Admnewuserpage = () => {
@@ -26,14 +25,13 @@ export const Admnewuserpage = () => {
   let customercreatedid = useRef(0);
   Loader("admin");
 
-
-  const navigate = useNavigate();
-
   const handleSelectedcustm = (scustm) => {
     customercreatedid.current = scustm.persona.id;
     setPagestage(2);
     console.log(scustm.persona, "Seleccionado este");
   };
+
+  const navigate = useNavigate();
 
   const Createorgetcustomerid = () => {
     const [mode, setMode] = useState(0);
@@ -197,7 +195,7 @@ export const Admnewuserpage = () => {
           variant="outlined"
           startIcon={<NavigateBeforeIcon />}
           sx={{ display: "flex", flexDirection: "row", justifySelf: "left" }}
-          onClick={() => (navigate = "/adminmenu/users")}
+          onClick={() => navigate( "/adminmenu/users")}
         >
           Volver
         </Button>

@@ -9,7 +9,6 @@ import { useState } from "react";
 import { Alert, Collapse } from "@mui/material";
 import { useGetallusers } from "../../components/hooks/admins/use-get-users";
 import { useStore } from "../../store/use-store";
-
 import { useNavigate } from 'react-router-dom';
 
 export const Loginpage = () => {
@@ -21,7 +20,10 @@ export const Loginpage = () => {
     console.log(getusers.data, "usuarios obtenidos");
   }
 
+
   const navigate = useNavigate();
+
+
 
   const handleLogin = (credentials) => {
     if (getusers.isSuccess) {
@@ -46,10 +48,10 @@ export const Loginpage = () => {
 
       if (flag) {
         if (resultado.roleId === 1) {
-          navigate = "/adminmenu";
+          navigate("/adminmenu");
         }
         if (resultado.roleId === 2) {
-          navigate = "/productionmenu";
+          navigate ("/productionmenu");
         }
       } else {
         setHasFailedOnce(true);

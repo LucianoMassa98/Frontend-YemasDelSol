@@ -11,6 +11,9 @@ import { useEditcustomer } from "../../../../components/hooks/admins/use-edit-cu
 import { Loader } from "../../../login/loader";
 import { useNavigate } from 'react-router-dom';
 
+
+
+
 export const Admuserspage = () => {
   const [isopen, setIsopen] = useState(false);
   let recentflag = useRef(false); // This flag detects whether the info box is from a current user petition or not, so it will hide info when the drawer is closed
@@ -40,6 +43,7 @@ export const Admuserspage = () => {
 
   const users = useGetallusers();
 
+
   const navigate = useNavigate();
 
   return (
@@ -50,7 +54,7 @@ export const Admuserspage = () => {
           variant="outlined"
           startIcon={<NavigateBeforeIcon />}
           sx={{ display: "flex", flexDirection: "row", justifySelf: "left" }}
-          onClick={() => (navigate = "/adminmenu")}
+          onClick={() => navigate("/adminmenu")}
         >
           Volver
         </Button>

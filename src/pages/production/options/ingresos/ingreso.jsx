@@ -28,7 +28,6 @@ import { useDeleteitemingreso } from "../../../../components/hooks/ingreso/use-d
 import { useSetgalponingreso } from "../../../../components/hooks/ingreso/use-set-galpon-ingreso";
 import { useStore } from "../../../../store/use-store";
 import { Loader } from "../../../login/loader";
-
 import { useNavigate } from 'react-router-dom';
 
 
@@ -44,8 +43,6 @@ export const Ingreso = () => {
   const [cantidad, setCantidad] = useState("")
   const user = useStore((state) => state.user);
   const now = dayjs().format("DD/MM/YYYY");
-
-  const navigate = useNavigate();
 
   useEffect(() => {
     try {
@@ -83,6 +80,8 @@ export const Ingreso = () => {
       });
     }
   }
+
+  const navigate = useNavigate();
 
 
   const handleProductoChange = (event) => {
@@ -185,7 +184,7 @@ export const Ingreso = () => {
                   justifySelf: "left",
                   margin: "13px 0px 0px 0px",
                 }}
-                onClick={() => (navigate = "./")}
+                onClick={() => navigate("./")}
               >
                 <NavigateBeforeIcon />
                 Volver

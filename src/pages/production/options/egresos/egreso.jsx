@@ -32,7 +32,6 @@ import { useSetgalponproduction } from "../../../../components/hooks/use-set-gal
 import { useStore } from "../../../../store/use-store";
 import axios from "axios";
 import { Loader } from "../../../login/loader";
-
 import { useNavigate } from 'react-router-dom';
 
 
@@ -76,8 +75,6 @@ export const Egreso = () => {
   };
 
 
-  const navigate = useNavigate();
-
   useEffect(() => {
     try {
       const traerProductos = async () => {
@@ -89,6 +86,10 @@ export const Egreso = () => {
       console.log(e);
     }
   }, [])
+
+
+  const navigate = useNavigate();
+
 
 
   const handleProductoChange = (event) => {
@@ -218,7 +219,7 @@ export const Egreso = () => {
                 variant="outlined"
 
                 sx={{ display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "start", height: "26px", justifySelf: "left", margin: "13px 0px 0px 0px" }}
-                onClick={() => (navigate = "./")}
+                onClick={() => navigate("./")}
               >
                 <NavigateBeforeIcon />
                 Volver

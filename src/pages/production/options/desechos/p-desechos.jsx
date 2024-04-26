@@ -17,7 +17,6 @@ import { useEffect } from "react";
 import dayjs from "dayjs";
 import { useStore } from "../../../../store/use-store";
 import { Loader } from "../../../login/loader";
-
 import { useNavigate } from 'react-router-dom';
 
 export const Productiondesechos = () => {
@@ -26,8 +25,6 @@ export const Productiondesechos = () => {
   const loggeduser = useStore((state) => state.user);
   const galpones = useGalpones();
   const desechosmutation = useSetdesechos();
-
-  const navigate = useNavigate();
 
   useEffect(() => {
     window.scrollTo(0, 0);
@@ -45,6 +42,11 @@ export const Productiondesechos = () => {
     desechosmutation.mutate(objeto);
   };
 
+
+  const navigate = useNavigate();
+
+
+
   return (
     <div className="pdesechoscontainer">
       <Menuheader />
@@ -53,7 +55,7 @@ export const Productiondesechos = () => {
           variant="outlined"
           startIcon={<NavigateBeforeIcon />}
           sx={{ display: "flex", flexDirection: "row", justifySelf: "left" }}
-          onClick={() => (navigate = "/productionmenu")}
+          onClick={() =>  navigate("/productionmenu")}
         >
           Volver
         </Button>
