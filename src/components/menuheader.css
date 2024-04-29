@@ -6,7 +6,6 @@
   display: flex;
   justify-content: end;
   padding-right: 30px;
-  
 
 }
 
@@ -28,9 +27,6 @@ h2{
   color: #e0a545;
   margin-top: 0; 
 }
-
-
-
 
 
   /* menu vertical*/
@@ -55,6 +51,7 @@ h2{
     background-color: #010101;
     width: 60px;
     z-index: 2;
+   
   } 
 
   .menu-container-main{
@@ -64,6 +61,12 @@ h2{
     height: 590px;
     width: 32px;
     z-index: 2;
+    position: fixed;
+    background-color: #010101;
+    width: 60px;
+    top: 0;
+  left: 0;
+
   }
 
 
