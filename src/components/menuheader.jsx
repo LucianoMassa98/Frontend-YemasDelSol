@@ -1,6 +1,7 @@
 import "./menuheader.css";
+import React, { useEffect } from "react"; // Importa useEffect de React
 import { useState } from "react";
-import { useStore } from "../store/use-store";
+import { useStore} from "../store/use-store";
 import { Link } from "react-router-dom";
 import SettingsOutlinedIcon from '@mui/icons-material/SettingsOutlined';
 import SupportAgentOutlinedIcon from '@mui/icons-material/SupportAgentOutlined';
@@ -15,6 +16,16 @@ export const Menuheader = () => {
 
   const logout = useStore((state) => state.doLogout);
   const loggedUser = useStore((state) => state.user);
+  
+  useEffect(() => {
+    if (loggedUser) {
+      if (loggedUser.roleId === '1') {
+        Loader("admin");
+      } else if (loggedUser.roleId === '2') {
+        Loader("production");
+      }
+    }
+  }, [loggedUser]);
 
 
   return (
