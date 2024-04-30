@@ -1,4 +1,4 @@
-import { LinkCard } from "../../common/linkcard";
+import { LinkCard } from "../../common-produccion/linkcard";
 import ArticleIcon from "@mui/icons-material/Article";
 import AllInboxIcon from "@mui/icons-material/AllInbox";
 import DeleteIcon from "@mui/icons-material/Delete";
@@ -26,6 +26,7 @@ export const Productionmenu = () => {
             icon={<ArticleIcon sx={{ fontSize: "inherit" }} />}
             title="Ingreso"
             href="/productionmenu/ingreso"
+            className="linkCard-produccion"
           >
             En este modulo podras ingresar los cartones vacíos.
           </LinkCard>
