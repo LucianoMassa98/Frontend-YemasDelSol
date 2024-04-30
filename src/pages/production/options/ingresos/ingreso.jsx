@@ -184,7 +184,7 @@ export const Ingreso = () => {
                   justifySelf: "left",
                   margin: "13px 0px 0px 0px",
                 }}
-                onClick={() => navigate("./")}
+                onClick={() => navigate("/productionmenu")}
               >
                 <NavigateBeforeIcon />
                 Volver
