@@ -21,7 +21,7 @@ export const Adminmenu = () => {
             title="Producción"
             href="/adminmenu/production"
           >
-            En este modulo podras monitorear las operaciones que ocurren dentro
+            En este moódulo podras monitorear las operaciones que ocurren dentro
             del area de producción.
           </LinkCard>
           <LinkCard

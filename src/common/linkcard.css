@@ -5,7 +5,7 @@
     align-items: center;
     width: 250px;
     height: 300px;
-    border-style: solid;
+    
     border-width: 1px;
     background:orange;
     border-radius: 10px;
@@ -45,8 +45,8 @@
   }
 
   .link-container:hover {
-    background-color: #ffffff; 
-    color: black;
+    background-color: #000000; 
+    color: rgb(236, 236, 236);
  
   }
 
