@@ -16,7 +16,7 @@ import { useSetbajas } from "../../../../components/hooks/production/use-set-baj
 import { useEffect } from "react";
 import dayjs from "dayjs";
 import { useStore } from "../../../../store/use-store";
-import { Loader } from "../../../login/loader";
+
 import { useNavigate } from 'react-router-dom';
 
 export const Productionbajas = () => {
@@ -30,7 +30,6 @@ export const Productionbajas = () => {
     window.scrollTo(0, 0);
   }, []);
 
-  Loader("production");
 
   const handleSubmit = (datos) => {
     let numero = Number(datos.cantidad);

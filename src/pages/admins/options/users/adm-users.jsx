@@ -8,7 +8,7 @@ import { RightDrawer } from "../../../../components/drawers/right-drawer";
 import { Form, TextInput } from "../../../../components/form";
 import { useRef, useState } from "react";
 import { useEditcustomer } from "../../../../components/hooks/admins/use-edit-customer";
-import { Loader } from "../../../login/loader";
+
 import { useNavigate } from 'react-router-dom';
 
 
@@ -22,7 +22,7 @@ export const Admuserspage = () => {
     userName: "",
   });
   const usereditmutation = useEditcustomer();
-  Loader("admin");
+
 
   const handleClose = () => {
     setIsopen(false);

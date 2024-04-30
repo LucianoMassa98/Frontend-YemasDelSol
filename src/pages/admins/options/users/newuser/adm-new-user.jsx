@@ -14,7 +14,7 @@ import { Autocomplete, TextInput } from "../../../../../components/form";
 import { useCreatecustomer } from "../usershooks/create-customer";
 import { useGetallcustomers } from "../../../../../components/hooks/admins/use-get-customers";
 import { useCreateuser } from "../../../../../components/hooks/admins/use-create-user";
-import { Loader } from "../../../../login/loader";
+
 import { useNavigate } from 'react-router-dom';
 
 export const Admnewuserpage = () => {
@@ -23,7 +23,6 @@ export const Admnewuserpage = () => {
   const createusermutation = useCreateuser();
   const [pagestage, setPagestage] = useState(1);
   let customercreatedid = useRef(0);
-  Loader("admin");
 
   const handleSelectedcustm = (scustm) => {
     customercreatedid.current = scustm.persona.id;

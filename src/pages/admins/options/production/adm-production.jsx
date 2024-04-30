@@ -12,7 +12,6 @@ import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs";
 import { useRef, useState } from "react";
 import { useGetinforme } from "../../../../components/hooks/admins/use-get-informe";
 import { useEffect } from "react";
-import { Loader } from "../../../login/loader";
 import { useNavigate } from "react-router-dom";
 
 
@@ -34,7 +33,7 @@ export const AdmProduction = () => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
-  Loader("admin");
+ 
 
   
 

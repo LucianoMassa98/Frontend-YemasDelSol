@@ -45,7 +45,7 @@ export const AdmProductionDetails = () => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
-  Loader("admin");
+
 
 
   const navigate = useNavigate();

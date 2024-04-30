@@ -9,7 +9,7 @@ import { useRef } from "react";
 import { useGetinforme } from "../../../../components/hooks/admins/use-get-informe";
 import { useEffect } from "react";
 import { Menuheader } from "../../../../components/menuheader";
-import { Loader } from "../../../login/loader";
+
 //import { useProductions } from "../../../../components/hooks/use-get-productions";
 //import { useIngresos } from "../../../../components/hooks/ingreso/use-get-ingresos";
 
@@ -32,7 +32,7 @@ export const Dailydetails = () => {
 
   let navigate = useNavigate();
 
-  Loader("production");
+
 
   const handleBuscar = () => {
     let fechasdata = [
