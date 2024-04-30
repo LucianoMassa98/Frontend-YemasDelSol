@@ -6,17 +6,15 @@ import "./admin-menu.css";
 import { Menuheader } from "../../components/menuheader";
 import { useStore } from "../../store/use-store";
 import { Loader } from "../login/loader";
-
+import AccountCircleIcon from '@mui/icons-material/AccountCircle';
 
 export const Adminmenu = () => {
-  const loggeduser = useStore((state) => state.user);
-  Loader("admin");
+
   return (
     <div className="amenucontainer">
       <Menuheader />
       <div>
-        <h1>Administracion</h1>
-        <h2>Bienvenido, {loggeduser?.userName}!</h2>
+       
         <div className="a-menu-lc">
           <LinkCard
             icon={<HardwareIcon sx={{ fontSize: "inherit" }} />}
@@ -27,7 +25,7 @@ export const Adminmenu = () => {
             del area de producción.
           </LinkCard>
           <LinkCard
-            icon={<GroupIcon sx={{ fontSize: "inherit" }} />}
+            icon={<AccountCircleIcon  sx={{ fontSize: "inherit" }} />}
             title="Usuarios"
             href="/adminmenu/users"
           >

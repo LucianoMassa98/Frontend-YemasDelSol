@@ -1,26 +1,28 @@
 .l-c-principaldiv{
     display: flex;
+    flex-direction: column;
+   justify-content: space-between;
     align-items: center;
-    min-width: 150px;
-    max-width: 300px;
-    max-height: 200px;
-    padding: 10px;
+    width: 250px;
+    height: 300px;
     border-style: solid;
     border-width: 1px;
-    border-color: rgb(240, 237, 237);
+    background:orange;
     border-radius: 10px;
     box-shadow: rgba(0, 0, 0, 0.15) 1.95px 1.95px 2.6px;
+    padding: 10px;
+}
+.l-c-icon{
+    color: white;
+
 }
 .l-c-middiv{
-    display: flex;
-    align-items: center;
     font-size: 28px;
-    color: orange;
+    color: black;
 }
 
+
 .l-c-title{
-    position: relative;
-    bottom: 4px;
     left: 4px;
     font-size: 20px;
 }
@@ -28,5 +30,30 @@
 .l-c-children{
     text-align: left;
     font-size: 16px;
-    color: rgb(219, 143, 0);
+    color: black
 }
+
+.link-container {
+    display: inline-block;
+    padding: 3px 16px;
+    border-radius: 20px; 
+    background-color: #ffffff; 
+    color: black;
+    text-decoration: none; 
+    cursor: pointer; 
+    transition: background-color 0.3s; 
+  }
+
+  .link-container:hover {
+    background-color: #ffffff; 
+    color: black;
+ 
+  }
+
+
+  @media (max-width: 768px) {
+    .l-c-principaldiv {
+        display: flex;
+      flex-direction: column;
+    }
+  }
