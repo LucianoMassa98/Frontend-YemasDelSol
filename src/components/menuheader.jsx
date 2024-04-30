@@ -30,28 +30,21 @@ export const Menuheader = () => {
 
   return (
     <>
+      {loggedUser && (loggedUser.roleId === 1) && (
+        <>
       <div className="menu-horizontal">
         <div className="no">
-          <h2>    Hola {loggedUser?.userName}!
+          <h2> Hola {loggedUser?.userName}!
             < AccountCircleOutlinedIcon  />
           </h2> 
-          {loggedUser && (
-            <>
-              {loggedUser.roleId === 1 ? (
-                <p className="subtitulo-2">administracion</p>
-              ) : loggedUser.roleId === 2 ? (
-                <p className="subtitulo-2">Producción</p>
-              ) : null}
-            </>
-          )}
+          <p className="subtitulo-2">administracion</p>
         </div>
 
       </div>
 
 
       <div className="menu-desplegable">
-        {loggedUser && (loggedUser.roleId === 1 || loggedUser.roleId === 2) && (
-          <>
+      
             <div className="menu-container-main">
               <div className="contenedor-img">
                 <img src="/yemaslogo.jpeg" className="img-logo" />
@@ -73,13 +66,35 @@ export const Menuheader = () => {
 
             </div>
 
-          </>
-        )}
+    
         <div>
 
         </div>
 
       </div>
+   </>
+  )}
+    {loggedUser && (loggedUser.roleId === 2) && (
+      <>
+      <div className="menu-produccion">
+        <div className="logo-produccion">
+        <img src="/yemaslogo.jpeg" className="img-logo" />
+        </div>
+        <div className="menu-iconos">
+                <p className="burgeroption-produccion">
+                  <SettingsOutlinedIcon  style={{ fontSize: 28}}/>
+                </p>
+                <p className="burgeroption-produccion">
+                  <SupportAgentOutlinedIcon  style={{ fontSize: 28}}/>
+                </p>
+                <p className="burgeroption-produccion" onClick={logout}>
+                  <LogoutOutlinedIcon  style={{ fontSize: 28}} />
+                </p>
+        </div>
+
+      </div>
+      </>
+    )}
 
 
     </>

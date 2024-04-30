@@ -20,8 +20,7 @@ export const Productionmenu = () => {
     <div className="pmenucontainer">
       <Menuheader />
       <div>
-        <h1>Producción</h1>
-        <h2>Bienvenido, {loggeduser?.userName}!</h2>
+   
         <div className="p-menu-lc">
           <LinkCard
             icon={<ArticleIcon sx={{ fontSize: "inherit" }} />}

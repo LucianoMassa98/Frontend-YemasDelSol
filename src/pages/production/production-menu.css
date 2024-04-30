@@ -1,21 +1,13 @@
 .p-menu-lc{
-    display: flex;
-    flex-direction: column;
-    gap: 20px;
-    justify-items: flex-start;
-    align-items: center;
-    padding: 20px;
-    overflow: scroll;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr); 
+     gap: 40px;
+    padding-left: 120px;
+    padding-top: 40px;
+
 }
 
 .pmenucontainer{
     width:100vw;
     min-height: 90vw;
-}
-
-@media(min-width: 700px){
-    .pmenucontainer{
-        width:100vw;
-        min-height: 90vw;
-    }
 }

@@ -144,3 +144,28 @@ h4{
 }
 
 }
+
+
+
+/*Menu para produccion*/
+
+.menu-produccion{
+  display: flex;
+  justify-content: space-between;
+  padding-left: 40px;
+  background-color: #56ADD1;
+ 
+}
+
+.logo-produccion{
+  padding-top: 20px;
+}
+
+
+.menu-iconos{
+  display: flex;
+  padding-right: 20px;
+  padding-top: 20px;
+  gap: 20px;
+  color: black;
+}
