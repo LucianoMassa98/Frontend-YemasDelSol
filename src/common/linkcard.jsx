@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import "./linkcard.css";
+import "./linkcard-admin.css";
 
 export const LinkCard = ({ title, icon, children, href }) => {
   return (

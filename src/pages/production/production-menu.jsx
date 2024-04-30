@@ -1,4 +1,4 @@
-import { LinkCard } from "../../common-produccion/linkcard";
+import { LinkCard } from "../../common-produccion/linkcard-produccion";
 import ArticleIcon from "@mui/icons-material/Article";
 import AllInboxIcon from "@mui/icons-material/AllInbox";
 import DeleteIcon from "@mui/icons-material/Delete";
