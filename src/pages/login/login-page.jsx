@@ -1,18 +1,27 @@
 import Button from "@mui/material/Button";
 import Container from "@mui/material/Container";
 import Link from "@mui/material/Link";
+
 import Stack from "@mui/material/Stack";
 import Typography from "@mui/material/Typography";
+import { InputAdornment } from '@mui/material';
+import { IconButton } from '@mui/material';
 import { Helmet } from "react-helmet-async";
+import VisibilityOffIcon from '@mui/icons-material/VisibilityOff';
+import VisibilityIcon from '@mui/icons-material/Visibility';
+import PersonIcon from '@mui/icons-material/Person';
 import { Form, TextInput } from "../../components/form";
+import "./login.css"
 import { useState } from "react";
 import { Alert, Collapse } from "@mui/material";
+import EmailIcon from '@mui/icons-material/Email';
 import { useGetallusers } from "../../components/hooks/admins/use-get-users";
 import { useStore } from "../../store/use-store";
 
 export const Loginpage = () => {
   const [hasFailedOnce, setHasFailedOnce] = useState(false);
   const getusers = useGetallusers();
+  console.log(getusers.data, "usuarios obtenidos");
   const { setUser, setIsLoggedIn } = useStore();
 
   if (getusers.isSuccess) {
@@ -54,60 +63,102 @@ export const Loginpage = () => {
   };
 
   return (
-    <>
-      <Helmet>
-        <title>Iniciar sesión</title>
-      </Helmet>
-      <Container maxWidth="xs">
-        <Typography variant="h3" component="h1" align="center" my={6}>
-          Iniciar Sesión
-        </Typography>
+    <div className="container-fondo-circle">
+      <div className="container-login">
+        <Helmet>
+          <title>Iniciar sesión</title>
+        </Helmet>
+        <Container maxWidth="xs" sx={{ width: "78%", backgroundColor: " #f3a406", borderRadius: "3%", paddingY: "30px", position: "relative" }}>
+          <div className="container-logo-absolute">
+            <img src="./yemaslogo.jpeg" alt="" />
+          </div>
+          <Typography color={"black"} sx={{ marginTop: "30px", letterSpacing: '0.3em', fontWeight: "500" }} variant="h3" component="h2">
+            LOGIN
+          </Typography>
+          <Form
+            defaultValues={{ username: "", password: "" }}
+            onSubmit={handleLogin}
+          >
+            <Stack spacing={4} sx={{ fontSize: 16, display: "flex", justifyContent: "center", alignItems: "center" }}>
+              <TextInput
+                name="username"
+                variant="standard"
+                label="Usuario"
+                type="text"
+                placeholder="Tu usuario"
+                sx={{ width: "90%" }}
+                InputProps={{
+                  endAdornment: (
+                    <InputAdornment position="end">
 
-        <Form
-          defaultValues={{ username: "", password: "" }}
-          onSubmit={handleLogin}
-        >
-          <Stack spacing={4} sx={{ fontSize: 16 }}>
-            <TextInput
-              name="username"
-              variant="standard"
-              label="Usuario"
-              placeholder="Tu usuario"
-            />
-            <TextInput
-              name="password"
-              type="password"
-              variant="standard"
-              label="Contraseña"
-              placeholder="Tu contraseña"
-            />
-            <Button
-              name="admin"
-              type="submit"
-              variant="contained"
-              sx={{
-                textTransform: "capitalize",
-                fontSize: 16,
-                backgroundColor: "deepskyblue",
-              }}
-            >
-              Ingresar
-            </Button>
-            <Collapse in={hasFailedOnce}>
-              <Alert severity="error">
-                Las credenciales ingresadas no coinciden. Por favor, revisa los
-                datos ingresados e intenta de nuevo.
-              </Alert>
-            </Collapse>
-          </Stack>
-        </Form>
-        <Typography variant="body1" mt={3} align="center">
-          Todavía no tienes una cuenta?{" "}
-          <Link href="/register" underline="hover" color="#5d8bff">
-            Regístrate
+                      <PersonIcon />
+
+                    </InputAdornment>
+                  )
+                }}
+
+              />
+              <TextInput
+                name="password"
+                type="password"
+                variant="standard"
+                autoComplete="current-password"
+                label="Contraseña"
+                placeholder="Tu contraseña"
+                sx={{ width: "90%" }}
+
+              />
+              <Button
+                name="admin"
+                type="submit"
+                variant="contained"
+                sx={{
+                  textTransform: "capitalize",
+                  backgroundColor: "black",
+                  fontSize: 14,
+                  width: "50%",
+
+
+                }}
+              >
+                ENTRAR
+              </Button>
+              <Collapse sx={{ width: "100%" }} in={hasFailedOnce}>
+                <Alert severity="error">
+                  Las credenciales ingresadas no coinciden. Por favor, revisa los
+                  datos ingresados e intenta de nuevo.
+                </Alert>
+              </Collapse>
+            </Stack>
+          </Form>
+          <Link underline="none" href="/register" sx={{ outline: "none", textUnderlineOffset: "none" }} color="black">
+            <Typography variant="body1" mt={1} align="center">
+              Olvidaste tu contraseña ?
+            </Typography>
           </Link>
-        </Typography>
-      </Container>
-    </>
+          <Typography variant="body1" mt={1} align="center" sx={{ color: "black" }}>
+            Todavía no tienes una cuenta?{" "}
+            <Link underline="none" href="/register" color="inherit">
+              Regístrate
+            </Link>
+          </Typography>
+        </Container>
+      </div>
+      <div className="circles-fondo">
+
+      </div>
+      <div className="circles-fondo-dos">
+
+      </div>
+      <div className="circles-fondo-tres">
+
+      </div>
+      <div className="circles-fondo-cuatro">
+
+      </div>
+      <div className="circles-fondo-cinco">
+
+      </div>
+    </div>
   );
 };
