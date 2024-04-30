@@ -10,6 +10,8 @@ import AccountCircleIcon from '@mui/icons-material/AccountCircle';
 
 export const Adminmenu = () => {
 
+  Loader("admin")
+
   return (
     <div className="amenucontainer">
       <Menuheader />

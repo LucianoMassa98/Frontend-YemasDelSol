@@ -64,7 +64,7 @@ export const Menuheader = () => {
                 <p className="burgeroption">
                   <SupportAgentOutlinedIcon />
                 </p>
-                <p className="burgeroption-2" onClick={() => logout()}>
+                <p className="burgeroption-2" onClick={logout}>
                   <LogoutOutlinedIcon />
                 </p>
 
