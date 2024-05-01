@@ -15,27 +15,20 @@
     align-items: center;
 }
 
-.container-wave-bg {
-    position: relative;
-    background-color: #0019F787;
-    height: 600px;
-
-
-
-}
+.container-wave-bg {}
 
 
 .filtrado-prod {
     border-radius: 10px;
-    width: 94.3vw;
+    width: 100vw;
     display: flex;
     justify-content: start;
-    align-items: end;
-    padding-left: 40px;
-    gap: 50px;
-    background-color: #e8e8e8;
-    padding-top: 15px;
-    padding-bottom: 15px;
+    align-items: center;
+
+    
+    gap: 40px;
+    padding-top: 10px;
+    padding-bottom: 10px;
 }
 
 .cont-input {
@@ -48,12 +41,13 @@
 }
 
 .cont-input input {
-    width: 100%;
+    /* width: 100%;
     outline: none;
-    border: none;
+    border: 1.8px solid rgb(160, 157, 157);
+    border-radius: 10px;
     padding: 6px;
     font-size: 18px;
-    font-weight: bold;
+    font-weight: bold; */
 }
 
 .div-h2 {
@@ -66,12 +60,13 @@
 }
 
 .cantidad {
-    width: 22%;
+    width: 25%;
     display: flex;
-    flex-direction: column;
     justify-content: center;
-    align-items: start;
-    gap: 10px;
+    align-items: center;
+    
+    gap: 35px;
+    padding-right: 50px;
 
 }
 
@@ -81,21 +76,18 @@
 }
 
 .cantidad input {
-    width: 70%;
-    outline: none;
-    border: none;
-    padding: 6px;
-    font-size: 18px;
-    font-weight: bold;
+
 }
 
 .cont-select {
-    width: 22%;
+    width: 40%;
     display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: start;
-    gap: 10px;
+    
+
+    justify-content:center;
+ 
+    align-items: center;
+    gap: 35px;
 }
 
 .cont-select label {
@@ -104,18 +96,22 @@
 }
 
 .cont-select select {
-    width: 70%;
-    outline: none;
-    border: none;
+    width: 100%;
+    border: 1.8px solid rgb(160, 157, 157);
+    border-radius: 10px;
     padding: 6px;
-    font-size: 18px;
+    font-size: 16px;
     font-weight: bold;
 }
-
+.cont-select select option{
+    font-size: 16px;
+    font-weight: 100;
+}
 .cont-btn {
     display: flex;
     justify-content: start;
-    width: 15%;
+
+    background-color: red;
 }
 
 .cart-icon-container {
@@ -170,7 +166,8 @@
     justify-content: center;
 
     margin-top: 30px;
-    gap: 30px;
+    margin-bottom: 30px;
+    gap: 35px;
 
 
 }
@@ -178,9 +175,9 @@
 .div-prod {
     width: 30%;
     display: flex;
-    flex-direction: column;
+
     justify-content: center;
-    align-items: start;
+    align-items: center;
     gap: 10px;
 
 }
