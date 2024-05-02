@@ -1,20 +1,78 @@
-.menu-header {
-    margin: 0;
-    padding: 0;
-    width: 100%;
+/*Navbar */
+
+.home {
     display: flex;
-    flex-direction: row;
-    justify-items: flex-start;
+    width: 100% !important;
     background-color: #F7A600;
+    justify-content: space-between;
+
+  }
+
+  .menu-hamburguer{
+    font-size: 30px;
+    padding-left: 30px;
+    cursor: pointer;
+   
+  }
 
 
-}
+  /*Para menu desplegable*/
 
-.burgercontent {
+
+  .menu-desplegable {
+    display: flex;
+    flex-direction: column; 
+    position: absolute;
+    left: 0; 
+    padding-left: 10px;
+    background-color: #F7A600;
+    z-index: 1; 
+    opacity: 1; 
+    width: 350px;
+  }
+  
+  .menu-desplegable.hide {
+    opacity: 0; 
+  }
+  
+
+  .menu-container-main{
     display: flex;
     flex-direction: column;
-    align-items: center;
+    gap: 20px;
+    left: 20px;
+    height: 633.33px;
+    width: 320px;
+  }
+
+
+.menu-titulo{
+  font-weight: 400;
+  font-size: 39.06px;
+  height: 46px;
+  top: 108px;
+  left: 20px;
 }
+
+.menu-subtitulo{
+    width: 169px;
+    height: 19px;
+    top: 163px;
+    left: 26px;
+}
+
+.menu-container{
+    border: 1px solid rgb(0, 0, 0);
+    border-radius: 10px;
+    padding: 10px;
+    gap: 18px;
+
+}
+
+
+
+
+/*Para el cierre sesion y soporte */
 
 .burguerlogged{
     text-align: center;
@@ -31,41 +89,53 @@
 .burgeroption {
     padding-top: 5px;
     cursor: pointer;
-    color:#ffffff;
-
+    color:#000000;
+  
 }
+
 .border-line {
-    border-top: 1px solid #D1D5DB; 
-    width: 270px;
+  border-top: 1px solid #000000; 
+  width: 270px;
 }
 
 
 
-.button-menu{
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    padding-left: 10px;
-
+.link-menu{
+  color: black;
 }
-.border-line {
-    border-top: 1px solid #D1D5DB; 
-    width: 270px;
+.titulo-link{
+  display: flex;
+  gap: 18px;
 }
 
-
-
-@media(min-width: 700px) {
-    .menu-header {
-        height: 10vh;
-        font-size: xx-large;
-      
-    }
+.texto-link{
+  display: flex;
+ 
+  text-align: left;
 }
-@media(max-width: 700px) {
-    .border-line  {
-        width: 190px;
-      
-    }
-   
+
+h4{
+  font-weight: 400;
+  font-size: 20px;
+  line-height: 23.44px;
+  gap: 5px;
+  color: black;
+
+}
+
+
+@media (max-width: 768px) {
+
+ .menu-desplegable{
+  width: 200px;
+ }
+ .menu-container{
+  border: 1px solid rgb(0, 0, 0);
+  border-radius: 10px;
+  padding: 8px;
+  gap: 18px;
+  width: 170px;
+
+}
+
 }
