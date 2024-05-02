@@ -27,7 +27,7 @@ export default function ActionAreaCard({ img, nombre, precio, setAddToCart }) {
     return (
         <Card sx={{
             borderRadius: "10px",
-            width: "19%", '@media (max-width: 620px)': {
+            width: "18%", '@media (max-width: 620px)': {
                 width: "90%",
             },
             boxShadow: "0px 0px 5px rgba(0, 0, 0, 0.4)",
@@ -39,15 +39,15 @@ export default function ActionAreaCard({ img, nombre, precio, setAddToCart }) {
                     height="180"
                     image={img}
                     sx={{
-                        paddingTop: "16px",
+                        paddingTop: "11px",
                         backgroundColor: "#F7A600",
                         display: "flex",
                         borderRadius: "0px",
-                        // backgroundColor: "red",
+       
 
                         justifyContent: "center",
-                        objectFit: "cover", // Controla cómo se ajusta la imagen dentro del contenedor
-                        overflow: "hidden", // Controla el desbordamiento de la imagen
+                        objectFit: "cover", 
+                        overflow: "hidden", 
                     }} alt={nombre}
 
                 />
@@ -74,7 +74,7 @@ export default function ActionAreaCard({ img, nombre, precio, setAddToCart }) {
                         </Box>
                         <Button
                             onClick={addToCart}
-                            startIcon={<ShoppingCartOutlinedIcon />} 
+                            startIcon={<ShoppingCartOutlinedIcon />}
                             variant="contained"
                             sx={{
                                 backgroundColor: "#FFA500",

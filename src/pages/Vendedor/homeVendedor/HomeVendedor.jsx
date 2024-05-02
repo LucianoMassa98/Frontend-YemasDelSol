@@ -189,7 +189,7 @@ export default function HomeVendedor() {
                             </div>
                         )
                     }
-                    <AddShoppingCartIcon sx={{ color: "white", fontSize: "50px" }} />
+                    <AddShoppingCartIcon sx={{ color: "#acac04", fontSize: "45px" }} />
 
                 </div>
             )}

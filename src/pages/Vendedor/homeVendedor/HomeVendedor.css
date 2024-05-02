@@ -25,7 +25,7 @@
     justify-content: start;
     align-items: center;
 
-    
+
     gap: 40px;
     padding-top: 10px;
     padding-bottom: 10px;
@@ -64,7 +64,7 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    
+
     gap: 35px;
     padding-right: 50px;
 
@@ -75,17 +75,15 @@
     font-size: 18px;
 }
 
-.cantidad input {
-
-}
+.cantidad input {}
 
 .cont-select {
     width: 40%;
     display: flex;
-    
 
-    justify-content:center;
- 
+
+    justify-content: center;
+
     align-items: center;
     gap: 35px;
 }
@@ -103,10 +101,12 @@
     font-size: 16px;
     font-weight: bold;
 }
-.cont-select select option{
+
+.cont-select select option {
     font-size: 16px;
     font-weight: 100;
 }
+
 .cont-btn {
     display: flex;
     justify-content: start;
@@ -117,8 +117,12 @@
 .cart-icon-container {
     position: fixed;
     bottom: 20px;
-    background-color: #2cb625ee;
-    /* background-color: rgb(6, 116, 15); */
+    background: linear-gradient(to bottom, #004d00, #001a00);
+
+    background: -webkit-linear-gradient(top, #004d00, #001a00);
+    background: -moz-linear-gradient(top, #004d00, #001a00);
+    background: -o-linear-gradient(top, #004d00, #001a00);
+
     padding: 8px;
     border-radius: 50%;
     /* border: 1px solid black; */
@@ -133,18 +137,21 @@
 
 .number-to-cart {
     position: absolute;
-    bottom: 0;
-    right: 0;
+    top: 0;
+    right: 15%;
 
-    padding: 2px;
+    padding: 1px;
 }
 
 .number-to-cart span {
     font-size: 17px;
     background-color: white;
     border-radius: 50%;
-    padding: 2px;
-    color: red;
+    padding-top: 2px;
+    padding-bottom: 2px;
+    padding-left: 5px;
+    padding-right: 5px;
+    color: black;
     font-weight: 700;
 }
 
