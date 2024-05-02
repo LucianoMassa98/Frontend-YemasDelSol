@@ -5,7 +5,6 @@ export default function HomePage() {
 
 
 
-
     return (
         <>
             <div className="home-ventas">
@@ -28,6 +27,7 @@ export default function HomePage() {
             <div>
            
             </div>
+
 
         </>
     )

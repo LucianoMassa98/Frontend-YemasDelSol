@@ -28,6 +28,7 @@ export const Menuheader = () => {
   }, [loggedUser]);
 
 
+  Loader("admin");
   return (
     <>
       <div className="menu-horizontal">
@@ -80,7 +81,6 @@ export const Menuheader = () => {
         </div>
 
       </div>
-
 
     </>
   );

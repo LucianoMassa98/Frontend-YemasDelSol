@@ -8,13 +8,13 @@ import { useStore } from "../../store/use-store";
 import { Loader } from "../login/loader";
 import AccountCircleIcon from '@mui/icons-material/AccountCircle';
 
+
 export const Adminmenu = () => {
 
   return (
-    <div className="amenucontainer">
+    <div className="menucontainer">
       <Menuheader />
       <div>
-       
         <div className="a-menu-lc">
           <LinkCard
             icon={<HardwareIcon sx={{ fontSize: "inherit" }} />}
