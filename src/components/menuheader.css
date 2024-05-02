@@ -32,8 +32,14 @@
     padding-top: 5px;
     cursor: pointer;
     color:#ffffff;
-  
+
 }
+.border-line {
+    border-top: 1px solid #D1D5DB; 
+    width: 270px;
+}
+
+
 
 .button-menu{
     display: flex;
@@ -55,7 +61,6 @@
         font-size: xx-large;
       
     }
-   
 }
 @media(max-width: 700px) {
     .border-line  {
