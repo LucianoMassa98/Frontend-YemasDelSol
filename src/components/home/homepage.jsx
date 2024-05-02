@@ -6,12 +6,12 @@ import { useStore } from "../../store/use-store";
 import { Loader } from "../../pages/login/loader";
 
 
-
 export default function HomePage() {
 
     const loggeduser = useStore((state) => state.user);
     const loggedUser = useStore((state) => state.user);
     Loader("admin");
+
 
 
     const [menuVisible, setMenuVisible] = useState(false);
@@ -29,6 +29,7 @@ export default function HomePage() {
                     <img src="yemaslogo.jpeg" width={56} height={56} />
                 </div>
             </div>
+
             <div>
                 {menuVisible &&
                     <div className="menu-desplegable">
@@ -102,6 +103,7 @@ export default function HomePage() {
                     <div className="home-administracion-components">
                         <div className="home-administracion-component-produccion">
                             <Link to="/productionmenu" color="inherit" underline="none">
+
                                 <p className="component-produccion-subtitulo-1">Produccion</p>
                                 <p className="component-produccion-texto">En este modulo podras monitorerar <br /> las operaciones que ocurren dentro del area de producción</p>
                             </Link>
@@ -110,6 +112,7 @@ export default function HomePage() {
                             <Link to="/adminmenu/users" color="inherit" underline="none">
                                 <p className="component-usuarios-subtitulo">Usuarios</p>
                                 <p className="component-usuarios-texto">Lorem ipsum dolr amet</p>
+
                             </Link>
                         </div>
 

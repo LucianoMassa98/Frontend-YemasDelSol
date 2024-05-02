@@ -73,6 +73,13 @@
 
 
 /*Para el cierre sesion y soporte */
+
+.burguerlogged{
+    text-align: center;
+    position: relative;
+    top: -20px; 
+}
+
 .burgeroptions {
     display: flex;
     flex-direction: column;
