@@ -21,6 +21,7 @@ import { useDeleteegreso } from "../../../../../components/hooks/admins/use-dele
 import { useDeletebaja } from "../../../../../components/hooks/admins/use-delete-baja";
 import { useDeletedesecho } from "../../../../../components/hooks/admins/use-delete-desecho";
 import { Loader } from "../../../../login/loader";
+import { useNavigate } from 'react-router-dom';
 
 export const AdmProductionDetails = () => {
   const [isopen, setIsopen] = useState("cerrado");
@@ -44,7 +45,13 @@ export const AdmProductionDetails = () => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
-  Loader("admin");
+
+
+
+  const navigate = useNavigate();
+
+
+
 
   const handleOpen = (llave, tipo) => {
     lobjeto.current = llave;
@@ -91,7 +98,7 @@ export const AdmProductionDetails = () => {
           variant="outlined"
           startIcon={<NavigateBeforeIcon />}
           sx={{ display: "flex", flexDirection: "row", justifySelf: "left" }}
-          onClick={() => (window.location.href = "./")}
+          onClick={() => navigate("./")}
         >
           Volver
         </Button>

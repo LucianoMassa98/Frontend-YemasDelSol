@@ -1,7 +1,10 @@
 import { CircularProgress } from "@mui/material";
+import { useNavigate } from "react-router-dom";
 
 export const Logoff = () => {
-  window.location.href = "/login";
+
+  const navigate= useNavigate()
+ navigate("/login");
   return (
     <div
       style={{

@@ -28,6 +28,7 @@ import { useDeleteitemingreso } from "../../../../components/hooks/ingreso/use-d
 import { useSetgalponingreso } from "../../../../components/hooks/ingreso/use-set-galpon-ingreso";
 import { useStore } from "../../../../store/use-store";
 import { Loader } from "../../../login/loader";
+import { useNavigate } from 'react-router-dom';
 
 
 /* Componente principal */
@@ -79,6 +80,8 @@ export const Ingreso = () => {
       });
     }
   }
+
+  const navigate = useNavigate();
 
 
   const handleProductoChange = (event) => {
@@ -181,7 +184,7 @@ export const Ingreso = () => {
                   justifySelf: "left",
                   margin: "13px 0px 0px 0px",
                 }}
-                onClick={() => (window.location.href = "./")}
+                onClick={() => navigate("./")}
               >
                 <NavigateBeforeIcon />
                 Volver

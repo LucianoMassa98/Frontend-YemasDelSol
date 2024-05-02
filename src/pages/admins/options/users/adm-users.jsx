@@ -8,7 +8,11 @@ import { RightDrawer } from "../../../../components/drawers/right-drawer";
 import { Form, TextInput } from "../../../../components/form";
 import { useRef, useState } from "react";
 import { useEditcustomer } from "../../../../components/hooks/admins/use-edit-customer";
-import { Loader } from "../../../login/loader";
+
+import { useNavigate } from 'react-router-dom';
+
+
+
 
 export const Admuserspage = () => {
   const [isopen, setIsopen] = useState(false);
@@ -18,7 +22,7 @@ export const Admuserspage = () => {
     userName: "",
   });
   const usereditmutation = useEditcustomer();
-  Loader("admin");
+
 
   const handleClose = () => {
     setIsopen(false);
@@ -39,6 +43,9 @@ export const Admuserspage = () => {
 
   const users = useGetallusers();
 
+
+  const navigate = useNavigate();
+
   return (
     <div id="admuserscontainer">
       <Menuheader />
@@ -47,7 +54,7 @@ export const Admuserspage = () => {
           variant="outlined"
           startIcon={<NavigateBeforeIcon />}
           sx={{ display: "flex", flexDirection: "row", justifySelf: "left" }}
-          onClick={() => (window.location.href = "/adminmenu")}
+          onClick={() => navigate("/adminmenu")}
         >
           Volver
         </Button>

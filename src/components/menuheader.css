@@ -1,3 +1,45 @@
+.menu-horizontal{
+  background-color: #eeeeee;
+  margin-top: 15px;
+  margin-bottom: 10px;
+  display: flex;
+  justify-content: end;
+  padding-right: 30px;
+
+}
+
+.menu-usuario{
+  display: flex;
+  padding-right: 60px;
+  margin-bottom: 0;
+
+}
+h2{
+  margin-bottom: 0;
+}
+.no{
+  display: flex;
+  flex-direction: column;
+}
+
+.subtitulo-2{
+  color: #e0a545;
+  margin-top: 0; 
+}
+
+
+  /* menu vertical*/
+
+  .img-logo{
+    width: 50px;
+    height: 50px;
+    border-radius:30%;
+
+  }
+  .contenedor-img{
+    padding-top: 18px;
+  }
+
 /*Navbar */
 
 .home {
@@ -24,47 +66,34 @@
     flex-direction: column; 
     position: absolute;
     left: 0; 
+    top: 0;
     padding-left: 10px;
-    background-color: #F7A600;
-    z-index: 1; 
-    opacity: 1; 
-    width: 350px;
-  }
-  
-  .menu-desplegable.hide {
-    opacity: 0; 
-  }
-  
+    background-color: #010101;
+    width: 60px;
+    z-index: 2;
+   
+  } 
+
 
   .menu-container-main{
     display: flex;
     flex-direction: column;
-    gap: 20px;
-    left: 20px;
-    height: 633.33px;
-    width: 320px;
+    justify-content: space-between;
+    height: 590px;
+    width: 32px;
+    z-index: 2;
+    position: fixed;
+    background-color: #010101;
+    width: 60px;
+    top: 0;
+    left: 0;
+
   }
 
-
-.menu-titulo{
-  font-weight: 400;
-  font-size: 39.06px;
-  height: 46px;
-  top: 108px;
-  left: 20px;
-}
-
-.menu-subtitulo{
-    width: 169px;
-    height: 19px;
-    top: 163px;
-    left: 26px;
-}
 
 .menu-container{
     border: 1px solid rgb(0, 0, 0);
     border-radius: 10px;
-    padding: 10px;
     gap: 18px;
 
 }
@@ -73,13 +102,6 @@
 
 
 /*Para el cierre sesion y soporte */
-
-.burguerlogged{
-    text-align: center;
-    position: relative;
-    top: -20px; 
-}
-
 .burgeroptions {
     display: flex;
     flex-direction: column;
@@ -89,13 +111,22 @@
 .burgeroption {
     padding-top: 5px;
     cursor: pointer;
-    color:#000000;
+    color:#ffffff;
   
+}
+
+.burgeroption-2{
+  padding-top: 5px;
+  cursor: pointer;
+  color:#e0a545;
+  padding-bottom: 25px;
+
+
 }
 
 .border-line {
   border-top: 1px solid #000000; 
-  width: 270px;
+  width: 2px;
 }
 
 
@@ -126,15 +157,9 @@ h4{
 
 @media (max-width: 768px) {
 
- .menu-desplegable{
-  width: 200px;
- }
  .menu-container{
   border: 1px solid rgb(0, 0, 0);
-  border-radius: 10px;
-  padding: 8px;
-  gap: 18px;
-  width: 170px;
+  height: 10px;
 
 }
 

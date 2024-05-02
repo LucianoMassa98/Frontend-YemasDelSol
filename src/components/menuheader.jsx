@@ -1,87 +1,87 @@
 import "./menuheader.css";
+import React, { useEffect } from "react"; // Importa useEffect de React
 import { useState } from "react";
-import { RightDrawer } from "./drawers/right-drawer";
-import { useStore } from "../store/use-store";
-import { Loader } from "../pages/login/loader";
+import { useStore} from "../store/use-store";
 import { Link } from "react-router-dom";
-import { LinkCard } from "../common/linkcard";
-import GroupIcon from "@mui/icons-material/Group";
-import HardwareIcon from "@mui/icons-material/Hardware";
-import WarehouseIcon from "@mui/icons-material/Warehouse";
-
+import SettingsOutlinedIcon from '@mui/icons-material/SettingsOutlined';
+import SupportAgentOutlinedIcon from '@mui/icons-material/SupportAgentOutlined';
+import LogoutOutlinedIcon from '@mui/icons-material/LogoutOutlined';
+import { Loader } from "../pages/login/loader";
+import AccountCircleOutlinedIcon from '@mui/icons-material/AccountCircleOutlined';
 
 
 export const Menuheader = () => {
-  const [isopen, setIsopen] = useState(false);
+
 
 
   const logout = useStore((state) => state.doLogout);
-  const loggeduser = useStore((state) => state.user);
   const loggedUser = useStore((state) => state.user);
-
-  const [menuVisible, setMenuVisible] = useState(false);
+  
+  useEffect(() => {
+    if (loggedUser) {
+      if (loggedUser.roleId === '1') {
+        Loader("admin");
+      } else if (loggedUser.roleId === '2') {
+        Loader("production");
+      }
+    }
+  }, [loggedUser]);
 
 
   Loader("admin");
   return (
     <>
-      <div className="home">
-        <div className="menu-hamburguer"
-          onClick={() => setMenuVisible(!menuVisible)}
-        >
-          &#9776;
+      <div className="menu-horizontal">
+        <div className="no">
+          <h2>    Hola {loggedUser?.userName}!
+            < AccountCircleOutlinedIcon  />
+          </h2> 
+          {loggedUser && (
+            <>
+              {loggedUser.roleId === 1 ? (
+                <p className="subtitulo-2">administracion</p>
+              ) : loggedUser.roleId === 2 ? (
+                <p className="subtitulo-2">Producción</p>
+              ) : null}
+            </>
+          )}
         </div>
-        
-        <div className="menu-img">
-          <img src="yemaslogo.jpeg" width={56} height={56} />
-        </div>
+
       </div>
-      <div>
-        {menuVisible &&
-          <div className="menu-desplegable">
 
-            <div>
-              {loggedUser && loggedUser.roleId === 1 && (
-                <>
-                  <div className="menu-container-main">
-                    <div className="menu-container">
-                      <Link to="/adminmenu/production" color="inherit" underline="none">
-                        <h4>  <HardwareIcon />Produccion</h4>
 
-                      </Link>
-                    </div>
+      <div className="menu-desplegable">
+        {loggedUser && (loggedUser.roleId === 1 || loggedUser.roleId === 2) && (
+          <>
+            <div className="menu-container-main">
+              <div className="contenedor-img">
+                <img src="/yemaslogo.jpeg" className="img-logo" />
+              </div>
 
-                    <div className="menu-container">
-                      <Link to="/adminmenu/users" color="inherit" underline="none">
-                        <h4 > <GroupIcon />Usuarios</h4>
+              <div className="burgeroptions">
+                <p className="burgeroption">
+                  <SettingsOutlinedIcon />
+                </p>
+                <p className="burgeroption">
+                  <SupportAgentOutlinedIcon />
+                </p>
+                <p className="burgeroption-2" onClick={() => logout()}>
+                  <LogoutOutlinedIcon />
+                </p>
 
-                      </Link>
-                    </div>
-                  
-                    <div className="menu-container">
-                      <Link to="/adminmenu/galpones" color="inherit" underline="none">
-                        <h4 ><WarehouseIcon />Galpones</h4>
+              </div>
 
-                      </Link>
-                    </div>
-                    <div className="burgeroptions">
-                      <p className="burgeroption" onClick={() => logout()}>
-                        Cerrar sesión
-                      </p>
-                      <div className="border-line"></div>
 
-                      <p className="burgeroption">Soporte</p>
-                      <div className="border-line"></div>
-                    </div>
-
-                  </div>
-
-                </>
-              )}
             </div>
-      
-          </div>}
+
+          </>
+        )}
+        <div>
+
+        </div>
+
       </div>
+
     </>
   );
 };
