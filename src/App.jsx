@@ -18,11 +18,8 @@ import { Logoff } from "./components/logoff/log-off";
 import { Productiondesechos } from "./pages/production/options/desechos/p-desechos";
 import { Productionbajas } from "./pages/production/options/bajas/p-bajas";
 import { Dailydetails } from "./pages/production/options/detallesdia/p-dailydetails";
-import HomePage from "./components/home/homepage";
 
 function App() {
-
-  
   return (
     <HelmetProvider>
       <Helmet titleTemplate="%s | Yemas Del Sol" defaultTitle="Yemas Del Sol" />
@@ -30,7 +27,6 @@ function App() {
       <QueryClientProvider client={queryClient}>
         <BrowserRouter>
           <Routes>
-        
             <Route path="/" element={<Logoff />} />
             <Route path="/login" element={<Loginpage />} />
             <Route path="/register" element={<Register />} />
