@@ -6,11 +6,9 @@ import "./admin-menu.css";
 import { Menuheader } from "../../components/menuheader";
 import { useStore } from "../../store/use-store";
 import { Loader } from "../login/loader";
-import AccountCircleIcon from '@mui/icons-material/AccountCircle';
-
+import AccountCircleIcon from "@mui/icons-material/AccountCircle";
 
 export const Adminmenu = () => {
-
   return (
     <div className="menucontainer">
       <Menuheader />
@@ -25,7 +23,7 @@ export const Adminmenu = () => {
             del area de producción.
           </LinkCard>
           <LinkCard
-            icon={<AccountCircleIcon  sx={{ fontSize: "inherit" }} />}
+            icon={<AccountCircleIcon sx={{ fontSize: "inherit" }} />}
             title="Usuarios"
             href="/adminmenu/users"
           >

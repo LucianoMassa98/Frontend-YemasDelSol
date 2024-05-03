@@ -1,3 +1,4 @@
+
 .menu-horizontal{
   background-color: #eeeeee;
   margin-top: 15px;
@@ -40,27 +41,6 @@ h2{
     padding-top: 18px;
   }
 
-/*Navbar */
-
-.home {
-    display: flex;
-    width: 100% !important;
-    background-color: #F7A600;
-    justify-content: space-between;
-
-  }
-
-  .menu-hamburguer{
-    font-size: 30px;
-    padding-left: 30px;
-    cursor: pointer;
-   
-  }
-
-
-  /*Para menu desplegable*/
-
-
   .menu-desplegable {
     display: flex;
     flex-direction: column; 
@@ -89,6 +69,7 @@ h2{
     left: 0;
 
   }
+
 
 
 .menu-container{
@@ -163,4 +144,29 @@ h4{
 
 }
 
+}
+
+
+
+/*Menu para produccion*/
+
+.menu-produccion{
+  display: flex;
+  justify-content: space-between;
+  padding-left: 40px;
+  background-color: #56ADD1;
+ 
+}
+
+.logo-produccion{
+  padding-top: 20px;
+}
+
+
+.menu-iconos{
+  display: flex;
+  padding-right: 20px;
+  padding-top: 20px;
+  gap: 20px;
+  color: rgb(255, 255, 255);
 }
