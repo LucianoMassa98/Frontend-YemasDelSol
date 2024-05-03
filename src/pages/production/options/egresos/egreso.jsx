@@ -22,6 +22,7 @@ import Table from "../../../../components/Table/Table";
 import { useStore } from "../../../../store/use-store";
 
 import { Loader } from "../../../login/loader";
+import { useNavigate } from 'react-router-dom';
 
 
 
@@ -75,6 +76,10 @@ export const Egreso = () => {
       console.log(e);
     }
   }, [])
+
+
+  const navigate = useNavigate();
+
 
 
   const handleProductoChange = (event) => {
@@ -204,7 +209,7 @@ export const Egreso = () => {
                 variant="outlined"
 
                 sx={{ display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "start", height: "26px", justifySelf: "left", margin: "13px 0px 0px 0px" }}
-                onClick={() => (window.location.href = "./")}
+                onClick={() => navigate("./")}
               >
                 <NavigateBeforeIcon />
                 Volver

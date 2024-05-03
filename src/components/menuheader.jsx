@@ -1,49 +1,86 @@
-import { IconButton } from "@mui/material";
-import DehazeIcon from "@mui/icons-material/Dehaze";
 import "./menuheader.css";
+import React, { useEffect } from "react"; // Importa useEffect de React
 import { useState } from "react";
-import { RightDrawer } from "./drawers/right-drawer";
 import { useStore } from "../store/use-store";
+import { Link } from "react-router-dom";
+import SettingsOutlinedIcon from "@mui/icons-material/SettingsOutlined";
+import SupportAgentOutlinedIcon from "@mui/icons-material/SupportAgentOutlined";
+import LogoutOutlinedIcon from "@mui/icons-material/LogoutOutlined";
+import { Loader } from "../pages/login/loader";
+import AccountCircleOutlinedIcon from "@mui/icons-material/AccountCircleOutlined";
+
 export const Menuheader = () => {
-  const [isopen, setIsopen] = useState(false);
   const logout = useStore((state) => state.doLogout);
+  const loggedUser = useStore((state) => state.user);
 
-  const handleOpening = () => {
-    if (isopen) {
-      setIsopen(false);
-    } else {
-      setIsopen(true);
+  useEffect(() => {
+    if (loggedUser) {
+      if (loggedUser.roleId === "1") {
+        Loader("admin");
+      } else if (loggedUser.roleId === "2") {
+        Loader("production");
+      }
     }
-  };
-
-  const onClose = () => {
-    setIsopen(false);
-  };
+  }, [loggedUser]);
 
   return (
-    <div className="menu-header">
-      <IconButton sx={{ fontSize: "inherit" }} onClick={handleOpening}>
-        <DehazeIcon sx={{ fontSize: "inherit" }} />
-      </IconButton>
-      <RightDrawer
-        PaperProps={{
-          sx: { backgroundColor: "orange", height: 200, borderRadius: 6 },
-        }}
-        anchor="left"
-        open={isopen}
-        onClose={onClose}
-      >
-        <div className="burgercontent">
-          <img src="/yemaslogo.jpeg" width="110px" height="110px"></img>
-          {/*<EggIcon sx={{ fontSize: 40, zIndex: 1201 }} />*/}
-        </div>
-        <div className="burgeroptions">
-          <button className="burgeroption" onClick={() => logout()}>
-            Cerrar sesion
-          </button>
-          <button className="burgeroption">Soporte</button>
-        </div>
-      </RightDrawer>
-    </div>
+    <>
+      {loggedUser && loggedUser.roleId === 1 && (
+        <>
+          <div className="menu-horizontal">
+            <div className="no">
+              <h2>
+                {" "}
+                Hola {loggedUser?.userName}!
+                <AccountCircleOutlinedIcon />
+              </h2>
+              <p className="subtitulo-2">administracion</p>
+            </div>
+          </div>
+
+          <div className="menu-desplegable">
+            <div className="menu-container-main">
+              <div className="contenedor-img">
+                <img src="/yemaslogo.jpeg" className="img-logo" />
+              </div>
+
+              <div className="burgeroptions">
+                <p className="burgeroption">
+                  <SettingsOutlinedIcon />
+                </p>
+                <p className="burgeroption">
+                  <SupportAgentOutlinedIcon />
+                </p>
+                <p className="burgeroption-2" onClick={logout}>
+                  <LogoutOutlinedIcon />
+                </p>
+              </div>
+            </div>
+
+            <div></div>
+          </div>
+        </>
+      )}
+      {loggedUser && loggedUser.roleId === 2 && (
+        <>
+          <div className="menu-produccion">
+            <div className="logo-produccion">
+              <img src="/yemaslogo.jpeg" className="img-logo" />
+            </div>
+            <div className="menu-iconos">
+              <p className="burgeroption-produccion">
+                <SettingsOutlinedIcon style={{ fontSize: 28 }} />
+              </p>
+              <p className="burgeroption-produccion">
+                <SupportAgentOutlinedIcon style={{ fontSize: 28 }} />
+              </p>
+              <p className="burgeroption-produccion" onClick={logout}>
+                <LogoutOutlinedIcon style={{ fontSize: 28 }} />
+              </p>
+            </div>
+          </div>
+        </>
+      )}
+    </>
   );
 };

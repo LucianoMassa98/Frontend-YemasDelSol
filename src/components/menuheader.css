@@ -1,35 +1,172 @@
-.menu-header {
-    margin: 0;
-    padding: 0;
-    width: 100vw;
-    display: flex;
-    flex-direction: row;
-    justify-items: flex-start;
-    background-color: green;
+
+.menu-horizontal{
+  background-color: #eeeeee;
+  margin-top: 15px;
+  margin-bottom: 10px;
+  display: flex;
+  justify-content: end;
+  padding-right: 30px;
 
 }
 
-.burgercontent {
+.menu-usuario{
+  display: flex;
+  padding-right: 60px;
+  margin-bottom: 0;
+
+}
+h2{
+  margin-bottom: 0;
+}
+.no{
+  display: flex;
+  flex-direction: column;
+}
+
+.subtitulo-2{
+  color: #e0a545;
+  margin-top: 0; 
+}
+
+
+  /* menu vertical*/
+
+  .img-logo{
+    width: 50px;
+    height: 50px;
+    border-radius:30%;
+
+  }
+  .contenedor-img{
+    padding-top: 18px;
+  }
+
+  .menu-desplegable {
+    display: flex;
+    flex-direction: column; 
+    position: absolute;
+    left: 0; 
+    top: 0;
+    padding-left: 10px;
+    background-color: #010101;
+    width: 60px;
+    z-index: 2;
+   
+  } 
+
+
+  .menu-container-main{
     display: flex;
     flex-direction: column;
-    align-items: center;
+    justify-content: space-between;
+    height: 590px;
+    width: 32px;
+    z-index: 2;
+    position: fixed;
+    background-color: #010101;
+    width: 60px;
+    top: 0;
+    left: 0;
+
+  }
+
+
+
+.menu-container{
+    border: 1px solid rgb(0, 0, 0);
+    border-radius: 10px;
+    gap: 18px;
+
 }
 
+
+
+
+/*Para el cierre sesion y soporte */
 .burgeroptions {
     display: flex;
     flex-direction: column;
-    align-items: center;
     justify-items: flex-end;
 }
 
 .burgeroption {
-    background-color: transparent;
-    text-decoration: underline;
+    padding-top: 5px;
+    cursor: pointer;
+    color:#ffffff;
+  
 }
 
-@media(min-width: 700px) {
-    .menu-header {
-        height: 10vh;
-        font-size: xx-large;
-    }
+.burgeroption-2{
+  padding-top: 5px;
+  cursor: pointer;
+  color:#e0a545;
+  padding-bottom: 25px;
+
+
+}
+
+.border-line {
+  border-top: 1px solid #000000; 
+  width: 2px;
+}
+
+
+
+.link-menu{
+  color: black;
+}
+.titulo-link{
+  display: flex;
+  gap: 18px;
+}
+
+.texto-link{
+  display: flex;
+ 
+  text-align: left;
+}
+
+h4{
+  font-weight: 400;
+  font-size: 20px;
+  line-height: 23.44px;
+  gap: 5px;
+  color: black;
+
+}
+
+
+@media (max-width: 768px) {
+
+ .menu-container{
+  border: 1px solid rgb(0, 0, 0);
+  height: 10px;
+
+}
+
+}
+
+
+
+/*Menu para produccion*/
+
+.menu-produccion{
+  display: flex;
+  justify-content: space-between;
+  padding-left: 40px;
+  background-color: #56ADD1;
+ 
+}
+
+.logo-produccion{
+  padding-top: 20px;
+}
+
+
+.menu-iconos{
+  display: flex;
+  padding-right: 20px;
+  padding-top: 20px;
+  gap: 20px;
+  color: rgb(255, 255, 255);
 }

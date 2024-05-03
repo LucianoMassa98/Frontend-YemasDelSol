@@ -1,5 +1,5 @@
 import NavigateBeforeIcon from "@mui/icons-material/NavigateBefore";
-import DeleteIcon from '@mui/icons-material/Delete';
+import DeleteIcon from "@mui/icons-material/Delete";
 import "./ingreso.css";
 import { api } from "../../../../services/api";
 import Table from "../../../../components/Table/Table";
@@ -12,7 +12,7 @@ import {
   TextField,
 } from "@mui/material";
 import { Form } from "../../../../components/form/form";
-import { Toaster, toast } from 'react-hot-toast';
+import { Toaster, toast } from "react-hot-toast";
 import { Autocomplete } from "../../../../components/form/autocomplete";
 import { TextInput } from "../../../../components/form/text-input";
 import { Listproductitem } from "../../../../components/productlist/listproductitem/listproductitem";
@@ -28,32 +28,32 @@ import { useDeleteitemingreso } from "../../../../components/hooks/ingreso/use-d
 import { useSetgalponingreso } from "../../../../components/hooks/ingreso/use-set-galpon-ingreso";
 import { useStore } from "../../../../store/use-store";
 import { Loader } from "../../../login/loader";
-
+import { useNavigate } from "react-router-dom";
 
 /* Componente principal */
 
 export const Ingreso = () => {
-  const [productos, setProducts] = useState()
+  const [productos, setProducts] = useState();
   const [galponSeleccionado, setGalponSeleccionado] = useState("");
-  const [productoSeleccionado, setProductoSeleccionado] = useState("")
-  const [arrayResumen, setArrayResumen] = useState([])
-  const galpones = useGalpones()
-  const realGalpones = galpones.data
-  const [cantidad, setCantidad] = useState("")
+  const [productoSeleccionado, setProductoSeleccionado] = useState("");
+  const [arrayResumen, setArrayResumen] = useState([]);
+  const galpones = useGalpones();
+  const realGalpones = galpones.data;
+  const [cantidad, setCantidad] = useState("");
   const user = useStore((state) => state.user);
   const now = dayjs().format("DD/MM/YYYY");
 
   useEffect(() => {
     try {
       const traerProductos = async () => {
-        const response = await api.get('/categories/1');
+        const response = await api.get("/categories/1");
         setProducts(response.data.productos);
-      }
-      traerProductos()
+      };
+      traerProductos();
     } catch (e) {
       console.log(e);
     }
-  }, [])
+  }, []);
   const handleAgregarClick = () => {
     if (productoSeleccionado && cantidad) {
       // Crea un nuevo objeto con los datos del producto
@@ -61,32 +61,31 @@ export const Ingreso = () => {
         productoId: productoSeleccionado.id,
         cnt: cantidad,
         nombre: productoSeleccionado.nombre,
-        id: Date.now()
-
+        id: Date.now(),
       };
       setArrayResumen([...arrayResumen, nuevoProducto]);
     } else {
-      toast.error('Ingrese el producto y la cantidad', {
+      toast.error("Ingrese el producto y la cantidad", {
         duration: 4000,
 
         style: {
           background: "black",
           color: "white",
           fontSize: "15px",
-          fontWeight: "500"
+          fontWeight: "500",
         },
-
       });
     }
-  }
+  };
 
+  const navigate = useNavigate();
 
   const handleProductoChange = (event) => {
     const selectedValue = event.target.value;
-    const [id, nombre] = selectedValue.split('-');
+    const [id, nombre] = selectedValue.split("-");
     setProductoSeleccionado({
       id: id,
-      nombre: nombre
+      nombre: nombre,
     });
   };
 
@@ -104,7 +103,7 @@ export const Ingreso = () => {
   };
 
   const handleForm = async (e) => {
-    e.preventDefault()
+    e.preventDefault();
     try {
       const data = {
 
@@ -113,49 +112,60 @@ export const Ingreso = () => {
 
         items: arrayResumen.map((producto) => ({
           productoId: producto.productoId,
-          cnt: producto.cnt
-        }))
+          cnt: producto.cnt,
+        })),
       };
 
-      const response = await api.post('/remitosCompras', data);
+      const response = await api.post("/remitosCompras", data);
       console.log(response.data, "esto es response");
 
       if (response.status === 200) {
-        toast.success('Egreso guardado correctamente', {
+        toast.success("Egreso guardado correctamente", {
           duration: 6000,
 
-          position: 'bottom-right',
+          position: "bottom-right",
           style: {
             background: "black",
             color: "white",
             fontSize: "15px",
-            fontWeight: "500"
-          }
-
-        }
-        );
-        setCantidad("")
-
-        setGalponSeleccionado("")
-        setArrayResumen([])
-      } else {
-        toast.error('Error al guardar el ingreso. Por favor, inténtalo de nuevo más tarde.', {
-          duration: 4000,
-          style: {
-            background: "black",
-            color: "white",
-            fontSize: "15px",
-            fontWeight: "500"
-          }
+            fontWeight: "500",
+          },
         });
+        setCantidad("");
+
+        setGalponSeleccionado("");
+        setArrayResumen([]);
+      } else {
+        toast.error(
+          "Error al guardar el egreso. Por favor, inténtalo de nuevo más tarde.",
+          {
+            duration: 4000,
+            style: {
+              background: "black",
+              color: "white",
+              fontSize: "15px",
+              fontWeight: "500",
+            },
+          }
+        );
       }
     } catch (e) {
-      console.error('Error en la solicitud POST:', e);
-    
+      console.error("Error en la solicitud POST:", e);
+      toast.error(
+        "Error al enviar el egreso. Por favor, inténtalo de nuevo más tarde.",
+        {
+          duration: 5000,
+          style: {
+            background: "#ac1313",
+            color: "white",
+            fontSize: "15px",
+            fontWeight: "500",
+          },
+        }
+      );
     }
-  }
+  };
   return (
-
     <>
       <Menuheader />
       <div>
@@ -173,7 +183,7 @@ export const Ingreso = () => {
                   justifySelf: "left",
                   margin: "13px 0px 0px 0px",
                 }}
-                onClick={() => (window.location.href = "./")}
+                onClick={() => navigate("/productionmenu")}
               >
                 <NavigateBeforeIcon />
                 Volver
@@ -187,48 +197,41 @@ export const Ingreso = () => {
             <span style={{ fontStyle: "italic" }}>fecha: {now}</span>
           </div>
           <div className="container-selects">
-
-
             <div className="select-container">
-              <label htmlFor="">
-                Producto
-              </label>
-              <select
-                id="producto"
-
-                onChange={handleProductoChange}
-
-              >
+              <label htmlFor="">Producto</label>
+              <select id="producto" onChange={handleProductoChange}>
                 <option value="" disabled selected hidden>
                   Seleccione un producto
                 </option>
 
-                {productos && productos.length > 0 && productos.map((prod, i) => (
-                  <option key={prod.id} value={`${prod.id}-${prod.nombre}`}>
-                    {prod.nombre}
-                  </option>
-                ))}
-
+                {productos &&
+                  productos.length > 0 &&
+                  productos.map((prod, i) => (
+                    <option key={prod.id} value={`${prod.id}-${prod.nombre}`}>
+                      {prod.nombre}
+                    </option>
+                  ))}
               </select>
             </div>
             <div className="select-container">
-              <label htmlFor="">
-                Cantidad
-              </label>
-              <input id="cantidad"
+              <label htmlFor="">Cantidad</label>
+              <input
+                id="cantidad"
                 type="number"
                 value={cantidad}
                 onChange={handleCantidadChange}
                 placeholder="Ingrese una cantidad"
-              >
-
-              </input>
+              ></input>
             </div>
             <div className="btns">
-
-              <Button sx={{ width: "50%", fontSize: "12px" }} onClick={handleAgregarClick} variant="contained">Agregar Producto</Button>
+              <Button
+                sx={{ width: "50%", fontSize: "12px" }}
+                onClick={handleAgregarClick}
+                variant="contained"
+              >
+                Agregar Producto
+              </Button>
             </div>
-
             <Table array={arrayResumen} setArrayResumen={setArrayResumen}></Table>
             {/* <section className="section-table">
 
@@ -237,45 +240,41 @@ export const Ingreso = () => {
                   <tr>
                     <th>Producto</th>
                     <th>Cantidad</th>
-
                   </tr>
                 </thead>
-                <tbody >
-                  {arrayResumen.length > 0 ? arrayResumen.map((prod, i) => (
-                    <tr key={i}>
-                      <td>{prod.nombre}</td>
-                      <td>{prod.cnt}</td>
+                <tbody>
+                  {arrayResumen.length > 0 ? (
+                    arrayResumen.map((prod, i) => (
+                      <tr key={i}>
+                        <td>{prod.nombre}</td>
+                        <td>{prod.cnt}</td>
 
-                      <td>
-                        <button className="btn-delete" onClick={() => deleteProduct(prod.id)} variant="outlined">
-                          <DeleteIcon sx={{ color: "#ff2727" }} />
-                        </button>
-
-                      </td>
+                        <td>
+                          <button
+                            className="btn-delete"
+                            onClick={() => deleteProduct(prod.id)}
+                            variant="outlined"
+                          >
+                            <DeleteIcon sx={{ color: "#ff2727" }} />
+                          </button>
+                        </td>
+                      </tr>
+                    ))
+                  ) : (
+                    <tr className="tr-rare">
+                      <td>...</td>
+                      <td>...</td>
                     </tr>
-
-                  )) : (
-                    <tr className="tr-rare" >
-                      <td>
-                        ...
-                      </td>
-                      <td>
-                        ...
-                      </td>
-                    </tr>
-
                   )}
                 </tbody>
-
               </table>
 
-
             </section> */}
+
             <div className="select-container">
-              <label htmlFor="">
-                Galpon
-              </label>
-              <select id="galpon"
+              <label htmlFor="">Galpon</label>
+              <select
+                id="galpon"
                 value={galponSeleccionado}
                 onChange={handleGalponChange}
               >
@@ -283,25 +282,32 @@ export const Ingreso = () => {
                   Seleccione un Galpon
                 </option>
 
-                {realGalpones && realGalpones.length > 0 && realGalpones.map((galpon, i) => (
-                  <option key={galpon.id} value={galpon.id}>
-                    {galpon.nombre}
-                  </option>
-                ))}
+                {realGalpones &&
+                  realGalpones.length > 0 &&
+                  realGalpones.map((galpon, i) => (
+                    <option key={galpon.id} value={galpon.id}>
+                      {galpon.nombre}
+                    </option>
+                  ))}
               </select>
             </div>
-            {arrayResumen && arrayResumen.length > 0 && galponSeleccionado && galponSeleccionado !== "" && (
-
-
-              <Button type="submit" sx={{ width: "80%", marginY: "15px" }} variant="contained" color="success">
-                Guardar
-              </Button>
-            )}
+            {arrayResumen &&
+              arrayResumen.length > 0 &&
+              galponSeleccionado &&
+              galponSeleccionado !== "" && (
+                <Button
+                  type="submit"
+                  sx={{ width: "80%", marginY: "15px" }}
+                  variant="contained"
+                  color="success"
+                >
+                  Guardar
+                </Button>
+              )}
           </div>
         </form>
       </div>
       <Toaster></Toaster>
     </>
-  )
-
+  );
 };

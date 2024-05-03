@@ -1,4 +1,4 @@
-import { LinkCard } from "../../common/linkcard";
+import { LinkCard } from "../../common-produccion/linkcard-produccion";
 import ArticleIcon from "@mui/icons-material/Article";
 import AllInboxIcon from "@mui/icons-material/AllInbox";
 import DeleteIcon from "@mui/icons-material/Delete";
@@ -12,18 +12,19 @@ import { Loader } from "../login/loader";
 export const Productionmenu = () => {
   const loggeduser = useStore((state) => state.user);
   console.log(loggeduser, "usuarioobtenido");
+
   Loader("production");
+
   return (
     <div className="pmenucontainer">
       <Menuheader />
       <div>
-        <h1>Producción</h1>
-        <h2>Bienvenido, {loggeduser?.userName}!</h2>
         <div className="p-menu-lc">
           <LinkCard
             icon={<ArticleIcon sx={{ fontSize: "inherit" }} />}
             title="Ingreso"
             href="/productionmenu/ingreso"
+            className="linkCard-produccion"
           >
             En este modulo podras ingresar los cartones vacíos.
           </LinkCard>

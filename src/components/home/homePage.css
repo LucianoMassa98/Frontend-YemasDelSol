@@ -1,0 +1,25 @@
+.home-ventas {
+    display: flex;
+    width: 100% !important;
+    background-color: #F7A600;
+    justify-content: space-between;
+
+  }
+
+
+.home-secciones-ventas{
+  display: flex;
+  gap: 2rem;
+  font-weight: 400;
+
+}
+
+.home-secciones-ventas h4{
+  font-weight:600;
+  color: white;
+}
+
+
+.home-logo-ventas{
+  padding-right: 30px;
+}
