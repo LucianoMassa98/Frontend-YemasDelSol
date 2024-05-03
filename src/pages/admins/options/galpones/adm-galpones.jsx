@@ -84,7 +84,7 @@ export const Admgalponespage = () => {
         >
           Volver
         </Button>
-        <h1>Galpones</h1>
+        <h1>Galpones {loggeduser?.userName}!</h1>
         <div
           style={{
             display: "flex",
