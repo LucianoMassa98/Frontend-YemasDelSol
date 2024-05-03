@@ -12,25 +12,15 @@ import {
   Stack,
   TextField,
 } from "@mui/material";
-import { Form } from "../../../../components/form/form";
+
 import { Toaster, toast } from 'react-hot-toast';
-import { Autocomplete } from "../../../../components/form/autocomplete";
-import { TextInput } from "../../../../components/form/text-input";
-import { Listproductitem } from "../../../../components/productlist/listproductitem/listproductitem";
 import { useEffect, useRef, useState } from "react";
 import { useProducts } from "../../../../components/hooks/use-products";
 import { useGalpones } from "../../../../components/hooks/use-galpones";
 import dayjs from "dayjs";
-import { useNewproduction } from "../../../../components/hooks/use-create-production";
-import { useAdditem } from "../../../../components/hooks/use-add-item-production";
-
-
-import { useProductions } from "../../../../components/hooks/use-get-productions";
-import { useOneproduction } from "../../../../components/hooks/use-get-one-production";
-import { useDeleteitem } from "../../../../components/hooks/use-delete-item-production";
-import { useSetgalponproduction } from "../../../../components/hooks/use-set-galpon-production";
+import Table from "../../../../components/Table/Table";
 import { useStore } from "../../../../store/use-store";
-import axios from "axios";
+
 import { Loader } from "../../../login/loader";
 import { useNavigate } from 'react-router-dom';
 
@@ -136,10 +126,10 @@ export const Egreso = () => {
 
   // ELIMINAR PRODUCTO
 
-  const deleteProduct = (id) => {
-    const updatedArray = arrayResumen.filter(product => product.id !== id);
-    setArrayResumen(updatedArray);
-  };
+  // const deleteProduct = (id) => {
+  //   const updatedArray = arrayResumen.filter(product => product.id !== id);
+  //   setArrayResumen(updatedArray);
+  // };
 
 
   const handleForm = async (e) => {
@@ -195,16 +185,16 @@ export const Egreso = () => {
       }
     } catch (error) {
       // Manejar errores
-      console.error('Error en la solicitud POST:', e);
-      toast.error('Error al enviar el egreso. Por favor, inténtalo de nuevo más tarde.', {
-        duration: 5000,
-        style: {
-          background: "#ac1313",
-          color: "white",
-          fontSize: "15px",
-          fontWeight: "500"
-        }
-      });
+      console.error('Error en la solicitud POST:', error);
+      // toast.error('Error al enviar el egreso. Por favor, inténtalo de nuevo más tarde.', {
+      //   duration: 5000,
+      //   style: {
+      //     background: "#ac1313",
+      //     color: "white",
+      //     fontSize: "15px",
+      //     fontWeight: "500"
+      //   }
+      // });
     }
   };
   return (
@@ -301,14 +291,14 @@ export const Egreso = () => {
               <Alert severity="error">Ingrese la cantidad y el producto deseado</Alert>
             )} */}
 
-            <section className="section-table">
+            <Table array={arrayResumen} setArrayResumen={setArrayResumen}></Table>
 
+            {/* <section className="section-table">
               <table>
                 <thead>
                   <tr>
                     <th>Producto</th>
                     <th>Cantidad</th>
-
                   </tr>
                 </thead>
                 <tbody >
@@ -316,15 +306,12 @@ export const Egreso = () => {
                     <tr key={i}>
                       <td>{prod.nombre}</td>
                       <td>{prod.cnt}</td>
-
                       <td>
                         <button className="btn-delete" onClick={() => deleteProduct(prod.id)} variant="outlined">
                           <DeleteIcon sx={{ color: "#ff2727" }} />
                         </button>
-
                       </td>
                     </tr>
-
                   )) : (
                     <tr className="tr-rare" >
                       <td>
@@ -334,14 +321,10 @@ export const Egreso = () => {
                         ...
                       </td>
                     </tr>
-
                   )}
                 </tbody>
-
               </table>
-
-
-            </section>
+            </section> */}
             <div className="select-container">
               <label htmlFor="">
                 Galpon

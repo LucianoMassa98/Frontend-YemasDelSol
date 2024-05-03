@@ -1,0 +1,259 @@
+.container-wave {
+    position: relative;
+    z-index: 1;
+    /* background-image: url("./wave.svg"); */
+
+}
+
+
+.section-form {
+    width: 100vw;
+    display: flex;
+    flex-direction: column;
+
+    justify-content: center;
+    align-items: center;
+}
+
+.container-wave-bg {}
+
+
+.filtrado-prod {
+    border-radius: 10px;
+    width: 100vw;
+    display: flex;
+    justify-content: start;
+    align-items: center;
+
+
+    gap: 40px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+}
+
+.cont-input {
+    width: 85%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: white;
+
+}
+
+.cont-input input {
+    /* width: 100%;
+    outline: none;
+    border: 1.8px solid rgb(160, 157, 157);
+    border-radius: 10px;
+    padding: 6px;
+    font-size: 18px;
+    font-weight: bold; */
+}
+
+.div-h2 {
+    width: 100%;
+    padding-left: 40px;
+    margin-block-start: 0;
+    margin-block-end: 0;
+    text-align: start;
+
+}
+
+.cantidad {
+    width: 25%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    gap: 35px;
+    padding-right: 50px;
+
+}
+
+.cantidad label {
+    font-weight: 700;
+    font-size: 18px;
+}
+
+.cantidad input {}
+
+.cont-select {
+    width: 40%;
+    display: flex;
+
+
+    justify-content: center;
+
+    align-items: center;
+    gap: 35px;
+}
+
+.cont-select label {
+    font-weight: 700;
+    font-size: 18px;
+}
+
+.cont-select select {
+    width: 100%;
+    border: 1.8px solid rgb(160, 157, 157);
+    border-radius: 10px;
+    padding: 6px;
+    font-size: 16px;
+    font-weight: bold;
+}
+
+.cont-select select option {
+    font-size: 16px;
+    font-weight: 100;
+}
+
+.cont-btn {
+    display: flex;
+    justify-content: start;
+
+    background-color: red;
+}
+
+.cart-icon-container {
+    position: fixed;
+    bottom: 20px;
+    background: linear-gradient(to bottom, #004d00, #001a00);
+
+    background: -webkit-linear-gradient(top, #004d00, #001a00);
+    background: -moz-linear-gradient(top, #004d00, #001a00);
+    background: -o-linear-gradient(top, #004d00, #001a00);
+
+    padding: 8px;
+    border-radius: 50%;
+    /* border: 1px solid black; */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    right: 20px;
+    z-index: 1000;
+    cursor: pointer;
+    /* Asegura que esté por encima del contenido */
+}
+
+.number-to-cart {
+    position: absolute;
+    top: 0;
+    right: 15%;
+
+    padding: 1px;
+}
+
+.number-to-cart span {
+    font-size: 17px;
+    background-color: white;
+    border-radius: 50%;
+    padding-top: 2px;
+    padding-bottom: 2px;
+    padding-left: 5px;
+    padding-right: 5px;
+    color: black;
+    font-weight: 700;
+}
+
+.cart-icon-container:hover {
+    background-color: rgb(6, 116, 15);
+}
+
+/* .cantidad input{
+    outline: none;
+    border: none;
+    padding: 6px;
+    font-size: 18px;
+    font-weight: bold;
+} */
+.section-cards {
+    width: 100vw;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+
+    margin-top: 30px;
+    margin-bottom: 30px;
+    gap: 35px;
+
+
+}
+
+.div-prod {
+    width: 30%;
+    display: flex;
+
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+
+}
+
+.div-prod label {
+    font-weight: 700;
+    font-size: 18px;
+}
+
+.cardd {
+    display: flex;
+    flex-direction: column;
+
+}
+
+.wave {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: auto;
+    z-index: 0;
+}
+
+.btn-ver-mas {
+
+    margin-top: 90px;
+
+
+}
+
+.contenedor-svg {
+    margin-top: 600px;
+    width: 100%;
+    height: 45vh;
+    background-image: url("./wave.svg");
+    background-repeat: no-repeat;
+    background-size: cover;
+    position: absolute;
+    top: 0;
+    z-index: 0;
+
+}
+
+@media screen and (max-width:620px) {
+    .filtrado-prod {
+        width: 100vw;
+        display: flex;
+        flex-direction: column;
+        align-items: start;
+        justify-content: start;
+
+        gap: 10px;
+        padding-left: 50px;
+    }
+
+    .cantidad {
+        width: 220px;
+    }
+
+    .cantidad input {
+        width: 100%;
+    }
+
+    .contenedor-svg {
+        height: 208vh;
+    }
+
+    .cont-select select {
+        width: 150px;
+    }
+}

@@ -2,7 +2,7 @@ import NavigateBeforeIcon from "@mui/icons-material/NavigateBefore";
 import DeleteIcon from "@mui/icons-material/Delete";
 import "./ingreso.css";
 import { api } from "../../../../services/api";
-
+import Table from "../../../../components/Table/Table";
 import { Menuheader } from "../../../../components/menuheader";
 import {
   Alert,
@@ -93,10 +93,10 @@ export const Ingreso = () => {
     setCantidad(event.target.value);
   };
 
-  const deleteProduct = (id) => {
-    const updatedArray = arrayResumen.filter((product) => product.id !== id);
-    setArrayResumen(updatedArray);
-  };
+  // const deleteProduct = (id) => {
+  //   const updatedArray = arrayResumen.filter(product => product.id !== id);
+  //   setArrayResumen(updatedArray);
+  // };
 
   const handleGalponChange = (event) => {
     setGalponSeleccionado(event.target.value);
@@ -106,9 +106,10 @@ export const Ingreso = () => {
     e.preventDefault();
     try {
       const data = {
-        userId: user.customer.id, // Suponiendo que el usuario tiene una propiedad 'id'
+
+        userId: user.customer.id, 
         galponId: galponSeleccionado,
-        // nazi: "AWdwadwad",
+
         items: arrayResumen.map((producto) => ({
           productoId: producto.productoId,
           cnt: producto.cnt,
@@ -231,8 +232,9 @@ export const Ingreso = () => {
                 Agregar Producto
               </Button>
             </div>
+            <Table array={arrayResumen} setArrayResumen={setArrayResumen}></Table>
+            {/* <section className="section-table">
 
-            <section className="section-table">
               <table>
                 <thead>
                   <tr>
@@ -266,7 +268,9 @@ export const Ingreso = () => {
                   )}
                 </tbody>
               </table>
-            </section>
+
+            </section> */}
+
             <div className="select-container">
               <label htmlFor="">Galpon</label>
               <select

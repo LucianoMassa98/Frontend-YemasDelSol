@@ -1,0 +1,31 @@
+.with-modal {
+    background-color: white;
+    overflow-y: auto;
+    height: 120px;
+
+
+    border-radius: 10px;
+
+
+}
+
+.with-modal table {
+    width: 100%;
+}
+
+.with-modal table thead tr {
+
+    color: black;
+}
+
+.with-modal table tbody tr {
+
+    width: 100%;
+
+    color: black;
+}
+
+.with-modal table tbody tr td {
+
+    text-align: center;
+}
