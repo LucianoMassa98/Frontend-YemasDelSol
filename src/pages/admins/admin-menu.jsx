@@ -5,11 +5,14 @@ import WarehouseIcon from "@mui/icons-material/Warehouse";
 import "./admin-menu.css";
 import { Menuheader } from "../../components/menuheader";
 import { useStore } from "../../store/use-store";
-import { Loader } from "../login/loader";
 import AccountCircleIcon from "@mui/icons-material/AccountCircle";
+import { Loader } from "../login/loader";
 
 export const Adminmenu = () => {
+  Loader("admin");
+ 
   return (
+
     <div className="menucontainer">
       <Menuheader />
       <div>

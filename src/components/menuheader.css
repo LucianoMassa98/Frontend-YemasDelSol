@@ -59,7 +59,7 @@ h2{
     display: flex;
     flex-direction: column;
     justify-content: space-between;
-    height: 590px;
+    height: 100%;
     width: 32px;
     z-index: 2;
     position: fixed;

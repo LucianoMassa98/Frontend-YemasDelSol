@@ -3,8 +3,10 @@ import { useNavigate } from "react-router-dom";
 
 export const Logoff = () => {
 
-  const navigate= useNavigate()
+  const navigate = useNavigate()
  navigate("/login");
+ 
+ window.location.href="/login"
   return (
     <div
       style={{
