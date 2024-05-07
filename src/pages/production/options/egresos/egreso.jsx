@@ -209,7 +209,7 @@ export const Egreso = () => {
                 variant="outlined"
 
                 sx={{ display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "start", height: "26px", justifySelf: "left", margin: "13px 0px 0px 0px" }}
-                onClick={() => navigate("./")}
+                onClick={() => navigate("/productionmenu")}
               >
                 <NavigateBeforeIcon />
                 Volver

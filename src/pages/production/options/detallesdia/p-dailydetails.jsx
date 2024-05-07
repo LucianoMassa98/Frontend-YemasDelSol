@@ -51,7 +51,7 @@ export const Dailydetails = () => {
           variant="outlined"
           startIcon={<NavigateBeforeIcon />}
           sx={{ display: "flex", flexDirection: "row", justifySelf: "left" }}
-          onClick={() => (navigate = "/productionmenu")}
+          onClick={() =>navigate("/productionmenu")}
         >
           Volver
         </Button>
