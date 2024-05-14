@@ -5,7 +5,6 @@ import { useNavigate } from "react-router-dom";
 
 export const Logoff = () => {
 
-
   // const navigate = useNavigate()
   // navigate("/login");
   useEffect(() => {

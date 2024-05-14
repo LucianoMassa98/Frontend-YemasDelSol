@@ -22,6 +22,7 @@ export const Menuheader = () => {
       }
     }
   }, [loggedUser]);
+  console.log(useStore)
 
   return (
     <>
