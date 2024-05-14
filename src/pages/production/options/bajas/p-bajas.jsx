@@ -4,6 +4,7 @@ import { Form } from "../../../../components/form/form";
 import { Autocomplete } from "../../../../components/form/autocomplete";
 import { TextInput } from "../../../../components/form/text-input";
 import "./p-bajas.css";
+import FastRewindIcon from '@mui/icons-material/FastRewind';
 import {
   Alert,
   Button,
@@ -21,7 +22,8 @@ import { useNavigate } from 'react-router-dom';
 
 export const Productionbajas = () => {
   let today = new Date();
-  let now = dayjs(today).format("DD/MM/YYYY");
+  dayjs.locale('es');
+  const now = dayjs().format("DD [de] MMMM [de] YYYY");
   const loggeduser = useStore((state) => state.user);
   const galpones = useGalpones();
   const bajasmutation = useSetbajas();
@@ -49,23 +51,30 @@ export const Productionbajas = () => {
   return (
     <div className="pbajascontainer">
       <Menuheader />
+      <div className="datos-grales">
+
+            <span style={{ fontStyle: "italic", opacity: "80%", marginTop: "8px" }}>{now}</span>
+            <div className="div-ingreso">
+              <div className="ingr">
+
+                <h2>Bajas</h2>
+
+                <FastRewindIcon onClick={() => navigate("/productionmenu")} sx={{ fontSize: "28px", fontWeight: "bold", padding: "10px", cursor: "pointer", boxSizing: "content-box", margin: "15px", borderRadius: "50%", bgcolor: "#f3a406" }} />
+              </div>
+
+              <div className="dat-gr">
+                <h2>Datos Generales</h2>
+                <span style={{ fontStyle: "italic", opacity: "60%", marginLeft: "0.50em" }}>
+                  Operador: {loggeduser.customer.nombre} {loggeduser.customer.apellido}
+                </span>
+              </div>
+            </div>
+
+
+
+          </div>
       <div className="pbajascontent">
-        <Button
-          variant="outlined"
-          startIcon={<NavigateBeforeIcon />}
-          sx={{ display: "flex", flexDirection: "row", justifySelf: "left" }}
-          onClick={() => navigate("/productionmenu")}
-        >
-          Volver
-        </Button>
-        <h1>Bajas</h1>
-        <h2>Datos generales</h2>
-        <h4 style={{ fontStyle: "italic" }}>fecha: {now}</h4>
-        <h4 style={{ fontStyle: "italic" }}>
-          operador:{" "}
-          {` ${loggeduser.customer.nombre} , ${loggeduser.customer.apellido}`}
-        </h4>
-        <hr />
+       
         {bajasmutation.isPending ? (
           <div>
             <Alert severity="info">Guardando datos de bajas...</Alert>
@@ -84,16 +93,17 @@ export const Productionbajas = () => {
                 defaultValues={{ cantidad: 0, galpon: null }}
               >
                 <Stack
-                  spacing={3}
-                  padding={2}
+                   spacing={1}
+                   padding={0}
                   display="flex"
                   flexDirection="column"
                   alignItems="center"
+                  width={200}
                 >
                   <Stack>
                     <label className="b-labels">Cantidad</label>
                     <TextInput
-                      sx={{ width: "20vw" }}
+                     sx={{ width: "70vw" }}
                       name="cantidad"
                       type="number"
                       placeholder="Inserte cantidad"
@@ -101,15 +111,15 @@ export const Productionbajas = () => {
                       inputProps={{ min: 0 }}
                     />
                   </Stack>
-                  <Stack padding={2}>
+                  <Stack >
                     <label className="b-labels">Seleccione el Galpon</label>
                     <Autocomplete
-                      sx={{ width: "20vw" }}
+                      sx={{ width: "70vw" }}
                       name="galpon"
                       options={galpones.data ?? []}
                       getOptionLabel={(option) => option.nombre}
                       renderInput={(params) => (
-                        <TextField {...params} label="Seleccionar Galpon" />
+                        <TextField sx={{width:"100%"}}{...params} label="Seleccionar Galpon" />
                       )}
                     />
                   </Stack>

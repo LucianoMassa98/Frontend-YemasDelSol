@@ -4,8 +4,10 @@ import NavigateBeforeIcon from "@mui/icons-material/NavigateBefore";
 import LocalHospitalIcon from "@mui/icons-material/LocalHospital";
 import DeleteIcon from "@mui/icons-material/Delete";
 import { Productlist } from "../../../../components/productlist/product-list";
+import FastRewindIcon from '@mui/icons-material/FastRewind';
 import dayjs from "dayjs";
 import { useRef } from "react";
+import Table from "../../../../components/Table/Table";
 import { useGetinforme } from "../../../../components/hooks/admins/use-get-informe";
 import { useEffect } from "react";
 import { Menuheader } from "../../../../components/menuheader";
@@ -39,7 +41,7 @@ export const Dailydetails = () => {
       desderef.current.format("MM-DD-YYYY"),
       hastaref.current.format("MM-DD-YYYY"),
     ];
-    console.log(fechasdata, "fechitas");
+
     informemutation.mutate(fechasdata);
   };
 
@@ -47,21 +49,21 @@ export const Dailydetails = () => {
     <div className="admprodcontainer">
       <Menuheader />
       <div className="a-p-content">
-        <Button
-          variant="outlined"
-          startIcon={<NavigateBeforeIcon />}
-          sx={{ display: "flex", flexDirection: "row", justifySelf: "left" }}
-          onClick={() =>navigate("/productionmenu")}
-        >
-          Volver
-        </Button>
-        <h1>Producción</h1>
-        <h4>Fecha: {now.format("DD/MM/YYYY")}</h4>
-        <hr></hr>
+        <span style={{ fontStyle: "italic", fontWeight: "500", fontSize: "20px", opacity: "80%", marginTop: "8px" }}>{now.format("DD [de] MMMM [de] YYYY")}</span>
+        <div className="cont-inform">
+
+          <FastRewindIcon onClick={() => navigate("/productionmenu")} sx={{ fontSize: "28px", fontWeight: "bold", padding: "10px", cursor: "pointer", boxSizing: "content-box", margin: "15px", borderRadius: "50%", bgcolor: "#f3a406" }} />
+          <h1>Informe</h1>
+        </div>
+
         <div>
           {informemutation.isSuccess ? (
             <div>
-              <div className="listadeprod">
+              <h2 style={{padding:"10px"}}>Ingresos</h2>
+              <Table array={informemutation.data.ingresos}></Table>
+              <h2 style={{padding:"10px"}}>Egresos</h2>
+              <Table array={informemutation.data.egresos}></Table>
+              {/* <div className="listadeprod">
                 <label className="listlabel">Ingresos</label>
                 <Productlist
                   datos={informemutation.data.ingresos}
@@ -74,29 +76,17 @@ export const Dailydetails = () => {
                   datos={informemutation.data.egresos}
                   estado="egreso"
                 />
-              </div>
-              <div className="listadeprod">
-                <div
-                  style={{
-                    display: "flex",
-                    flexDirection: "row",
-                    alignItems: "center",
-                  }}
-                >
-                  <DeleteIcon />{" "}
-                  <label className="listlabel">
+              </div> */}
+              <div className="div-delet-bajas">
+                <div className="div-btns-inform">
+                  <DeleteIcon sx={{fontSize:"22px",color:"#f3a406", fontWeight:"bold"}}/>
+                  <label className="">
                     Desechos: {informemutation.data.desechos}
                   </label>
                 </div>
-                <div
-                  style={{
-                    display: "flex",
-                    flexDirection: "row",
-                    alignItems: "center",
-                  }}
-                >
-                  <LocalHospitalIcon />{" "}
-                  <label className="listlabel">
+                <div className="div-btns-inform">
+                  <LocalHospitalIcon sx={{fontSize:"22px",color:"#f3a406", fontWeight:"bold"}}/>
+                  <label className="">
                     Bajas: {informemutation.data.bajas}
                   </label>
                 </div>

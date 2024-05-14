@@ -1,5 +1,5 @@
 import { LinkCard } from "../../common-produccion/linkcard-produccion";
-import ArticleIcon from "@mui/icons-material/Article";
+import LoginIcon from '@mui/icons-material/Login';
 import AllInboxIcon from "@mui/icons-material/AllInbox";
 import DeleteIcon from "@mui/icons-material/Delete";
 import LocalHospitalIcon from "@mui/icons-material/LocalHospital";
@@ -11,7 +11,7 @@ import { Loader } from "../login/loader";
 
 export const Productionmenu = () => {
   const loggeduser = useStore((state) => state.user);
-  console.log(loggeduser, "usuarioobtenido");
+
 
   Loader("production");
 
@@ -21,7 +21,7 @@ export const Productionmenu = () => {
       <div>
         <div className="p-menu-lc">
           <LinkCard
-            icon={<ArticleIcon sx={{ fontSize: "inherit" }} />}
+            icon={<LoginIcon sx={{ fontSize: "inherit" }} />}
             title="Ingreso"
             href="/productionmenu/ingreso"
             className="linkCard-produccion"
@@ -56,6 +56,7 @@ export const Productionmenu = () => {
           <LinkCard
             icon={<TodayIcon sx={{ fontSize: "inherit", color: "inherit" }} />}
             title="Detalles"
+            type="button"
             href="/productionmenu/verdetallesdeldia"
           >
             En este modulo podras gestionar los detalles del dia.

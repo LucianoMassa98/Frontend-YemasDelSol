@@ -4,6 +4,7 @@ import "./ingreso.css";
 import { api } from "../../../../services/api";
 import Table from "../../../../components/Table/Table";
 import { Menuheader } from "../../../../components/menuheader";
+import FastRewindIcon from '@mui/icons-material/FastRewind';
 import {
   Alert,
   Button,
@@ -30,7 +31,6 @@ import { useStore } from "../../../../store/use-store";
 import { Loader } from "../../../login/loader";
 import { useNavigate } from "react-router-dom";
 
-/* Componente principal */
 
 export const Ingreso = () => {
   const [productos, setProducts] = useState();
@@ -41,7 +41,11 @@ export const Ingreso = () => {
   const realGalpones = galpones.data;
   const [cantidad, setCantidad] = useState("");
   const user = useStore((state) => state.user);
-  const now = dayjs().format("DD/MM/YYYY");
+  dayjs.locale('es') 
+
+  const now = dayjs().locale("es").format("DD [de] MMMM [de] YYYY");
+
+
 
   useEffect(() => {
     try {
@@ -54,15 +58,16 @@ export const Ingreso = () => {
       console.log(e);
     }
   }, []);
+
   const handleAgregarClick = () => {
     if (productoSeleccionado && cantidad) {
-      // Crea un nuevo objeto con los datos del producto
       const nuevoProducto = {
         productoId: productoSeleccionado.id,
         cnt: cantidad,
         nombre: productoSeleccionado.nombre,
         id: Date.now(),
       };
+
       setArrayResumen([...arrayResumen, nuevoProducto]);
     } else {
       toast.error("Ingrese el producto y la cantidad", {
@@ -93,10 +98,7 @@ export const Ingreso = () => {
     setCantidad(event.target.value);
   };
 
-  // const deleteProduct = (id) => {
-  //   const updatedArray = arrayResumen.filter(product => product.id !== id);
-  //   setArrayResumen(updatedArray);
-  // };
+
 
   const handleGalponChange = (event) => {
     setGalponSeleccionado(event.target.value);
@@ -105,11 +107,11 @@ export const Ingreso = () => {
   const handleForm = async (e) => {
     e.preventDefault();
     try {
+
       const data = {
 
-        userId: user.customer.id, 
+        userId: user.customer.id,
         galponId: galponSeleccionado,
-
         items: arrayResumen.map((producto) => ({
           productoId: producto.productoId,
           cnt: producto.cnt,
@@ -117,11 +119,10 @@ export const Ingreso = () => {
       };
 
       const response = await api.post("/remitosCompras", data);
-      console.log(response.data, "esto es response");
-
+      console.log(response, "ESTO ES DE INGRESO");
       if (response.status === 200) {
-        toast.success("Egreso guardado correctamente", {
-          duration: 6000,
+        toast.success("Ingreso guardado correctamente", {
+          duration: 3000,
 
           position: "bottom-right",
           style: {
@@ -171,34 +172,30 @@ export const Ingreso = () => {
       <div>
         <form className="" onSubmit={handleForm}>
           <div className="datos-grales">
-            <div className="btn-back">
-              <Button
-                variant="outlined"
-                sx={{
-                  display: "flex",
-                  flexDirection: "row",
-                  alignItems: "center",
-                  justifyContent: "start",
-                  height: "26px",
-                  justifySelf: "left",
-                  margin: "13px 0px 0px 0px",
-                }}
-                onClick={() => navigate("/productionmenu")}
-              >
-                <NavigateBeforeIcon />
-                Volver
-              </Button>
+
+            <span style={{ fontStyle: "italic", opacity: "80%", marginTop: "8px" }}>{now}</span>
+            <div className="div-ingreso">
+              <div className="ingr">
+
+                <h2>Ingreso / Compras</h2>
+
+                <FastRewindIcon onClick={() => navigate("/productionmenu")} sx={{ fontSize: "28px", fontWeight: "bold", padding: "10px", cursor: "pointer", boxSizing: "content-box", margin: "15px", borderRadius: "50%", bgcolor: "#f3a406" }} />
+              </div>
+
+              <div className="dat-gr">
+                <h2>Datos Generales</h2>
+                <span style={{ fontStyle: "italic", opacity: "60%", marginLeft: "0.50em" }}>
+                  Operador: {user.customer.nombre} {user.customer.apellido}
+                </span>
+              </div>
             </div>
-            <h2>Ingreso / Compras</h2>
-            <h2>Datos Generales</h2>
-            <span style={{ fontStyle: "italic" }}>
-              Operador: {user.customer.nombre} {user.customer.apellido}
-            </span>
-            <span style={{ fontStyle: "italic" }}>fecha: {now}</span>
+
+
+
           </div>
           <div className="container-selects">
             <div className="select-container">
-              <label htmlFor="">Producto</label>
+              <label style={{ marginTop: "30px" }} htmlFor="">Producto</label>
               <select id="producto" onChange={handleProductoChange}>
                 <option value="" disabled selected hidden>
                   Seleccione un producto
@@ -223,6 +220,8 @@ export const Ingreso = () => {
                 placeholder="Ingrese una cantidad"
               ></input>
             </div>
+
+
             <div className="btns">
               <Button
                 sx={{ width: "50%", fontSize: "12px" }}
@@ -233,43 +232,7 @@ export const Ingreso = () => {
               </Button>
             </div>
             <Table array={arrayResumen} setArrayResumen={setArrayResumen}></Table>
-            {/* <section className="section-table">
 
-              <table>
-                <thead>
-                  <tr>
-                    <th>Producto</th>
-                    <th>Cantidad</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  {arrayResumen.length > 0 ? (
-                    arrayResumen.map((prod, i) => (
-                      <tr key={i}>
-                        <td>{prod.nombre}</td>
-                        <td>{prod.cnt}</td>
-
-                        <td>
-                          <button
-                            className="btn-delete"
-                            onClick={() => deleteProduct(prod.id)}
-                            variant="outlined"
-                          >
-                            <DeleteIcon sx={{ color: "#ff2727" }} />
-                          </button>
-                        </td>
-                      </tr>
-                    ))
-                  ) : (
-                    <tr className="tr-rare">
-                      <td>...</td>
-                      <td>...</td>
-                    </tr>
-                  )}
-                </tbody>
-              </table>
-
-            </section> */}
 
             <div className="select-container">
               <label htmlFor="">Galpon</label>
@@ -291,19 +254,21 @@ export const Ingreso = () => {
                   ))}
               </select>
             </div>
+
             {arrayResumen &&
               arrayResumen.length > 0 &&
               galponSeleccionado &&
               galponSeleccionado !== "" && (
                 <Button
                   type="submit"
-                  sx={{ width: "80%", marginY: "15px" }}
+                  sx={{ width: "50%", marginY: "5px", fontSize: "12px" }}
                   variant="contained"
                   color="success"
                 >
                   Guardar
                 </Button>
               )}
+
           </div>
         </form>
       </div>

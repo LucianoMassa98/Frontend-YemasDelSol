@@ -1,5 +1,6 @@
 import NavigateBeforeIcon from "@mui/icons-material/NavigateBefore";
 import DeleteIcon from '@mui/icons-material/Delete';
+import FastRewindIcon from '@mui/icons-material/FastRewind';
 
 import "./egreso.css";
 import { api } from "../../../../services/api";
@@ -35,7 +36,8 @@ export const Egreso = () => {
   const galpones = useGalpones()
   const realGalpones = galpones.data
   // DIA DE HOY
-  const now = dayjs().format("DD/MM/YYYY");
+  dayjs.locale('es');
+  const now = dayjs().format("DD [de] MMMM [de] YYYY");
 
   // USUARIO LOGGEADO
   const user = useStore((state) => state.user);
@@ -53,15 +55,15 @@ export const Egreso = () => {
 
 
   const handleHoyChange = () => {
-    setDaySelect(false); // Actualizar el estado general
-    setHoySelect(true); // Marcar "Hoy"
-    setAyerSelect(false); // Desmarcar "Ayer"
+    setDaySelect(false);
+    setHoySelect(true);
+    setAyerSelect(false);
   };
 
   const handleAyerChange = () => {
-    setDaySelect(true); // Actualizar el estado general
-    setHoySelect(false); // Desmarcar "Hoy"
-    setAyerSelect(true); // Marcar "Ayer"
+    setDaySelect(true);
+    setHoySelect(false);
+    setAyerSelect(true);
   };
 
 
@@ -79,7 +81,6 @@ export const Egreso = () => {
 
 
   const navigate = useNavigate();
-
 
 
   const handleProductoChange = (event) => {
@@ -104,7 +105,7 @@ export const Egreso = () => {
 
   const handleAgregarClick = () => {
     if (productoSeleccionado && cantidad) {
-      // Crea un nuevo objeto con los datos del producto
+
       const nuevoProducto = {
         productoId: productoSeleccionado.id,
         cnt: cantidad,
@@ -124,12 +125,6 @@ export const Egreso = () => {
     }
   }
 
-  // ELIMINAR PRODUCTO
-
-  // const deleteProduct = (id) => {
-  //   const updatedArray = arrayResumen.filter(product => product.id !== id);
-  //   setArrayResumen(updatedArray);
-  // };
 
 
   const handleForm = async (e) => {
@@ -139,8 +134,8 @@ export const Egreso = () => {
       // Construir el objeto de datos a enviar
       const data = {
 
-        userId: user.customer.id, // Suponiendo que el usuario tiene una propiedad 'id'
-        galponId: galponSeleccionado, // Obtener el ID del galpón seleccionado
+        userId: user.customer.id,
+        galponId: galponSeleccionado,
         ayer: daySelected,
         items: arrayResumen.map((producto) => ({
           productoId: producto.productoId,
@@ -148,13 +143,13 @@ export const Egreso = () => {
         }))
       };
 
-      // Enviar la solicitud POST utilizando Axios
+
       const response = await api.post('/remitosProduccion', data);
-      console.log(response.data);
-      // Manejar la respuesta
+      console.log(response, "ESTO ES DE EGRESO");
+
       if (response.status === 200) {
         toast.success('Egreso guardado correctamente', {
-          duration: 6000,
+          duration: 3000,
 
           position: 'bottom-right',
           style: {
@@ -184,7 +179,7 @@ export const Egreso = () => {
 
       }
     } catch (error) {
-      // Manejar errores
+
       console.error('Error en la solicitud POST:', error);
       // toast.error('Error al enviar el egreso. Por favor, inténtalo de nuevo más tarde.', {
       //   duration: 5000,
@@ -203,27 +198,26 @@ export const Egreso = () => {
       <div>
         <form onSubmit={handleForm}>
           <div className="datos-grales">
-            <div className="btn-back">
 
-              <Button
-                variant="outlined"
+            <span style={{ fontStyle: "italic", opacity: "80%", marginTop: "8px" }}>{now}</span>
+            <div className="div-ingreso">
+              <div className="ingr">
 
-                sx={{ display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "start", height: "26px", justifySelf: "left", margin: "13px 0px 0px 0px" }}
-                onClick={() => navigate("/productionmenu")}
-              >
-                <NavigateBeforeIcon />
-                Volver
-              </Button>
+                <h2>Produccion</h2>
+
+                <FastRewindIcon onClick={() => navigate("/productionmenu")} sx={{ fontSize: "28px", fontWeight: "bold", padding: "10px", cursor: "pointer", boxSizing: "content-box", margin: "15px", borderRadius: "50%", bgcolor: "#f3a406" }} />
+              </div>
+
+              <div className="dat-gr">
+                <h2>Datos Generales</h2>
+                <span style={{ fontStyle: "italic", opacity: "60%", marginLeft: "0.50em" }}>
+                  Operador: {user.customer.nombre} {user.customer.apellido}
+                </span>
+              </div>
             </div>
-            <h2 >Egreso / Producciones</h2>
-            <h2>Datos Generales</h2>
-            <span style={{ fontStyle: "italic" }}>Operador :
 
-              {user.customer.nombre} {user.customer.apellido}
 
-            </span>
 
-            <span style={{ fontStyle: "italic" }}>fecha: {now}</span>
 
             <span>Actualizar fecha:</span>
             <div className="date">
@@ -333,7 +327,7 @@ export const Egreso = () => {
                 value={galponSeleccionado}
                 onChange={handleGalponChange}
               >
-                <option value="" disabled selected hidden>
+                <option value="rial" disabled selected hidden>
                   Seleccione un Galpon
                 </option>
 

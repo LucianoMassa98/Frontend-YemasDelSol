@@ -8,8 +8,9 @@
 }
 
 .pmenucontainer{
-    width:100vw;
-    min-height: 90vw;
+    width:100%;
+  height: auto;
+  margin-bottom: 30px;
 }
 
 
