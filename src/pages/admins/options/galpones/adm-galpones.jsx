@@ -23,7 +23,7 @@ import CategoryIcon from "@mui/icons-material/Category";
 import "./adm-galpones.css";
 import { useGalpones } from "../../../../components/hooks/use-galpones";
 import { useRef, useState } from "react";
-
+import { useStore } from "../../../../store/use-store";
 import { useNavigate } from 'react-router-dom';
 
 export const Admgalponespage = () => {
@@ -33,6 +33,7 @@ export const Admgalponespage = () => {
   const actualgalpon = useRef({ id: 0, nombre: " ", enProduccion: 0 });
   const getgalpones = useGalpones();
 
+  const loggedUser = useStore((state) => state.user);
 
   const navigate = useNavigate();
 
@@ -84,7 +85,7 @@ export const Admgalponespage = () => {
         >
           Volver
         </Button>
-        <h1>Galpones {loggeduser?.userName}!</h1>
+        <h1>Galpones {loggedUser?.userName}!</h1>
         <div
           style={{
             display: "flex",
