@@ -11,6 +11,7 @@ import VisibilityOffIcon from '@mui/icons-material/VisibilityOff';
 import VisibilityIcon from '@mui/icons-material/Visibility';
 import PersonIcon from '@mui/icons-material/Person';
 import { Form, TextInput } from "../../components/form";
+import { FilledInput } from '@mui/material';
 import "./login.css"
 import { useState } from "react";
 import { Alert, Collapse } from "@mui/material";
@@ -20,6 +21,7 @@ import { useStore } from "../../store/use-store";
 import { useNavigate } from 'react-router-dom';
 
 export const Loginpage = () => {
+
   const [hasFailedOnce, setHasFailedOnce] = useState(false);
   const getusers = useGetallusers();
   console.log(getusers.data, "usuarios obtenidos");
@@ -60,7 +62,10 @@ export const Loginpage = () => {
           navigate("/adminmenu");
         }
         if (resultado.roleId === 2) {
-          navigate ("/productionmenu");
+          navigate("/productionmenu");
+        }
+        if (resultado.roleId === 3) {
+          navigate("/vendedor");
         }
       } else {
         setHasFailedOnce(true);
@@ -89,10 +94,14 @@ export const Loginpage = () => {
               <TextInput
                 name="username"
                 variant="standard"
+                // color="secondary"
                 label="Usuario"
                 type="text"
                 placeholder="Tu usuario"
-                sx={{ width: "90%" }}
+
+                sx={{
+                  width: '90%',
+                }}
                 InputProps={{
                   endAdornment: (
                     <InputAdornment position="end">
@@ -151,20 +160,21 @@ export const Loginpage = () => {
         </Container>
       </div>
       <div className="circles-fondo">
-
+        <img src="./circlesvg.png" width="100%" alt="" />
       </div>
       <div className="circles-fondo-dos">
-
+        <img src="./circlesvg.png" width="100%" alt="" />
       </div>
       <div className="circles-fondo-tres">
-
+        <img src="./circlesvg.png" width="60%" alt="" />
       </div>
       <div className="circles-fondo-cuatro">
-
+        <img src="./circlesvg.png" width="70%" alt="" />
       </div>
       <div className="circles-fondo-cinco">
-
+        <img src="./circlesvg.png" width="80%" alt="" />
       </div>
+
     </div>
   );
 };
