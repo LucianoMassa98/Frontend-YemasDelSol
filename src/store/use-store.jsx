@@ -28,4 +28,5 @@ export const useStore = create(
       storage: createJSONStorage(() => sessionStorage),
     }
   )
+  
 );
