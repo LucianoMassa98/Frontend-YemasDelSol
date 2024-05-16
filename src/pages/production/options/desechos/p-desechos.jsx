@@ -66,7 +66,7 @@ export const Productiondesechos = () => {
           <div className="dat-gr">
             <h2>Datos Generales</h2>
             <span style={{ fontStyle: "italic", opacity: "60%", marginLeft: "0.50em" }}>
-              Operador: {loggeduser.customer.nombre} {loggeduser.customer.apellido}
+              Operador: {loggeduser && loggeduser.customer.nombre} {loggeduser && loggeduser.customer.apellido}
             </span>
           </div>
         </div>
