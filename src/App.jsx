@@ -26,10 +26,12 @@ import HomeVendedor from "./pages/Vendedor/homeVendedor/HomeVendedor";
 function App() {
   return (
     <HelmetProvider>
+     
       <Helmet titleTemplate="%s | Yemas Del Sol" defaultTitle="Yemas Del Sol" />
 
       <QueryClientProvider client={queryClient}>
         <BrowserRouter>
+       
           <Routes>
             <Route path="/" element={<Logoff />} />
             <Route path="/login" element={<Loginpage />} />

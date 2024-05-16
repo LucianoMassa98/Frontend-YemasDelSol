@@ -3,6 +3,7 @@ import React, { useEffect } from "react"; // Importa useEffect de React
 import { useState } from "react";
 import { useStore } from "../store/use-store";
 import { Link } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import SettingsOutlinedIcon from "@mui/icons-material/SettingsOutlined";
 import SupportAgentOutlinedIcon from "@mui/icons-material/SupportAgentOutlined";
 import LogoutOutlinedIcon from "@mui/icons-material/LogoutOutlined";
@@ -12,20 +13,16 @@ import AccountCircleOutlinedIcon from "@mui/icons-material/AccountCircleOutlined
 export const Menuheader = () => {
   const logout = useStore((state) => state.doLogout);
   const loggedUser = useStore((state) => state.user);
-
+  const navigate = useNavigate();
+  
   useEffect(() => {
-    if (loggedUser) {
-      if (loggedUser.roleId === "1") {
-        Loader("admin");
-      } else if (loggedUser.roleId === "2") {
-        Loader("production");
-      }
+    if (loggedUser === null) {
+      navigate("/login");
     }
-  }, [loggedUser]);
-  console.log(useStore)
-
+  }, []);
   return (
     <>
+      <Loader />
       {loggedUser && loggedUser.roleId === 1 && (
         <>
           <div className="menu-horizontal">
@@ -82,7 +79,6 @@ export const Menuheader = () => {
           </div>
         </>
       )}
-      {/* <h2>adwadwdaw</h2> */}
     </>
   );
 };

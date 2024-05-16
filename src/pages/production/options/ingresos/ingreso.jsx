@@ -28,11 +28,11 @@ import { useAdditemingreso } from "../../../../components/hooks/ingreso/use-addi
 import { useDeleteitemingreso } from "../../../../components/hooks/ingreso/use-deleteitem-ingreso";
 import { useSetgalponingreso } from "../../../../components/hooks/ingreso/use-set-galpon-ingreso";
 import { useStore } from "../../../../store/use-store";
-import { Loader } from "../../../login/loader";
 import { useNavigate } from "react-router-dom";
 
 
 export const Ingreso = () => {
+
   const [productos, setProducts] = useState();
   const [galponSeleccionado, setGalponSeleccionado] = useState("");
   const [productoSeleccionado, setProductoSeleccionado] = useState("");
@@ -185,7 +185,7 @@ export const Ingreso = () => {
               <div className="dat-gr">
                 <h2>Datos Generales</h2>
                 <span style={{ fontStyle: "italic", opacity: "60%", marginLeft: "0.50em" }}>
-                  Operador: {user.customer.nombre} {user.customer.apellido}
+                  Operador: {user && user.customer.nombre} {user && user.customer.apellido}
                 </span>
               </div>
             </div>
