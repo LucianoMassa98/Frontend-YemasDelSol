@@ -24,8 +24,7 @@ import CategoryIcon from "@mui/icons-material/Category";
 import "./adm-galpones.css";
 import { useGalpones } from "../../../../components/hooks/use-galpones";
 import { useRef, useState } from "react";
-import { useStore } from "../../../../store/use-store";
-import { useNavigate } from 'react-router-dom';
+import { useNavigate } from "react-router-dom";
 
 export const Admgalponespage = () => {
   const [edit, setEdit] = useState(false);
