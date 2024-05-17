@@ -9,6 +9,9 @@ import SupportAgentOutlinedIcon from "@mui/icons-material/SupportAgentOutlined";
 import LogoutOutlinedIcon from "@mui/icons-material/LogoutOutlined";
 import { Loader } from "../pages/login/loader";
 import AccountCircleOutlinedIcon from "@mui/icons-material/AccountCircleOutlined";
+import { useLocation } from "react-router-dom";
+
+
 
 export const Menuheader = () => {
   const logout = useStore((state) => state.doLogout);
@@ -20,6 +23,12 @@ export const Menuheader = () => {
       navigate("/login");
     }
   }, []);
+
+
+  //Para el menuheader dinamico
+  const location = useLocation();
+  const isAdminPage = location.pathname === "/adminmenu";
+
   return (
     <>
       <Loader />
@@ -37,7 +46,9 @@ export const Menuheader = () => {
           </div>
 
           <div className="menu-desplegable">
-            <div className="menu-container-main">
+          <div className={isAdminPage ? "menu-container-main" : "menu-horizontal-2"}>
+            
+    
               <div className="contenedor-img">
                 <img src="/yemaslogo.jpeg" className="img-logo" />
               </div>

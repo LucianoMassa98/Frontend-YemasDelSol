@@ -1,26 +1,38 @@
+import SettingsOutlinedIcon from "@mui/icons-material/SettingsOutlined";
+import SupportAgentOutlinedIcon from "@mui/icons-material/SupportAgentOutlined";
+import LogoutOutlinedIcon from "@mui/icons-material/LogoutOutlined";
+import { useStore } from "../../store/use-store";
 import "./homePage.css";
 
 export default function HomePage() {
+ 
+  const logout = useStore((state) => state.doLogout);
+  
   return (
     <>
       <div className="home-ventas">
-        <div>
-          <img src="yemaslogo.jpeg" width={70} height={70} />
+        <div className="texto-ventas">
+          <img src="yemaslogo.jpeg" width={70} height={70} className="logo-ventas" />
+          <div className="texto-ventas-2">
+            <h1 className="h1-ventas">Hola Veronica</h1>
+            <h3 className="h3-ventas">administracion</h3>
+          </div>
         </div>
-        <div className="home-secciones-ventas">
-          <h4>Ventas</h4>
-          <h4>|</h4>
-          <h4>Compras</h4>
-          <h4>|</h4>
-          <h4>Proveedores</h4>
-          <h4>|</h4>
-          <h4>Stock</h4>
-        </div>
-        <div className="home-logo-ventas">
-          <p>Logo</p>
-        </div>
+
+          <div className="burgeroptions-ventas">
+            <p className="burgeroption-ventas">
+              <SettingsOutlinedIcon fontSize="large" />
+            </p>
+            <p className="burgeroption-ventas">
+              <SupportAgentOutlinedIcon fontSize="large" />
+            </p>
+            <p className="burgeroption-ventas-2" onClick={logout}>
+              <LogoutOutlinedIcon fontSize="large"  />
+            </p>
+          </div>
+       
       </div>
-      <div></div>
+
     </>
   );
 }
