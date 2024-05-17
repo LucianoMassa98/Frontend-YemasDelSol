@@ -146,7 +146,7 @@ export default function HomeVendedor() {
                     nombre={huevo.nombre}
                     precio={huevo.precio}
                     img={
-                      "https://s3-alpha-sig.figma.com/img/2419/719c/5ef5720880f32546147fd2bd3e66854b?Expires=1715558400&Key-Pair-Id=APKAQ4GOSFWCVNEHN3O4&Signature=EMIJdi4O~9DB4PnQKnaI4Q3PfAnqE9OlmBwNKebaRKYTk6IgXtaHd8lFsLHbLYDTQgAaI2n~PEMuDeh1zrw2RfQ9g6CcqiDd10IchhnZ9-MW15Jjz6nietK4Nwf0DqYf5tA6~zBGaL9YRLtzKG2PQEpXNx5lFcnkJlmsb2kZb4ihScqhDnrw2BNA75pTEtUTSNei1gA9Uei4aeoYT68Xkb1LJexChMxsmCv7AaxJRZ8oyNEb8gp5NjU2MQNlJKDYl9t2rN8ouqVfalML1fMg0v6orq2J-YCcUJ04fkJF-ARgjw1yTgPR0sFdTOwbJj8Go~2MWe7o2jWAPQE1kflQyQ__"
+                      "https://s3-alpha-sig.figma.com/img/2419/719c/5ef5720880f32546147fd2bd3e66854b?Expires=1716768000&Key-Pair-Id=APKAQ4GOSFWCVNEHN3O4&Signature=QG9yGjVaP47QQ~DffjSDjiwUXtefnqCaUKqZhFgpofhR7q1VG6skeM-cat2wSIUtoIx2iFZEgpZupckmkrUsF4L6YYhEBL2zqSijV78uk-4zjcVuQ3N8UCP0stASSg7SKwkqhlV3Tz3eWWxiPd98X6gexDFR475AqR3qVdc4rXk0I6-2cLRg7~xbHVQ~ytfetXCLdopI9LMSz3OLVTJWXxa4J8YzDBFMOJTieRQzGN4-YsQpc0duu22XXIZGeXaZkX3BjblI5eIueVSKWHL43OtA0n8Ha45X~atrUjD4Vz-7QXuYjo6PfeuwXuIp4KA48qg7X1aNIpdNehaOTb79zg__"
                     }
                   />
                 ))}
