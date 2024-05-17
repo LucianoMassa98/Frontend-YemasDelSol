@@ -20,7 +20,6 @@ import { useDeletecompa } from "../../../../../components/hooks/admins/use-delet
 import { useDeleteegreso } from "../../../../../components/hooks/admins/use-delete-egreso";
 import { useDeletebaja } from "../../../../../components/hooks/admins/use-delete-baja";
 import { useDeletedesecho } from "../../../../../components/hooks/admins/use-delete-desecho";
-import { Loader } from "../../../../login/loader";
 import { useNavigate } from 'react-router-dom';
 
 export const AdmProductionDetails = () => {

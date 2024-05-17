@@ -6,13 +6,10 @@ import "./admin-menu.css";
 import { Menuheader } from "../../components/menuheader";
 import { useStore } from "../../store/use-store";
 import AccountCircleIcon from "@mui/icons-material/AccountCircle";
-import { Loader } from "../login/loader";
+import { useEffect } from "react";
 
 export const Adminmenu = () => {
-  Loader("admin");
- 
   return (
-
     <div className="menucontainer">
       <Menuheader />
       <div>

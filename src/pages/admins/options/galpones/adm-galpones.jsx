@@ -11,9 +11,10 @@ import {
   ListItemText,
   Stack,
 } from "@mui/material";
-import Modal from '@mui/material/Modal';
-import Box from '@mui/material/Box';
-import Typography from '@mui/material/Typography';
+import Modal from "@mui/material/Modal";
+import Box from "@mui/material/Box";
+import { useStore } from "../../../../store/use-store";
+import Typography from "@mui/material/Typography";
 import { Menuheader } from "../../../../components/menuheader";
 import NavigateBeforeIcon from "@mui/icons-material/NavigateBefore";
 import ArrowForwardIosIcon from "@mui/icons-material/ArrowForwardIos";
@@ -27,49 +28,42 @@ import { useStore } from "../../../../store/use-store";
 import { useNavigate } from 'react-router-dom';
 
 export const Admgalponespage = () => {
-  const [edit, setEdit] = useState(false)
-  const [editProd, setEditProd] = useState(false)
+  const [edit, setEdit] = useState(false);
+  const [editProd, setEditProd] = useState(false);
   const [isopen, setIsopen] = useState(false);
   const actualgalpon = useRef({ id: 0, nombre: " ", enProduccion: 0 });
   const getgalpones = useGalpones();
-
   const loggedUser = useStore((state) => state.user);
 
   const navigate = useNavigate();
 
   const style = {
-    position: 'absolute',
-    top: '50%',
-    left: '50%',
-    transform: 'translate(-50%, -50%)',
+    position: "absolute",
+    top: "50%",
+    left: "50%",
+    transform: "translate(-50%, -50%)",
     width: 400,
-    bgcolor: 'background.paper',
-    border: '1px solid #000',
+    bgcolor: "background.paper",
+    border: "1px solid #000",
     boxShadow: 24,
- 
-    p: 4,
-    '@media (max-width: 600px)': {
-      width: '90%', // Cambiar el ancho del elemento cuando el ancho de la pantalla es menor o igual a 600px
-    }
 
+    p: 4,
+    "@media (max-width: 600px)": {
+      width: "90%", // Cambiar el ancho del elemento cuando el ancho de la pantalla es menor o igual a 600px
+    },
   };
   const abrirEditor = () => {
-    setEdit(true)
-
-  }
+    setEdit(true);
+  };
   const abrirEditorProd = () => {
-    setEditProd(true)
-  }
+    setEditProd(true);
+  };
   const handleClose = () => {
     setIsopen(false);
-
-
   };
   const handleCloseDos = () => {
-
-    setEdit(false)
-    setEditProd(false)
-
+    setEdit(false);
+    setEditProd(false);
   };
   console.log(getgalpones, "getgalpones");
 
@@ -110,7 +104,6 @@ export const Admgalponespage = () => {
                       display: "flex",
                       flexDirection: "row",
 
-
                       gap: "1vw",
                     }}
                   >
@@ -135,13 +128,23 @@ export const Admgalponespage = () => {
 
         <Dialog open={isopen} onClose={handleClose}>
           <DialogTitle>Detalles</DialogTitle>
-          <Stack spacing={3} sx={{
-            mb: 3, width: "40vw", '@media screen and (max-width: 768px)': {
-              width: "80vw", // Cambia el ancho del Stack cuando el ancho de la pantalla sea menor o igual a 768px
-            }
-          }}>
+          <Stack
+            spacing={3}
+            sx={{
+              mb: 3,
+              width: "40vw",
+              "@media screen and (max-width: 768px)": {
+                width: "80vw", // Cambia el ancho del Stack cuando el ancho de la pantalla sea menor o igual a 768px
+              },
+            }}
+          >
             <List>
-              <ListItem sx={{ borderBottom: "1px solid black" ,borderTop: "1px solid black"  }}>
+              <ListItem
+                sx={{
+                  borderBottom: "1px solid black",
+                  borderTop: "1px solid black",
+                }}
+              >
                 <ListItemAvatar>
                   <Avatar>
                     <NumbersIcon />
@@ -151,9 +154,13 @@ export const Admgalponespage = () => {
                   primary="ID"
                   secondary={actualgalpon.current.id}
                 />
-
-              </ListItem >
-              <ListItem sx={{ borderBottom: "1px solid black" ,borderTop: "1px solid black"  }}>
+              </ListItem>
+              <ListItem
+                sx={{
+                  borderBottom: "1px solid black",
+                  borderTop: "1px solid black",
+                }}
+              >
                 <ListItemAvatar>
                   <Avatar>
                     <DriveFileRenameOutlineIcon />
@@ -163,11 +170,21 @@ export const Admgalponespage = () => {
                   primary="Nombre"
                   secondary={actualgalpon.current.nombre}
                 />
-                <Button onClick={abrirEditor} sx={{ margin: "10px 20px 0px 20px" }} variant="contained" color="primary">
+                <Button
+                  onClick={abrirEditor}
+                  sx={{ margin: "10px 20px 0px 20px" }}
+                  variant="contained"
+                  color="primary"
+                >
                   Editar
                 </Button>
               </ListItem>
-              <ListItem sx={{ borderBottom: "1px solid black" ,borderTop: "1px solid black"  }}>
+              <ListItem
+                sx={{
+                  borderBottom: "1px solid black",
+                  borderTop: "1px solid black",
+                }}
+              >
                 <ListItemAvatar>
                   <Avatar>
                     <CategoryIcon />
@@ -177,13 +194,17 @@ export const Admgalponespage = () => {
                   primary="Cantidad en produccion"
                   secondary={actualgalpon.current.enProduccion}
                 />
-                <Button onClick={abrirEditorProd} sx={{ margin: "10px 20px 0px 20px" }} variant="contained" color="primary">
+                <Button
+                  onClick={abrirEditorProd}
+                  sx={{ margin: "10px 20px 0px 20px" }}
+                  variant="contained"
+                  color="primary"
+                >
                   Editar
                 </Button>
               </ListItem>
             </List>
           </Stack>
-
 
           {/* ESTE MODAL EDITA EL NOMBDE DEL GALPON */}
           <Modal
@@ -191,7 +212,6 @@ export const Admgalponespage = () => {
             onClose={handleCloseDos}
             aria-labelledby="modal-modal-title"
             aria-describedby="modal-modal-description"
-            
           >
             <Box sx={style}>
               <Typography id="modal-modal-title" variant="h6" component="h2">
@@ -199,26 +219,30 @@ export const Admgalponespage = () => {
               </Typography>
               <form className="campos">
                 <div className="name-actual">
-
-                  <Typography id="modal-modal-description" sx={{ fontSize: "15px" }}>
+                  <Typography
+                    id="modal-modal-description"
+                    sx={{ fontSize: "15px" }}
+                  >
                     Nombre actual :
                   </Typography>
-                  <Typography id="modal-modal-description" sx={{ fontSize: "16px", fontWeight: "600" }}>
+                  <Typography
+                    id="modal-modal-description"
+                    sx={{ fontSize: "16px", fontWeight: "600" }}
+                  >
                     {actualgalpon.current.nombre}
                   </Typography>
-
                 </div>
                 <div className="name-new">
                   <label htmlFor="">Nombre nuevo</label>
 
                   <input type="text" required />
                 </div>
-                <Button variant="contained" type="submit">Guardar cambios</Button>
+                <Button variant="contained" type="submit">
+                  Guardar cambios
+                </Button>
               </form>
-
             </Box>
           </Modal>
-
 
           {/* ESTE MODAL EDITA LA PRODUCCION */}
           <Modal
@@ -228,43 +252,45 @@ export const Admgalponespage = () => {
             aria-describedby="modal-modal-description"
           >
             <Box sx={style}>
-
               <Typography id="modal-modal-title" variant="h6" component="h2">
                 Editar en produccion del galpon
               </Typography>
               <form className="campos">
                 <div className="name-actual">
-
-                  <Typography id="modal-modal-description" sx={{ fontSize: "15px" }}>
+                  <Typography
+                    id="modal-modal-description"
+                    sx={{ fontSize: "15px" }}
+                  >
                     En produccion actual :
                   </Typography>
-                  <Typography id="modal-modal-description" sx={{ fontSize: "16px", fontWeight: "600" }}>
+                  <Typography
+                    id="modal-modal-description"
+                    sx={{ fontSize: "16px", fontWeight: "600" }}
+                  >
                     {actualgalpon.current.enProduccion}
                   </Typography>
-
                 </div>
                 <div className="name-new-dos">
                   <label htmlFor="">Nueva Produccion:</label>
 
                   <input type="number" required />
                 </div>
-                <Button variant="contained" type="submit">Guardar cambios</Button>
+                <Button variant="contained" type="submit">
+                  Guardar cambios
+                </Button>
               </form>
-
-
             </Box>
           </Modal>
 
-
-          <Button onClick={handleClose} sx={{ margin: "10px 20px 10px 20px" }} variant="contained" color="warning">
+          <Button
+            onClick={handleClose}
+            sx={{ margin: "10px 20px 10px 20px" }}
+            variant="contained"
+            color="warning"
+          >
             Cerrar
           </Button>
-
         </Dialog>
-
-
-
-
       </div>
     </div>
   );
