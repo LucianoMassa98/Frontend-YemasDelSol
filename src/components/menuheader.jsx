@@ -3,29 +3,35 @@ import React, { useEffect } from "react"; // Importa useEffect de React
 import { useState } from "react";
 import { useStore } from "../store/use-store";
 import { Link } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import SettingsOutlinedIcon from "@mui/icons-material/SettingsOutlined";
 import SupportAgentOutlinedIcon from "@mui/icons-material/SupportAgentOutlined";
 import LogoutOutlinedIcon from "@mui/icons-material/LogoutOutlined";
 import { Loader } from "../pages/login/loader";
 import AccountCircleOutlinedIcon from "@mui/icons-material/AccountCircleOutlined";
+import { useLocation } from "react-router-dom";
+
+
 
 export const Menuheader = () => {
   const logout = useStore((state) => state.doLogout);
   const loggedUser = useStore((state) => state.user);
-
+  const navigate = useNavigate();
+  
   useEffect(() => {
-    if (loggedUser) {
-      if (loggedUser.roleId === "1") {
-        Loader("admin");
-      } else if (loggedUser.roleId === "2") {
-        Loader("production");
-      }
+    if (loggedUser === null) {
+      navigate("/login");
     }
-  }, [loggedUser]);
-  console.log(useStore)
+  }, []);
+
+
+  //Para el menuheader dinamico
+  const location = useLocation();
+  const isAdminPage = location.pathname === "/adminmenu";
 
   return (
     <>
+      <Loader />
       {loggedUser && loggedUser.roleId === 1 && (
         <>
           <div className="menu-horizontal">
@@ -40,7 +46,9 @@ export const Menuheader = () => {
           </div>
 
           <div className="menu-desplegable">
-            <div className="menu-container-main">
+          <div className={isAdminPage ? "menu-container-main" : "menu-horizontal-2"}>
+            
+    
               <div className="contenedor-img">
                 <img src="/yemaslogo.jpeg" className="img-logo" />
               </div>
@@ -82,7 +90,6 @@ export const Menuheader = () => {
           </div>
         </>
       )}
-      {/* <h2>adwadwdaw</h2> */}
     </>
   );
 };

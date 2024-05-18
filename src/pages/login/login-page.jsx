@@ -25,8 +25,10 @@ export const Loginpage = () => {
   const [hasFailedOnce, setHasFailedOnce] = useState(false);
   const getusers = useGetallusers();
   console.log(getusers.data, "usuarios obtenidos");
-  const { setUser, setIsLoggedIn } = useStore();
+  const  setUser =useStore((set)=>set.setUser) 
+  const  setIsLoggedIn =useStore((set)=>set.setIsLoggedIn)
 
+  const isLogged = useStore((set) => set.isLoggedIn)
   if (getusers.isSuccess) {
     console.log(getusers.data, "usuarios obtenidos");
   }
@@ -35,8 +37,8 @@ export const Loginpage = () => {
   const navigate = useNavigate();
 
 
-
   const handleLogin = (credentials) => {
+    console.log(credentials , "credenciales");
     if (getusers.isSuccess) {
       let resultado = null;
       let i = 0;
@@ -76,6 +78,7 @@ export const Loginpage = () => {
 
   return (
     <div className="container-fondo-circle">
+
       <div className="container-login">
         <Helmet>
           <title>Iniciar sesión</title>
