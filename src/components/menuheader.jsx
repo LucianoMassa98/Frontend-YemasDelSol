@@ -92,13 +92,13 @@ export const Menuheader = () => {
       )}
       {loggedUser && loggedUser.roleId === 3 && (
       <>
-      
+      <div></div>
       <div className="home-ventas">
         <div className="texto-ventas">
           <img src="./yemaslogo.jpeg" width={70} height={70} className="logo-ventas" />
           <div className="texto-ventas-2">
-            <h1 className="h1-ventas">Hola Veronica</h1>
-            <h3 className="h3-ventas">administracion</h3>
+            <h1 className="h1-ventas">
+                Hola {loggedUser?.userName}</h1>
           </div>
         </div>
 
