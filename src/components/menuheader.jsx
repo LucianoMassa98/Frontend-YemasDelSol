@@ -49,11 +49,11 @@ export const Menuheader = () => {
           <div className={isAdminPage ? "menu-container-main" : "menu-horizontal-2"}>
             
     
-              <div className="contenedor-img">
-                <img src="/yemaslogo.jpeg" className="img-logo" />
+              <div className={isAdminPage ? "contenedor-img" : "contenedor-img-2"}>
+                <img src="/yemaslogo.jpeg" className="img-logo"/>
               </div>
 
-              <div className="burgeroptions">
+              <div className={isAdminPage ? "burgeroptions" : "burgeroptions-2"}>
                 <p className="burgeroption">
                   <SettingsOutlinedIcon />
                 </p>
@@ -97,8 +97,7 @@ export const Menuheader = () => {
         <div className="texto-ventas">
           <img src="./yemaslogo.jpeg" width={70} height={70} className="logo-ventas" />
           <div className="texto-ventas-2">
-            <h1 className="h1-ventas">
-                Hola {loggedUser?.userName}</h1>
+            <p className="h1-ventas">Hola {loggedUser?.userName}</p>
           </div>
         </div>
 
