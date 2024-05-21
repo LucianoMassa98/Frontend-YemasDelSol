@@ -75,18 +75,10 @@ export const AdmProduction = () => {
     <div className="admprodcontainer">
       <Menuheader />
       <div className="a-p-content">
-        <Button
-          variant="outlined"
-          startIcon={<NavigateBeforeIcon />}
-          sx={{ display: "flex", flexDirection: "row", justifySelf: "left" }}
-          onClick={() => navigate("/adminmenu")}
-        >
-          Volver
-        </Button>
+    
+        <div>   
+        <div className="header-segundo-produccion">
         <h1>Producción</h1>
-        <h4>Fecha: {now.format("DD/MM/YYYY")}</h4>
-        <hr></hr>
-        <div>
           <LocalizationProvider dateAdapter={AdapterDayjs}>
             <Stack
               sx={{
@@ -115,6 +107,15 @@ export const AdmProduction = () => {
           <Button startIcon={<SearchIcon />} onClick={handleBuscar}>
             Buscar
           </Button>
+          <Button
+          variant="outlined"
+          startIcon={<NavigateBeforeIcon />}
+          sx={{ display: "flex", flexDirection: "row", justifySelf: "left" }}
+          onClick={() => navigate("/adminmenu")}
+        >
+          Volver
+        </Button>
+        </div>
           {informemutation.isSuccess ? (
             <div>
               <div className="listadeprod">

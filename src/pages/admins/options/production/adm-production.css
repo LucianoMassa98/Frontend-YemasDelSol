@@ -1,3 +1,11 @@
+.header-segundo-produccion{
+    display: flex;
+    padding-top: 20px;
+    padding-left: 20px;
+    justify-content: space-between;
+}
+
+
 .admprodcontainer{
     width:100vw;
     min-height: 90vw;

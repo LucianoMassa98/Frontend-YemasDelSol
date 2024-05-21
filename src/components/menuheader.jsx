@@ -47,8 +47,7 @@ export const Menuheader = () => {
 
           <div className="menu-desplegable">
           <div className={isAdminPage ? "menu-container-main" : "menu-horizontal-2"}>
-            
-    
+                
               <div className={isAdminPage ? "contenedor-img" : "contenedor-img-2"}>
                 <img src="/yemaslogo.jpeg" className="img-logo"/>
               </div>
