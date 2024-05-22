@@ -13,6 +13,7 @@ import { useRef, useState } from "react";
 import { useGetinforme } from "../../../../components/hooks/admins/use-get-informe";
 import { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
+import TableProduction from "./table/Table-production";
 
 
 export const AdmProduction = () => {
@@ -33,9 +34,9 @@ export const AdmProduction = () => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
- 
 
-  
+
+
 
   const handleChange = (date, time) => {
     if (time === "Desde") {
@@ -69,45 +70,50 @@ export const AdmProduction = () => {
     console.log(informemutation.data, "datos recibidos");
   }
 
-  
+
 
   return (
-    <div className="admprodcontainer">
+    <>
       <Menuheader />
-      <div className="a-p-content">
-    
-        <div>   
-        <div className="header-segundo-produccion">
+
+      <div className="header-segundo-produccion">
         <h1>Producción</h1>
-          <LocalizationProvider dateAdapter={AdapterDayjs}>
-            <Stack
-              sx={{
-                display: "flex",
-                flexDirection: "row",
-                justifyContent: "center",
-                gap: "2vw",
-              }}
-            >
-              <MobileDatePicker
-                label="Desde"
-                value={desde}
-                onChange={(newValue) => handleChange(newValue, "Desde")}
-                views={["day", "month", "year"]}
-                format="DD/MM/YYYY"
-              />
-              <MobileDatePicker
-                label="Hasta"
-                value={hasta}
-                onChange={(newValue) => handleChange(newValue, "Hasta")}
-                views={["day", "month", "year"]}
-                format="DD/MM/YYYY"
-              />
-            </Stack>
-          </LocalizationProvider>
-          <Button startIcon={<SearchIcon />} onClick={handleBuscar}>
+        <LocalizationProvider dateAdapter={AdapterDayjs}>
+          <Stack
+            sx={{
+              display: "flex",
+              flexDirection: "row",
+              justifyContent: "center",
+              gap: "2vw",
+            }}
+          >
+            <p className="desde-hasta-produccion">Desde</p>
+            <MobileDatePicker
+
+              value={desde}
+              onChange={(newValue) => handleChange(newValue, "Desde")}
+              views={["day", "month", "year"]}
+              format="DD/MM/YYYY"
+            />
+            <p className="desde-hasta-produccion">Hasta</p>
+            <MobileDatePicker
+              value={hasta}
+              onChange={(newValue) => handleChange(newValue, "Hasta")}
+              views={["day", "month", "year"]}
+              format="DD/MM/YYYY"
+            />
+          </Stack>
+        </LocalizationProvider>
+        <div className="boton-buscar-produccion">
+          <SearchIcon />
+          <button onClick={handleBuscar}>
             Buscar
-          </Button>
-          <Button
+          </button>
+
+        </div>
+
+
+        <Button
           variant="outlined"
           startIcon={<NavigateBeforeIcon />}
           sx={{ display: "flex", flexDirection: "row", justifySelf: "left" }}
@@ -115,61 +121,64 @@ export const AdmProduction = () => {
         >
           Volver
         </Button>
-        </div>
-          {informemutation.isSuccess ? (
-            <div>
-              <div className="listadeprod">
-                <label className="listlabel">Ingresos</label>
-                <Productlist
-                  datos={informemutation.data.ingresos}
-                  estado="ingreso"
-                />
-              </div>
-              <div className="listadeprod">
-                <label className="listlabel">Egresos</label>
-                <Productlist
-                  datos={informemutation.data.egresos}
-                  estado="egreso"
-                />
-              </div>
-              <div className="listadeprod">
-                <div
-                  style={{
-                    display: "flex",
-                    flexDirection: "row",
-                    alignItems: "center",
-                  }}
-                >
-                  <DeleteIcon />{" "}
-                  <label className="listlabel">
-                    Desechos: {informemutation.data.desechos}
-                  </label>
-                </div>
-                <div
-                  style={{
-                    display: "flex",
-                    flexDirection: "row",
-                    alignItems: "center",
-                  }}
-                >
-                  <LocalHospitalIcon />{" "}
-                  <label className="listlabel">
-                    Bajas: {informemutation.data.bajas}
-                  </label>
-                </div>
-              </div>
-            </div>
-          ) : (
-            <div>
-              <Alert severity="info">Cargando datos...</Alert>
-              <CircularProgress />
-            </div>
-          )}
-        </div>
       </div>
-      <Button variant="contained" onClick={() => handleVerdetalle()}>
-        Ver detalle
-      </Button>
-    </div>
+
+<div className="linea-horizontal"></div>
+
+      {informemutation.isSuccess ? (
+        <div className="header-tercero-produccion">
+
+          <div className="container-primero-produccion">
+            <div>
+              <DeleteIcon />{" "}
+              <label className="subtitulo-desechos-bajas">
+                Desechos: {informemutation.data.desechos}
+              </label>
+            </div>
+
+            <div >
+              <LocalHospitalIcon />{" "}
+              <label  className="subtitulo-desechos-bajas">
+                Bajas: {informemutation.data.bajas}
+              </label>
+            </div>
+            <div className="contenedor-ver-detalle-produccion">
+              <button className="boton-ver-detalle-produccion" onClick={() => handleVerdetalle()}>
+                Ver detalles
+              </button>
+            </div>
+
+          </div>
+              
+            <div className="table-produccion-container">
+            <p className="subtitulo-tabla">Ingresos</p>
+              <TableProduction
+                className="table-produccion-2"
+                array={informemutation.data.ingresos}
+                estado="ingreso"
+              />
+
+            </div>
+               
+            <div className="table-produccion-container">
+            <p className="subtitulo-tabla">Egresos</p>
+              <TableProduction
+                className="table-produccion-2"
+                array={informemutation.data.egresos}
+                estado="egreso"
+              />
+
+            </div>
+
+        </div>
+
+      ) : (
+        <div>
+          <Alert severity="info">Cargando datos...</Alert>
+          <CircularProgress />
+        </div>
+      )}
+
+    </>
   );
 };

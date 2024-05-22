@@ -1,0 +1,87 @@
+.with-modal-production {
+    background-color: white;
+    overflow-y: auto;
+
+    border-radius: 10px;
+
+}
+
+.with-modal-production table {
+
+}
+
+.with-modal-production table thead tr {
+
+    color: black;
+}
+
+.with-modal-production table tbody tr {
+
+
+    color: black;
+}
+
+.with-modal-production table tbody tr td {
+ 
+    text-align: center;
+}
+.section-table-production {
+    width: 300px;
+    overflow-y: auto;
+    height: 300px;
+    margin-bottom: 10px;
+} 
+.section-table-production::-webkit-scrollbar {
+    width: 5px; 
+}
+
+
+.section-table-production::-webkit-scrollbar-track {
+    background-color: #f1f1f1; 
+}
+
+
+.section-table-production::-webkit-scrollbar-thumb {
+    background-color: #f3a406; 
+    border-radius: 5px;
+}
+
+.section-table-production table {
+    width: 100%;
+    height: 100%;
+    border: 1px solid rgb(185, 182, 182);
+    margin-top: 12px;
+    margin-bottom: 15px;
+    border-radius: 10px;
+}
+
+.section-table-production table {
+    border-collapse: separate;
+   
+    border-spacing: 0 2px;
+   
+}
+
+.section-table-production table thead tr{
+    background-color: rgb(223, 222, 222);
+}
+.section-table-production table tbody tr:hover {
+    background-color: rgb(223, 222, 222);
+}
+
+.section-table-production table tbody tr td {
+    font-size: 18px;
+    font-weight: 500;
+}
+
+.btn-delete {
+    border-radius: 5px;
+    border: 1px solid transparent;
+    padding: 0 0;
+    font-size: 12px;
+    font-weight: 900;
+    font-family: inherit;
+    color: white;
+    cursor: pointer;
+    transition: border-color 0.25s;
+}
