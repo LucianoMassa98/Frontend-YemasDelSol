@@ -1,8 +1,6 @@
 import "./menuheader.css";
-import React, { useEffect } from "react"; // Importa useEffect de React
-import { useState } from "react";
+import React, { useEffect, useState } from "react"; // Importa useEffect de React
 import { useStore } from "../store/use-store";
-import { Link } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
 import SettingsOutlinedIcon from "@mui/icons-material/SettingsOutlined";
 import SupportAgentOutlinedIcon from "@mui/icons-material/SupportAgentOutlined";
@@ -13,16 +11,23 @@ import { useLocation } from "react-router-dom";
 
 
 
+
 export const Menuheader = () => {
   const logout = useStore((state) => state.doLogout);
   const loggedUser = useStore((state) => state.user);
   const navigate = useNavigate();
+  const [menuOpen, setMenuOpen] = useState(false);
   
   useEffect(() => {
     if (loggedUser === null) {
       navigate("/login");
     }
   }, []);
+
+
+  const toggleMenu = () => {
+    setMenuOpen(!menuOpen);
+  };
 
 
   //Para el menuheader dinamico
@@ -52,7 +57,12 @@ export const Menuheader = () => {
                 <img src="/yemaslogo.jpeg" className="img-logo"/>
               </div>
 
-              <div className={isAdminPage ? "burgeroptions" : "burgeroptions-2"}>
+              <div className="hamburger-menu" onClick={toggleMenu}>
+                <p>&#9776;</p>
+              </div>
+
+
+              <div className={`${isAdminPage ? "burgeroptions" : "burgeroptions-2"} ${menuOpen ? "open" : ""}`}>
                 <p className="burgeroption">
                   <SettingsOutlinedIcon />
                 </p>
