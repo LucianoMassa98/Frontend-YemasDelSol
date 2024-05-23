@@ -1,11 +1,9 @@
 import { Alert, Button, CircularProgress, Stack } from "@mui/material";
 import { Menuheader } from "../../../../components/menuheader";
 import "./adm-production.css";
-import NavigateBeforeIcon from "@mui/icons-material/NavigateBefore";
 import SearchIcon from "@mui/icons-material/Search";
 import LocalHospitalIcon from "@mui/icons-material/LocalHospital";
 import DeleteIcon from "@mui/icons-material/Delete";
-import { Productlist } from "../../../../components/productlist/product-list";
 import dayjs from "dayjs";
 import { LocalizationProvider, MobileDatePicker } from "@mui/x-date-pickers";
 import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs";
@@ -14,6 +12,12 @@ import { useGetinforme } from "../../../../components/hooks/admins/use-get-infor
 import { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import TableProduction from "./table/Table-production";
+import FastRewindIcon from '@mui/icons-material/FastRewind';
+import ArrowDownwardSharpIcon from '@mui/icons-material/ArrowDownwardSharp';
+import CalendarMonthIcon from '@mui/icons-material/CalendarMonth';
+import TextSnippetIcon from '@mui/icons-material/TextSnippet';
+
+
 
 
 export const AdmProduction = () => {
@@ -77,7 +81,7 @@ export const AdmProduction = () => {
       <Menuheader />
 
       <div className="header-segundo-produccion">
-        <h1>Producción</h1>
+        <h1 className="titulo-produccion-adm">Producción</h1>
         <LocalizationProvider dateAdapter={AdapterDayjs}>
           <Stack
             sx={{
@@ -85,6 +89,8 @@ export const AdmProduction = () => {
               flexDirection: "row",
               justifyContent: "center",
               gap: "2vw",
+              height: '3px !important'
+             
             }}
           >
             <p className="desde-hasta-produccion">Desde</p>
@@ -94,14 +100,20 @@ export const AdmProduction = () => {
               onChange={(newValue) => handleChange(newValue, "Desde")}
               views={["day", "month", "year"]}
               format="DD/MM/YYYY"
+           
             />
+
             <p className="desde-hasta-produccion">Hasta</p>
             <MobileDatePicker
               value={hasta}
               onChange={(newValue) => handleChange(newValue, "Hasta")}
               views={["day", "month", "year"]}
               format="DD/MM/YYYY"
-            />
+              
+            >
+             
+            </MobileDatePicker>
+          
           </Stack>
         </LocalizationProvider>
         <div className="boton-buscar-produccion">
@@ -109,18 +121,12 @@ export const AdmProduction = () => {
           <button onClick={handleBuscar}>
             Buscar
           </button>
+         
 
         </div>
+        <FastRewindIcon onClick={() => navigate("/adminmenu")} sx={{ fontSize: "28px", fontWeight: "bold", padding: "10px", cursor: "pointer", boxSizing: "content-box", margin: "15px", borderRadius: "50%", bgcolor: "#f3a406" }} />
 
 
-        <Button
-          variant="outlined"
-          startIcon={<NavigateBeforeIcon />}
-          sx={{ display: "flex", flexDirection: "row", justifySelf: "left" }}
-          onClick={() => navigate("/adminmenu")}
-        >
-          Volver
-        </Button>
       </div>
 
 <div className="linea-horizontal"></div>
@@ -130,21 +136,25 @@ export const AdmProduction = () => {
 
           <div className="container-primero-produccion">
             <div>
-              <DeleteIcon />{" "}
+              <DeleteIcon 
+              className="icon-production"
+              />{" "}
               <label className="subtitulo-desechos-bajas">
                 Desechos: {informemutation.data.desechos}
               </label>
             </div>
 
             <div >
-              <LocalHospitalIcon />{" "}
+              <ArrowDownwardSharpIcon
+              className="icon-production"
+               />{" "}
               <label  className="subtitulo-desechos-bajas">
                 Bajas: {informemutation.data.bajas}
               </label>
             </div>
             <div className="contenedor-ver-detalle-produccion">
               <button className="boton-ver-detalle-produccion" onClick={() => handleVerdetalle()}>
-                Ver detalles
+              <TextSnippetIcon /> Ver detalles 
               </button>
             </div>
 

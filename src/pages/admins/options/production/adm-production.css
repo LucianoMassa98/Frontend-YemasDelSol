@@ -27,6 +27,11 @@
 
 }
 
+.titulo-produccion-adm{
+    color: black;
+}
+
+
 .container-primero-produccion{
     display: flex;
     flex-direction: column;
@@ -39,25 +44,39 @@
 
 
 .subtitulo-desechos-bajas{
-    font-size:17px;
     color: black;
-    font-weight: 600;
+    font-weight: 700;
+    font-size: 19px; 
 }
 
 .boton-ver-detalle-produccion{
     background-color: #f8bd0e;
     border-radius: 20px;
+    width: 200px; 
+  height: 40px;
+  padding: 5px 10px;
+  font-size: 18px; 
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 5px; 
 }
 
 .boton-ver-detalle-produccion:hover{
     background-color: #f4b700;
+   
 }
 
-.contenedor-ver-detalle-produccion{
+.contenedor-ver-detalle-produccion {
     padding-top: 80px;
-  
-  }
-  
+    padding-left: 4px;
+    display: flex;
+    justify-content: center;
+}
+
+  .icon-production{
+    color: #f3a406;
+}
 
 
 /*Table de ingreso y egreso*/
@@ -66,5 +85,5 @@
 .subtitulo-tabla{
     font-size:20px;
     color: black;
-    font-weight: 600;
+    font-weight: 700;
 }
