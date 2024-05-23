@@ -203,7 +203,7 @@ h4{
 .home-ventas {
   display: flex;
   width: 100% !important;
-  background: url("./Bck-ventas.png");
+  background: url("./Bck-ventas.jpeg");
   background-repeat: no-repeat;
   background-size: cover;
   justify-content: space-between;
@@ -231,8 +231,11 @@ color: #ffffff;
 .h3-ventas{
 color:#e0a545;
 }
-.h1-ventas, .h3-ventas{
-  margin: 0; 
+.h1-ventas{
+  padding-top: 10px;
+  margin: 0;
+  font-size: 30px; 
+  font-weight: 700;
 }
 
 @media (max-width: 768px) {
