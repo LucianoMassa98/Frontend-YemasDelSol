@@ -16,6 +16,8 @@ import FastRewindIcon from '@mui/icons-material/FastRewind';
 import ArrowDownwardSharpIcon from '@mui/icons-material/ArrowDownwardSharp';
 import CalendarMonthIcon from '@mui/icons-material/CalendarMonth';
 import TextSnippetIcon from '@mui/icons-material/TextSnippet';
+import { slotShouldForwardProp } from "@mui/material/styles/styled";
+import { DatePicker } from "@mui/x-date-pickers";
 
 
 
@@ -89,36 +91,35 @@ export const AdmProduction = () => {
               flexDirection: "row",
               justifyContent: "center",
               gap: "2vw",
-              height: '3px !important'
              
             }}
           >
-            <p className="desde-hasta-produccion">Desde</p>
-            <MobileDatePicker
-
+            <p className="desde-hasta-produccion">Desde:</p>
+            <DatePicker
+              sx={{"& .MuiInputBase-input":{height:"2px", paddingTop:"20px"}}}
               value={desde}
               onChange={(newValue) => handleChange(newValue, "Desde")}
               views={["day", "month", "year"]}
               format="DD/MM/YYYY"
-           
             />
 
-            <p className="desde-hasta-produccion">Hasta</p>
-            <MobileDatePicker
+            <p className="desde-hasta-produccion">Hasta:</p>
+            <DatePicker
+             sx={{"& .MuiInputBase-input":{height:"2px", paddingTop:"20px"}}}
               value={hasta}
               onChange={(newValue) => handleChange(newValue, "Hasta")}
               views={["day", "month", "year"]}
               format="DD/MM/YYYY"
               
-            >
-             
-            </MobileDatePicker>
+            />
+            
           
           </Stack>
         </LocalizationProvider>
-        <div className="boton-buscar-produccion">
-          <SearchIcon />
-          <button onClick={handleBuscar}>
+        <div className="contenedor-btn-buscar-produccion">
+          <SearchIcon sx={{ fontSize: "1.7rem"}} />
+          <button onClick={handleBuscar}
+          className="btn-buscar-produccion">
             Buscar
           </button>
          

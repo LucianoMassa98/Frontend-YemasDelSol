@@ -4,6 +4,24 @@
     justify-content: space-between;
 }
 
+.btn-buscar-produccion{
+    background-color: #f3a406;
+    font-size: 13px;
+    font-weight: 700;
+    padding: 0;
+}
+
+.contenedor-btn-buscar-produccion{
+    background-color: #f3a406;
+    border-radius: 20px;
+    height: 30px;
+    width: 170px;
+    display: flex;
+    align-items: center; 
+    justify-content: center;
+    
+}
+
 /*Linea horizontal*/
 
 
@@ -32,6 +50,8 @@
 }
 
 
+/*Contenedor con desechos bajas */
+
 .container-primero-produccion{
     display: flex;
     flex-direction: column;
@@ -42,6 +62,9 @@
    
 }
 
+.desde-hasta-produccion{
+    font-weight: 700;
+}
 
 .subtitulo-desechos-bajas{
     color: black;
@@ -87,3 +110,5 @@
     color: black;
     font-weight: 700;
 }
+
+
