@@ -1,23 +1,19 @@
-import { Alert, Button, CircularProgress, Stack } from "@mui/material";
+import { Alert,  CircularProgress, Stack } from "@mui/material";
 import { Menuheader } from "../../../../components/menuheader";
 import "./adm-production.css";
 import SearchIcon from "@mui/icons-material/Search";
-import LocalHospitalIcon from "@mui/icons-material/LocalHospital";
 import DeleteIcon from "@mui/icons-material/Delete";
 import dayjs from "dayjs";
-import { LocalizationProvider, MobileDatePicker } from "@mui/x-date-pickers";
+import { LocalizationProvider, DatePicker} from "@mui/x-date-pickers";
 import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs";
-import { useRef, useState } from "react";
+import { useRef, useState, useEffect } from "react";
 import { useGetinforme } from "../../../../components/hooks/admins/use-get-informe";
-import { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import TableProduction from "./table/Table-production";
 import FastRewindIcon from '@mui/icons-material/FastRewind';
 import ArrowDownwardSharpIcon from '@mui/icons-material/ArrowDownwardSharp';
-import CalendarMonthIcon from '@mui/icons-material/CalendarMonth';
 import TextSnippetIcon from '@mui/icons-material/TextSnippet';
-import { slotShouldForwardProp } from "@mui/material/styles/styled";
-import { DatePicker } from "@mui/x-date-pickers";
+
 
 
 
