@@ -8,6 +8,7 @@ import LogoutOutlinedIcon from "@mui/icons-material/LogoutOutlined";
 import { Loader } from "../pages/login/loader";
 import AccountCircleOutlinedIcon from "@mui/icons-material/AccountCircleOutlined";
 import { useLocation } from "react-router-dom";
+import AccountCircleIcon from '@mui/icons-material/AccountCircle';
 
 
 
@@ -18,16 +19,13 @@ export const Menuheader = () => {
   const navigate = useNavigate();
   const [menuOpen, setMenuOpen] = useState(false);
   
+  
   useEffect(() => {
     if (loggedUser === null) {
       navigate("/login");
     }
   }, []);
 
-
-  const toggleMenu = () => {
-    setMenuOpen(!menuOpen);
-  };
 
 
   //Para el menuheader dinamico
@@ -40,8 +38,8 @@ export const Menuheader = () => {
       {loggedUser && loggedUser.roleId === 1 && (
         <>
           <div className="menu-horizontal">
-            <div className="no">
-              <h2>
+            <div className="menu-horizontal-no">
+              <h2 className="menuheader-h2">
                 {" "}
                 Hola {loggedUser?.userName}!
                 <AccountCircleOutlinedIcon />
@@ -56,26 +54,20 @@ export const Menuheader = () => {
               <div className={isAdminPage ? "contenedor-img" : "contenedor-img-2"}>
                 <img src="/yemaslogo.jpeg" className="img-logo"/>
               </div>
-
-              <div className="hamburger-menu" onClick={toggleMenu}>
-                <p>&#9776;</p>
-              </div>
-
-
-              <div className={`${isAdminPage ? "burgeroptions" : "burgeroptions-2"} ${menuOpen ? "open" : ""}`}>
+              <div className={`${isAdminPage ? "burgeroptions" : "burgeroptions-2"} `}>
                 <p className="burgeroption">
                   <SettingsOutlinedIcon />
                 </p>
                 <p className="burgeroption">
                   <SupportAgentOutlinedIcon />
                 </p>
-                <p className="burgeroption-2" onClick={logout}>
+                <p className="burgeroption" onClick={logout}>
                   <LogoutOutlinedIcon />
                 </p>
               </div>
+            {/*Para el menu hambuerguesa*/}
+           
             </div>
-
-            <div></div>
           </div>
         </>
       )}
@@ -109,7 +101,7 @@ export const Menuheader = () => {
             <p className="h1-ventas">Hola {loggedUser?.userName}</p>
           </div>
         </div>
-
+        
           <div className="burgeroptions-ventas">
             <p className="burgeroption-ventas">
               <SettingsOutlinedIcon fontSize="large" />
