@@ -1,5 +1,5 @@
 import "./menuheader.css";
-import React, { useEffect, useState } from "react"; // Importa useEffect de React
+import React, { useEffect} from "react"; 
 import { useStore } from "../store/use-store";
 import { useNavigate } from "react-router-dom";
 import SettingsOutlinedIcon from "@mui/icons-material/SettingsOutlined";
@@ -8,7 +8,7 @@ import LogoutOutlinedIcon from "@mui/icons-material/LogoutOutlined";
 import { Loader } from "../pages/login/loader";
 import AccountCircleOutlinedIcon from "@mui/icons-material/AccountCircleOutlined";
 import { useLocation } from "react-router-dom";
-import AccountCircleIcon from '@mui/icons-material/AccountCircle';
+import MenuResponsive from "./menuResponsive/menuResponsive";
 
 
 
@@ -17,9 +17,9 @@ export const Menuheader = () => {
   const logout = useStore((state) => state.doLogout);
   const loggedUser = useStore((state) => state.user);
   const navigate = useNavigate();
-  const [menuOpen, setMenuOpen] = useState(false);
-  
-  
+
+
+
   useEffect(() => {
     if (loggedUser === null) {
       navigate("/login");
@@ -28,7 +28,7 @@ export const Menuheader = () => {
 
 
 
-  //Para el menuheader dinamico
+
   const location = useLocation();
   const isAdminPage = location.pathname === "/adminmenu";
 
@@ -49,10 +49,10 @@ export const Menuheader = () => {
           </div>
 
           <div className="menu-desplegable">
-          <div className={isAdminPage ? "menu-container-main" : "menu-horizontal-2"}>
-                
+            <div className={isAdminPage ? "menu-container-main" : "menu-horizontal-2"}>
+
               <div className={isAdminPage ? "contenedor-img" : "contenedor-img-2"}>
-                <img src="/yemaslogo.jpeg" className="img-logo"/>
+                <img src="/yemaslogo.jpeg" className="img-logo" />
               </div>
               <div className={`${isAdminPage ? "burgeroptions" : "burgeroptions-2"} `}>
                 <p className="burgeroption">
@@ -65,9 +65,9 @@ export const Menuheader = () => {
                   <LogoutOutlinedIcon />
                 </p>
               </div>
-            {/*Para el menu hambuerguesa*/}
-           
+             
             </div>
+            <MenuResponsive />
           </div>
         </>
       )}
@@ -92,31 +92,31 @@ export const Menuheader = () => {
         </>
       )}
       {loggedUser && loggedUser.roleId === 3 && (
-      <>
-      <div></div>
-      <div className="home-ventas">
-        <div className="texto-ventas">
-          <img src="./yemaslogo.jpeg" width={70} height={70} className="logo-ventas" />
-          <div className="texto-ventas-2">
-            <p className="h1-ventas">Hola {loggedUser?.userName}</p>
-          </div>
-        </div>
-        
-          <div className="burgeroptions-ventas">
-            <p className="burgeroption-ventas">
-              <SettingsOutlinedIcon fontSize="large" />
-            </p>
-            <p className="burgeroption-ventas">
-              <SupportAgentOutlinedIcon fontSize="large" />
-            </p>
-            <p className="burgeroption-ventas-2" onClick={logout}>
-              <LogoutOutlinedIcon fontSize="large"  />
-            </p>
-          </div>
-       
-      </div>
+        <>
+          <div></div>
+          <div className="home-ventas">
+            <div className="texto-ventas">
+              <img src="./yemaslogo.jpeg" width={70} height={70} className="logo-ventas" />
+              <div className="texto-ventas-2">
+                <p className="h1-ventas">Hola {loggedUser?.userName}</p>
+              </div>
+            </div>
 
-      </>
+            <div className="burgeroptions-ventas">
+              <p className="burgeroption-ventas">
+                <SettingsOutlinedIcon fontSize="large" />
+              </p>
+              <p className="burgeroption-ventas">
+                <SupportAgentOutlinedIcon fontSize="large" />
+              </p>
+              <p className="burgeroption-ventas-2" onClick={logout}>
+                <LogoutOutlinedIcon fontSize="large" />
+              </p>
+            </div>
+
+          </div>
+
+        </>
       )}
     </>
   );
