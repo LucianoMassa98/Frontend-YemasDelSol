@@ -5,10 +5,7 @@
     justify-content: center;
 
 }
-.linkCard{
-    height: 200px important!;
-    
-}
+
 
 @media (max-width: 768px) {
     .a-menu-lc {
@@ -16,4 +13,8 @@
       align-items: center;
       padding: 30px;
     }
+
+   
+
+
   }
