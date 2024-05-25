@@ -37,21 +37,25 @@ export default function MenuResponsive() {
         setIsMenuOpen(!isMenuOpen);
     };
 
+
+ 
+
     return (
         <>
             <div>
                 <div className={`header-menuResponsive ${hasScrolled ? "shadow-menuResponsive" : ""}`}>
                     <div className="nav-menuResponsive container">
                         <div className={`navbar-menuResponsive ${isMenuOpen ? "open-menu" : ""}`}>
-                          <h3 className="" >{loggedUser?.userName}</h3>
+                        <h3 className="" >{loggedUser?.userName}</h3>
                           <div className="contenedor-iconos-menuResponsive">
                             <Link href="" className="link-menuResponsive ">Mi perfil</Link><AccountCircleIcon  sx={{width:"60px", color:"orange"}} />
                             <Link className="link-menuResponsive">Configuracion</Link><SettingsIcon  sx={{width:"60px",  color:"orange"}} />
                             <Link className="link-menuResponsive">Soporte</Link><SupportAgentOutlinedIcon  sx={{width:"60px",  color:"orange"}} />
                             <Link className="link-menuResponsive">Cerrar sesion</Link>  <LogoutOutlinedIcon  sx={{width:"60px",  color:"orange"}} />
                             </div>
+                            </div>
                             
-                        </div>
+                       
 
                         {/*Menu icon */}
                         <div >

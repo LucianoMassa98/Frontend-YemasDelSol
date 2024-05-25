@@ -128,7 +128,7 @@
 .menu-container-main {
   flex-direction: row;
   width: 100%;
-  height: 90px;
+  height: 110px;
   justify-content: space-between;
   padding: 10px;
 }
