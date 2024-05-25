@@ -29,7 +29,7 @@ export default function TableProduction({ array, setArrayResumen, tableModal, mo
                         )}
                     </tr>
                 </thead>
-                <tbody >
+                <tbody  className='tbody-table-production'>
                     {array.length > 0 ? array.map((prod, i) => (
                         <tr key={i}>
                             <td>{prod.nombre}</td>
