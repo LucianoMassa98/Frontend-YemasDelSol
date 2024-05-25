@@ -46,7 +46,7 @@ export default function MenuResponsive() {
                 <div className={`header-menuResponsive ${hasScrolled ? "shadow-menuResponsive" : ""}`}>
                     <div className="nav-menuResponsive container">
                         <div className={`navbar-menuResponsive ${isMenuOpen ? "open-menu" : ""}`}>
-                        <h3 className="" >{loggedUser?.userName}</h3>
+                        <h3 className="h3-menuResponsive" >{loggedUser?.userName}</h3>
                           <div className="contenedor-iconos-menuResponsive">
                             <Link href="" className="link-menuResponsive ">Mi perfil</Link><AccountCircleIcon  sx={{width:"60px", color:"orange"}} />
                             <Link className="link-menuResponsive">Configuracion</Link><SettingsIcon  sx={{width:"60px",  color:"orange"}} />
@@ -59,9 +59,16 @@ export default function MenuResponsive() {
 
                         {/*Menu icon */}
                         <div >
-                        <div className="menu-icon-menuResponsive" onClick={toggleMenu}>
-                                {isMenuOpen ? <CloseIcon sx={{ width: "40px", height: "40px" }} /> : <MenuIcon sx={{ width: "40px", height: "40px", color:"white" }} />}
+                        {isMenuOpen ? 
+                        <div className="menu-icon-menuResponsive-close" onClick={toggleMenu}>
+                              <CloseIcon sx={{ width: "40px", height: "40px"}} /> 
                             </div>
+                            :
+                            <div className="menu-icon-menuResponsive" onClick={toggleMenu}>
+                         <MenuIcon sx={{ width: "40px", height: "40px", color:"white"}}
+                          />
+                            </div>
+                          }
                         </div>
                     </div>
                 </div>

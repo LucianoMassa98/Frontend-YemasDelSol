@@ -23,12 +23,12 @@
 
 
 
-
 .contenedor-iconos-menuResponsive {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
-  padding-top: 60px;
-  row-gap: 20px;
+  padding-top: 50px;
+  padding-left: 120px;
+  row-gap: 30px;
   
 }
 
@@ -52,8 +52,21 @@
     position: absolute; 
     padding-top: 30px;
     padding-left: 190px;
-        
+    
 }
+.menu-icon-menuResponsive-close{
+    display: none;
+    flex-direction: column;
+    row-gap: 5px;
+    cursor: pointer;
+    z-index: 200;
+    transition: 0.3s;
+    position: absolute; 
+   
+    
+}
+
+
 
 
 
@@ -85,6 +98,10 @@
         transition: 0.5s;
        }
        .menu-icon-menuResponsive{
+        display: flex;
+
+    }
+    .menu-icon-menuResponsive-close{
         display: flex;
 
     }
