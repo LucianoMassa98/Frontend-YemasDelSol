@@ -93,6 +93,14 @@
         
     }
 
+    .icono-css{
+        width: 60px;
+        color: orange;
+    }
+
+    .h3-menuResponsive{
+        padding-right: 50px;
+    }
     .navbar-menuResponsive.open-menu{
         right: 0;
         transition: 0.5s;
@@ -103,8 +111,56 @@
     }
     .menu-icon-menuResponsive-close{
         display: flex;
+        padding-right: 10px;
 
     }
- 
+
+    .MenuIcon{
+        color: white;
+        font-size: 80px;
+    
+    }
+
 }
 
+@media (max-width: 414px) {
+    
+    .contenedor-iconos-menuResponsive {
+        padding-top: 30px; 
+        padding-left: 30px; 
+        row-gap: 20px;
+        font-size: 12px;
+        padding-right: 50px;
+    }
+    .h3-menuResponsive{
+        font-size: 12px;
+        padding-right: 50px;
+       
+    }
+    
+
+
+    .menu-icon-menuResponsive{
+        padding-top: 20px;
+        padding-left: 90px; 
+    }
+
+    .menu-icon-menuResponsive-close{
+        padding-left: 20px;
+        width: 12px;
+        height: 12px;  
+        
+    }
+    
+   
+    .navbar-menuResponsive {
+        width: 50vw; 
+        padding: 20px;
+       
+    }
+
+    .navbar-menuResponsive.open-menu {
+        right: 0;
+        transition: 0.3s; 
+}
+}

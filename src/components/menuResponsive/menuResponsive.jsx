@@ -38,7 +38,7 @@ export default function MenuResponsive() {
     };
 
 
- 
+
 
     return (
         <>
@@ -46,29 +46,29 @@ export default function MenuResponsive() {
                 <div className={`header-menuResponsive ${hasScrolled ? "shadow-menuResponsive" : ""}`}>
                     <div className="nav-menuResponsive container">
                         <div className={`navbar-menuResponsive ${isMenuOpen ? "open-menu" : ""}`}>
-                        <h3 className="h3-menuResponsive" >{loggedUser?.userName}</h3>
-                          <div className="contenedor-iconos-menuResponsive">
-                            <Link href="" className="link-menuResponsive ">Mi perfil</Link><AccountCircleIcon  sx={{width:"60px", color:"orange"}} />
-                            <Link className="link-menuResponsive">Configuracion</Link><SettingsIcon  sx={{width:"60px",  color:"orange"}} />
-                            <Link className="link-menuResponsive">Soporte</Link><SupportAgentOutlinedIcon  sx={{width:"60px",  color:"orange"}} />
-                            <Link className="link-menuResponsive">Cerrar sesion</Link>  <LogoutOutlinedIcon  sx={{width:"60px",  color:"orange"}} />
+                            <h3 className="h3-menuResponsive" >{loggedUser?.userName}</h3>
+                            <div className="contenedor-iconos-menuResponsive">
+                                <Link href="" className="link-menuResponsive ">Mi perfil</Link><AccountCircleIcon className="icono-css" />
+                                <Link className="link-menuResponsive">Configuracion</Link><SettingsIcon className="icono-css" />
+                                <Link className="link-menuResponsive">Soporte</Link><SupportAgentOutlinedIcon className="icono-css"/>
+                                <Link className="link-menuResponsive">Cerrar sesion</Link>  <LogoutOutlinedIcon className="icono-css"  />
                             </div>
-                            </div>
-                            
-                       
+                        </div>
+
+
 
                         {/*Menu icon */}
                         <div >
-                        {isMenuOpen ? 
-                        <div className="menu-icon-menuResponsive-close" onClick={toggleMenu}>
-                              <CloseIcon sx={{ width: "40px", height: "40px"}} /> 
-                            </div>
-                            :
-                            <div className="menu-icon-menuResponsive" onClick={toggleMenu}>
-                         <MenuIcon sx={{ width: "40px", height: "40px", color:"white"}}
-                          />
-                            </div>
-                          }
+                            {isMenuOpen ?
+                                <div className="menu-icon-menuResponsive-close" onClick={toggleMenu}>
+                                    <CloseIcon className="CloseIcon"/>
+                                </div>
+                                :
+                                <div className="menu-icon-menuResponsive" onClick={toggleMenu}>
+                                    <MenuIcon className="MenuIcon"
+                                    />
+                                </div>
+                            }
                         </div>
                     </div>
                 </div>
