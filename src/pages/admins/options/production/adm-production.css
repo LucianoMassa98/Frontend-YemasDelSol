@@ -118,7 +118,7 @@
 }
 
 
-@media(max-width:770px){
+@media(max-width:773px){
     .header-segundo-produccion{
         display: flex;
        flex-direction: column;
@@ -151,5 +151,14 @@
 
 
    
+
+}
+
+@media(max-width:1519px) and (min-width:774px){
+
+    .table-produccion-container{
+        padding: 10px;
+       
+    }
 
 }
