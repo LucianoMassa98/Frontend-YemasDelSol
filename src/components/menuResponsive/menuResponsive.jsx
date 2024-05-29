@@ -51,7 +51,7 @@ export default function MenuResponsive() {
                                 <Link href="" className="link-menuResponsive ">Mi perfil</Link><AccountCircleIcon className="icono-css" />
                                 <Link className="link-menuResponsive">Configuracion</Link><SettingsIcon className="icono-css" />
                                 <Link className="link-menuResponsive">Soporte</Link><SupportAgentOutlinedIcon className="icono-css"/>
-                                <Link className="link-menuResponsive">Cerrar sesion</Link>  <LogoutOutlinedIcon className="icono-css"  />
+                                <Link  onClick={logout} className="link-menuResponsive">Cerrar sesion</Link>  <LogoutOutlinedIcon className="icono-css"  />
                             </div>
                         </div>
 

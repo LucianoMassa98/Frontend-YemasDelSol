@@ -66,15 +66,22 @@
     
 }
 @media(min-width: 454px) and (max-width:768px){
+
+
+
     .menu-icon-menuResponsive {
         display: flex;
-        padding-left: auto;
+      position: fixed;
+      right: 12px;
+
 
     }
 
     .menu-icon-menuResponsive-close {
         display: flex;
-        padding-left: 170px;
+        position: fixed;
+        right: 190px;
+       
     }
 
     .navbar-menuResponsive.open-menu {
@@ -117,12 +124,16 @@
 @media (min-width: 447px) and (max-width: 453px) {
     .menu-icon-menuResponsive {
         display: flex;
+      position: fixed;
+      right: 12px;
+
 
     }
 
     .menu-icon-menuResponsive-close {
         display: flex;
-        padding-left: auto;
+        position: fixed;
+        right: 190px;
     }
 
     .navbar-menuResponsive.open-menu {
@@ -162,13 +173,21 @@
 
 @media  (min-width: 100px) and (max-width: 446px){
     .menu-icon-menuResponsive {
-        display: flex;
-       padding-left: 80px;
-
+      display: flex;
+      position: fixed;
+      right: 12px;
     }
 
     .menu-icon-menuResponsive-close {
         display: flex;
+        position: fixed;
+        right: 120px;
+        
+    }
+
+    .h3-menuResponsive{
+        position: fixed;
+        right: 29px;
     }
 
     .navbar-menuResponsive.open-menu {
@@ -177,7 +196,7 @@
         top: 0px;
         right: 0;
         height: 1200px;
-        width: 220px;
+        width: 150px;
         padding-right: 70px;
         font-size: 10px;
         background-color: white;
@@ -187,10 +206,10 @@
     
  
     .contenedor-iconos-menuResponsive {
-        padding-top: 10px;
-        padding-left: 2px;
+        position: fixed;
+       right: -15px;
         gap: 10px;
-       
+        
     }
     .icono-css{
         color: orange;
