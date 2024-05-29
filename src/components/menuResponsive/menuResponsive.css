@@ -65,10 +65,10 @@
    
     
 }
-@media(min-width: 454px) and (max-width:759px){
+@media(min-width: 454px) and (max-width:768px){
     .menu-icon-menuResponsive {
         display: flex;
-        padding-left: 290px;
+        padding-left: auto;
 
     }
 
@@ -122,7 +122,7 @@
 
     .menu-icon-menuResponsive-close {
         display: flex;
-        padding-left: 20px;
+        padding-left: auto;
     }
 
     .navbar-menuResponsive.open-menu {
@@ -163,7 +163,7 @@
 @media  (min-width: 100px) and (max-width: 446px){
     .menu-icon-menuResponsive {
         display: flex;
-       padding-left: 130px;
+       padding-left: 80px;
 
     }
 
@@ -178,18 +178,18 @@
         right: 0;
         height: 1200px;
         width: 220px;
+        padding-right: 70px;
+        font-size: 10px;
         background-color: white;
-        padding: 20px;
         box-shadow: 0 4px 6px rgba(0,0,0,0.1);
         z-index: 100;
     }
     
  
     .contenedor-iconos-menuResponsive {
-        padding-top: 20px;
-        padding-left: 20px;
-        row-gap: 20px;
-        gap: 15px;
+        padding-top: 10px;
+        padding-left: 2px;
+        gap: 10px;
        
     }
     .icono-css{
