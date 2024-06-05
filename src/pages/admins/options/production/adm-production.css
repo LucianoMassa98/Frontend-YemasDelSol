@@ -1,29 +1,164 @@
-.admprodcontainer{
-    width:100vw;
-    min-height: 90vw;
+.header-segundo-produccion{
+    display: flex;
+    padding:40px;
+    justify-content: space-between;
 }
 
-.a-p-content{
-    gap: 20px;
-    padding: 20px;
+.btn-buscar-produccion{
+    background-color: #f3a406;
+    font-size: 13px;
+    font-weight: 700;
+    padding: 0;
 }
 
-.listadeprod{
+
+.contenedor-buscar-salir-adm{
+    display: flex;
+    align-items: center;
+}
+
+.contenedor-btn-buscar-produccion{
+    background-color: #f3a406;
+    border-radius: 20px;
+    height: 30px;
+    width: 170px;
+    display: flex;
+    align-items: center; 
+    justify-content: center;
+    
+}
+
+/*Linea horizontal*/
+
+
+.linea-horizontal{
+
+    width: 90%; 
+    height: 4px; 
+    background-color: rgb(208, 207, 207); 
+    margin: 20px auto;
+    border-radius: 2px;
+}
+
+/*Contenedor principal*/
+
+.header-tercero-produccion{
+    display: flex;
+    justify-content: space-between;
+    padding-left: 120px;
+    padding-right: 500px;
+    padding-bottom: 20px;
+
+}
+
+.titulo-produccion-adm{
+    color: black;
+}
+
+
+/*Contenedor con desechos bajas */
+
+.container-primero-produccion{
     display: flex;
     flex-direction: column;
-    align-items: center;
-    margin-top: 2vw;
-    gap: 10px;
+    align-items: baseline;
+    gap:50px;
+    padding-top: 100px;
+ 
+   
 }
 
-.listlabel{
-    font-size: x-large;
+.desde-hasta-produccion{
+    font-weight: 700;
+}
+
+.subtitulo-desechos-bajas{
+    color: black;
+    font-weight: 700;
+    font-size: 19px; 
+}
+
+.boton-ver-detalle-produccion{
+    background-color: #f8bd0e;
+    border-radius: 20px;
+    width: 200px; 
+  height: 40px;
+  padding: 5px 10px;
+  font-size: 18px; 
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 5px; 
+}
+
+.boton-ver-detalle-produccion:hover{
+    background-color: #f4b700;
+   
+}
+
+.contenedor-ver-detalle-produccion {
+    padding-top: 80px;
+    padding-left: 4px;
+    display: flex;
+    justify-content: center;
+}
+
+  .icon-production{
+    color: #f3a406;
 }
 
 
-@media(min-width: 700px){
-    .admprodcontainer{
-        width:100vw;
-        min-height: 90vw;
+/*Table de ingreso y egreso*/
+
+
+.subtitulo-tabla{
+    font-size:20px;
+    color: black;
+    font-weight: 700;
+}
+
+
+@media(max-width:773px){
+    .header-segundo-produccion{
+        display: flex;
+       flex-direction: column;
+       gap:10px;
     }
+
+    .contenedor-buscar-salir-adm{
+        display: flex;
+        padding-top: 20px;
+        gap: 20px;
+        align-items: center;
+        padding-left: 50px;
+    }
+    
+.header-tercero-produccion{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    padding-left: 120px;
+    padding-right: 190px;
+    padding-bottom: 20px;
+
+}
+
+.container-primero-produccion{
+    display: flex;
+    flex-direction: column;
+    padding-bottom: 40px; 
+}
+
+
+   
+
+}
+
+@media(max-width:1519px) and (min-width:774px){
+
+    .table-produccion-container{
+        padding: 10px;
+       
+    }
+
 }

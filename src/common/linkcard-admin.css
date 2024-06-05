@@ -5,7 +5,6 @@
   align-items: center;
   width: 250px;
   height: 300px;
-  
   border-width: 1px;
   background:orange;
   border-radius: 10px;
@@ -14,7 +13,7 @@
 }
 .l-c-icon{
   color: white;
-
+  font-size: 59px;
 }
 .l-c-middiv{
   font-size: 28px;
@@ -52,8 +51,31 @@
 
 
 @media (max-width: 768px) {
-  .l-c-principaldiv {
-      display: flex;
-    flex-direction: column;
+
+  .l-c-middiv{
+    display: flex;
+    width: 100%;
+    margin-left: 0; 
   }
+  .l-c-icon{
+    font-size: 60px;
+ 
+  }
+
+  .l-c-title{
+    padding-left: 15px;
+    padding-top: 20px;
+    font-size: 23px;
+  }
+  .l-c-principaldiv{
+    display: flex;
+    width: 250px;
+    height: 250px;
+    border-width: 1px;
+    background:orange;
+    border-radius: 10px;
+    box-shadow: rgba(0, 0, 0, 0.15) 1.95px 1.95px 2.6px;
+   
+  }
+
 }

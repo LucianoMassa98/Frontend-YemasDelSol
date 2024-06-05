@@ -69,6 +69,7 @@ export const Loginpage = () => {
         if (resultado.roleId === 3) {
           navigate("/vendedor");
         }
+        
       } else {
         setHasFailedOnce(true);
       }

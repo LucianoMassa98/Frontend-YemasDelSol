@@ -15,6 +15,7 @@ export const Adminmenu = () => {
       <div>
         <div className="a-menu-lc">
           <LinkCard
+          className="linkCard-admin-menu"
             icon={<HardwareIcon sx={{ fontSize: "inherit" }} />}
             title="Producción"
             href="/adminmenu/production"
