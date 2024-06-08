@@ -3,7 +3,7 @@ import { Menuheader } from "../../../../components/menuheader";
 import { Form } from "../../../../components/form/form";
 import { Autocomplete } from "../../../../components/form/autocomplete";
 import { TextInput } from "../../../../components/form/text-input";
-import FastRewindIcon from '@mui/icons-material/FastRewind';
+import FastRewindIcon from "@mui/icons-material/FastRewind";
 import "./p-desechos.css";
 import {
   Alert,
@@ -12,17 +12,15 @@ import {
   Stack,
   TextField,
 } from "@mui/material";
-import NavigateBeforeIcon from "@mui/icons-material/NavigateBefore";
 import { useSetdesechos } from "../../../../components/hooks/production/use-set-desechos";
 import { useEffect } from "react";
 import dayjs from "dayjs";
 import { useStore } from "../../../../store/use-store";
 
-import { useNavigate } from 'react-router-dom';
+import { useNavigate } from "react-router-dom";
 
 export const Productiondesechos = () => {
-  let today = new Date();
-  dayjs.locale('es');
+  dayjs.locale("es");
   const now = dayjs().format("DD [de] MMMM [de] YYYY");
   const loggeduser = useStore((state) => state.user);
   const galpones = useGalpones();
@@ -31,8 +29,6 @@ export const Productiondesechos = () => {
   useEffect(() => {
     window.scrollTo(0, 0);
   }, []);
-
-
 
   const handleSubmit = (datos) => {
     let numero = Number(datos.cantidad);
@@ -44,38 +40,50 @@ export const Productiondesechos = () => {
     desechosmutation.mutate(objeto);
   };
 
-
   const navigate = useNavigate();
-
-
 
   return (
     <div className="pdesechoscontainer">
       <Menuheader />
       <div className="datos-grales">
-
-        <span style={{ fontStyle: "italic", opacity: "80%", marginTop: "8px" }}>{now}</span>
+        <span style={{ fontStyle: "italic", opacity: "80%", marginTop: "8px" }}>
+          {now}
+        </span>
         <div className="div-ingreso">
           <div className="ingr">
-
             <h2>Desechos</h2>
 
-            <FastRewindIcon onClick={() => navigate("/productionmenu")} sx={{ fontSize: "28px", fontWeight: "bold", padding: "10px", cursor: "pointer", boxSizing: "content-box", margin: "15px", borderRadius: "50%", bgcolor: "#f3a406" }} />
+            <FastRewindIcon
+              onClick={() => navigate("/productionmenu")}
+              sx={{
+                fontSize: "28px",
+                fontWeight: "bold",
+                padding: "10px",
+                cursor: "pointer",
+                boxSizing: "content-box",
+                margin: "15px",
+                borderRadius: "50%",
+                bgcolor: "#f3a406",
+              }}
+            />
           </div>
 
           <div className="dat-gr">
             <h2>Datos Generales</h2>
-            <span style={{ fontStyle: "italic", opacity: "60%", marginLeft: "0.50em" }}>
-              Operador: {loggeduser && loggeduser.customer.nombre} {loggeduser && loggeduser.customer.apellido}
+            <span
+              style={{
+                fontStyle: "italic",
+                opacity: "60%",
+                marginLeft: "0.50em",
+              }}
+            >
+              Operador: {loggeduser && loggeduser.customer.nombre}{" "}
+              {loggeduser && loggeduser.customer.apellido}
             </span>
           </div>
         </div>
-
-
-
       </div>
       <div className="pdesechoscontent">
-
         {desechosmutation.isPending ? (
           <div>
             <Alert severity="info">Guardando datos de desechos...</Alert>

@@ -6,7 +6,6 @@ export const Loader = () => {
   const logoff = useStore((state) => state.doLogout);
   const user = useStore((state) => state.user);
   const navigate = useNavigate();
-  const roles = ["admin , 1", "prod , 2", "centas, 4"];
 
   const rutasProduction = [
     "/productionmenu",

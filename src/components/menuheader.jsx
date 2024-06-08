@@ -1,5 +1,5 @@
 import "./menuheader.css";
-import React, { useEffect} from "react"; 
+import { useEffect } from "react";
 import { useStore } from "../store/use-store";
 import { useNavigate } from "react-router-dom";
 import SettingsOutlinedIcon from "@mui/icons-material/SettingsOutlined";
@@ -10,24 +10,16 @@ import AccountCircleOutlinedIcon from "@mui/icons-material/AccountCircleOutlined
 import { useLocation } from "react-router-dom";
 import MenuResponsive from "./menuResponsive/menuResponsive";
 
-
-
-
 export const Menuheader = () => {
   const logout = useStore((state) => state.doLogout);
   const loggedUser = useStore((state) => state.user);
   const navigate = useNavigate();
-
-
 
   useEffect(() => {
     if (loggedUser === null) {
       navigate("/login");
     }
   }, []);
-
-
-
 
   const location = useLocation();
   const isAdminPage = location.pathname === "/adminmenu";
@@ -49,12 +41,21 @@ export const Menuheader = () => {
           </div>
 
           <div className="menu-desplegable">
-            <div className={isAdminPage ? "menu-container-main" : "menu-horizontal-2"}>
-
-              <div className={isAdminPage ? "contenedor-img" : "contenedor-img-2"}>
+            <div
+              className={
+                isAdminPage ? "menu-container-main" : "menu-horizontal-2"
+              }
+            >
+              <div
+                className={isAdminPage ? "contenedor-img" : "contenedor-img-2"}
+              >
                 <img src="/yemaslogo.jpeg" className="img-logo" />
               </div>
-              <div className={`${isAdminPage ? "burgeroptions" : "burgeroptions-2"} `}>
+              <div
+                className={`${
+                  isAdminPage ? "burgeroptions" : "burgeroptions-2"
+                } `}
+              >
                 <p className="burgeroption">
                   <SettingsOutlinedIcon />
                 </p>
@@ -65,7 +66,6 @@ export const Menuheader = () => {
                   <LogoutOutlinedIcon />
                 </p>
               </div>
-             
             </div>
             <MenuResponsive />
           </div>
@@ -96,7 +96,12 @@ export const Menuheader = () => {
           <div></div>
           <div className="home-ventas">
             <div className="texto-ventas">
-              <img src="./yemaslogo.jpeg" width={70} height={70} className="logo-ventas" />
+              <img
+                src="./yemaslogo.jpeg"
+                width={70}
+                height={70}
+                className="logo-ventas"
+              />
               <div className="texto-ventas-2">
                 <p className="h1-ventas">Hola {loggedUser?.userName}</p>
               </div>
@@ -113,9 +118,7 @@ export const Menuheader = () => {
                 <LogoutOutlinedIcon fontSize="large" />
               </p>
             </div>
-
           </div>
-
         </>
       )}
     </>

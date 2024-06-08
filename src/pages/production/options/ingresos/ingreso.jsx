@@ -1,38 +1,17 @@
-import NavigateBeforeIcon from "@mui/icons-material/NavigateBefore";
-import DeleteIcon from "@mui/icons-material/Delete";
 import "./ingreso.css";
 import { api } from "../../../../services/api";
 import Table from "../../../../components/Table/Table";
 import { Menuheader } from "../../../../components/menuheader";
-import FastRewindIcon from '@mui/icons-material/FastRewind';
-import {
-  Alert,
-  Button,
-  CircularProgress,
-  Stack,
-  TextField,
-} from "@mui/material";
-import { Form } from "../../../../components/form/form";
+import FastRewindIcon from "@mui/icons-material/FastRewind";
+import { Button } from "@mui/material";
 import { Toaster, toast } from "react-hot-toast";
-import { Autocomplete } from "../../../../components/form/autocomplete";
-import { TextInput } from "../../../../components/form/text-input";
-import { Listproductitem } from "../../../../components/productlist/listproductitem/listproductitem";
-import { useRef, useState, useEffect } from "react";
-import { useProducts } from "../../../../components/hooks/use-products";
+import { useState, useEffect } from "react";
 import { useGalpones } from "../../../../components/hooks/use-galpones";
 import dayjs from "dayjs";
-import { useNewingreso } from "../../../../components/hooks/ingreso/use-create-ingreso";
-import { useIngresos } from "../../../../components/hooks/ingreso/use-get-ingresos";
-import { useOneingreso } from "../../../../components/hooks/ingreso/use-get-one-ingreso";
-import { useAdditemingreso } from "../../../../components/hooks/ingreso/use-additem-ingreso";
-import { useDeleteitemingreso } from "../../../../components/hooks/ingreso/use-deleteitem-ingreso";
-import { useSetgalponingreso } from "../../../../components/hooks/ingreso/use-set-galpon-ingreso";
 import { useStore } from "../../../../store/use-store";
 import { useNavigate } from "react-router-dom";
 
-
 export const Ingreso = () => {
-
   const [productos, setProducts] = useState();
   const [galponSeleccionado, setGalponSeleccionado] = useState("");
   const [productoSeleccionado, setProductoSeleccionado] = useState("");
@@ -41,11 +20,9 @@ export const Ingreso = () => {
   const realGalpones = galpones.data;
   const [cantidad, setCantidad] = useState("");
   const user = useStore((state) => state.user);
-  dayjs.locale('es') 
+  dayjs.locale("es");
 
   const now = dayjs().locale("es").format("DD [de] MMMM [de] YYYY");
-
-
 
   useEffect(() => {
     try {
@@ -98,8 +75,6 @@ export const Ingreso = () => {
     setCantidad(event.target.value);
   };
 
-
-
   const handleGalponChange = (event) => {
     setGalponSeleccionado(event.target.value);
   };
@@ -107,9 +82,7 @@ export const Ingreso = () => {
   const handleForm = async (e) => {
     e.preventDefault();
     try {
-
       const data = {
-
         userId: user.customer.id,
         galponId: galponSeleccionado,
         items: arrayResumen.map((producto) => ({
@@ -172,30 +145,50 @@ export const Ingreso = () => {
       <div>
         <form className="" onSubmit={handleForm}>
           <div className="datos-grales">
-
-            <span style={{ fontStyle: "italic", opacity: "80%", marginTop: "8px" }}>{now}</span>
+            <span
+              style={{ fontStyle: "italic", opacity: "80%", marginTop: "8px" }}
+            >
+              {now}
+            </span>
             <div className="div-ingreso">
               <div className="ingr">
-
                 <h2>Ingreso / Compras</h2>
 
-                <FastRewindIcon onClick={() => navigate("/productionmenu")} sx={{ fontSize: "28px", fontWeight: "bold", padding: "10px", cursor: "pointer", boxSizing: "content-box", margin: "15px", borderRadius: "50%", bgcolor: "#f3a406" }} />
+                <FastRewindIcon
+                  onClick={() => navigate("/productionmenu")}
+                  sx={{
+                    fontSize: "28px",
+                    fontWeight: "bold",
+                    padding: "10px",
+                    cursor: "pointer",
+                    boxSizing: "content-box",
+                    margin: "15px",
+                    borderRadius: "50%",
+                    bgcolor: "#f3a406",
+                  }}
+                />
               </div>
 
               <div className="dat-gr">
                 <h2>Datos Generales</h2>
-                <span style={{ fontStyle: "italic", opacity: "60%", marginLeft: "0.50em" }}>
-                  Operador: {user && user.customer.nombre} {user && user.customer.apellido}
+                <span
+                  style={{
+                    fontStyle: "italic",
+                    opacity: "60%",
+                    marginLeft: "0.50em",
+                  }}
+                >
+                  Operador: {user && user.customer.nombre}{" "}
+                  {user && user.customer.apellido}
                 </span>
               </div>
             </div>
-
-
-
           </div>
           <div className="container-selects">
             <div className="select-container">
-              <label style={{ marginTop: "30px" }} htmlFor="">Producto</label>
+              <label style={{ marginTop: "30px" }} htmlFor="">
+                Producto
+              </label>
               <select id="producto" onChange={handleProductoChange}>
                 <option value="" disabled selected hidden>
                   Seleccione un producto
@@ -203,7 +196,7 @@ export const Ingreso = () => {
 
                 {productos &&
                   productos.length > 0 &&
-                  productos.map((prod, i) => (
+                  productos.map((prod) => (
                     <option key={prod.id} value={`${prod.id}-${prod.nombre}`}>
                       {prod.nombre}
                     </option>
@@ -221,7 +214,6 @@ export const Ingreso = () => {
               ></input>
             </div>
 
-
             <div className="btns">
               <Button
                 sx={{ width: "50%", fontSize: "12px" }}
@@ -231,8 +223,10 @@ export const Ingreso = () => {
                 Agregar Producto
               </Button>
             </div>
-            <Table array={arrayResumen} setArrayResumen={setArrayResumen}></Table>
-
+            <Table
+              array={arrayResumen}
+              setArrayResumen={setArrayResumen}
+            ></Table>
 
             <div className="select-container">
               <label htmlFor="">Galpon</label>
@@ -247,7 +241,7 @@ export const Ingreso = () => {
 
                 {realGalpones &&
                   realGalpones.length > 0 &&
-                  realGalpones.map((galpon, i) => (
+                  realGalpones.map((galpon) => (
                     <option key={galpon.id} value={galpon.id}>
                       {galpon.nombre}
                     </option>
@@ -268,7 +262,6 @@ export const Ingreso = () => {
                   Guardar
                 </Button>
               )}
-
           </div>
         </form>
       </div>

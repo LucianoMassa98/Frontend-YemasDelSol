@@ -1,18 +1,13 @@
-import { WindowSharp } from "@mui/icons-material";
 import { CircularProgress } from "@mui/material";
 import { useEffect } from "react";
-import { useNavigate } from "react-router-dom";
 
 export const Logoff = () => {
-
   useEffect(() => {
     const tiempoEspera = 3000;
 
     const timeoutId = setTimeout(() => {
-
-      window.location.href = "/login"
+      window.location.href = "/login";
     }, tiempoEspera);
-
 
     return () => clearTimeout(timeoutId);
   }, []);

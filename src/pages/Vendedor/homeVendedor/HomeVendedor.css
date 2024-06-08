@@ -15,8 +15,6 @@
     align-items: center;
 }
 
-.container-wave-bg {}
-
 
 .filtrado-prod {
     border-radius: 10px;
@@ -40,15 +38,6 @@
 
 }
 
-.cont-input input {
-    /* width: 100%;
-    outline: none;
-    border: 1.8px solid rgb(160, 157, 157);
-    border-radius: 10px;
-    padding: 6px;
-    font-size: 18px;
-    font-weight: bold; */
-}
 
 .div-h2 {
     width: 100%;
@@ -74,8 +63,6 @@
     font-weight: 700;
     font-size: 18px;
 }
-
-.cantidad input {}
 
 .cont-select {
     width: 40%;

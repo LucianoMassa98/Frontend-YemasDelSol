@@ -2,24 +2,15 @@ import React, { useEffect, useState } from "react";
 import TextField from "@mui/material/TextField";
 import SearchIcon from "@mui/icons-material/Search";
 import Autocomplete from "@mui/material/Autocomplete";
-import Select from "@mui/material/Select";
-import axios from "axios";
-import MenuItem from "@mui/material/MenuItem";
 import AddShoppingCartIcon from "@mui/icons-material/AddShoppingCart";
-import ToggleButton from "@mui/material/ToggleButton";
 import Button from "@mui/material/Button";
-import InputLabel from "@mui/material/InputLabel";
 import { api } from "../../../services/api";
-import Box from "@mui/material/Box";
-import FormControl from "@mui/material/FormControl";
 
 import SkeletonLoader from "../../../components/SkeletonLoader/SkeletonLoader";
 import ModalAddToCart from "../agregarCarrito/ModalAddToCart";
-import IconButton from "@mui/material/IconButton";
 import { Menuheader } from "../../../components/menuheader";
 import InputAdornment from "@mui/material/InputAdornment";
 import ActionAreaCard from "../../../components/ActionAreaCard/ActionAreaCard";
-import Skeleton from "@mui/material/Skeleton";
 import "./HomeVendedor.css";
 
 export default function HomeVendedor() {
@@ -135,7 +126,7 @@ export default function HomeVendedor() {
               ? Array.from(new Array(8)).map((_, i) => (
                   <SkeletonLoader key={i} />
                 ))
-              : huevos.map((huevo, i) => (
+              : huevos.map((huevo) => (
                   <ActionAreaCard
                     addToCart={addToCart}
                     setAddToCart={setAddToCart}

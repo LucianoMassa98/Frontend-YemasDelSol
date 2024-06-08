@@ -4,41 +4,33 @@ import Link from "@mui/material/Link";
 
 import Stack from "@mui/material/Stack";
 import Typography from "@mui/material/Typography";
-import { InputAdornment } from '@mui/material';
-import { IconButton } from '@mui/material';
+import { InputAdornment } from "@mui/material";
 import { Helmet } from "react-helmet-async";
-import VisibilityOffIcon from '@mui/icons-material/VisibilityOff';
-import VisibilityIcon from '@mui/icons-material/Visibility';
-import PersonIcon from '@mui/icons-material/Person';
+import PersonIcon from "@mui/icons-material/Person";
 import { Form, TextInput } from "../../components/form";
-import { FilledInput } from '@mui/material';
-import "./login.css"
+import "./login.css";
 import { useState } from "react";
 import { Alert, Collapse } from "@mui/material";
-import EmailIcon from '@mui/icons-material/Email';
 import { useGetallusers } from "../../components/hooks/admins/use-get-users";
 import { useStore } from "../../store/use-store";
-import { useNavigate } from 'react-router-dom';
+import { useNavigate } from "react-router-dom";
 
 export const Loginpage = () => {
-
   const [hasFailedOnce, setHasFailedOnce] = useState(false);
   const getusers = useGetallusers();
   console.log(getusers.data, "usuarios obtenidos");
-  const  setUser =useStore((set)=>set.setUser) 
-  const  setIsLoggedIn =useStore((set)=>set.setIsLoggedIn)
+  const setUser = useStore((set) => set.setUser);
+  const setIsLoggedIn = useStore((set) => set.setIsLoggedIn);
 
-  const isLogged = useStore((set) => set.isLoggedIn)
+  //const isLogged = useStore((set) => set.isLoggedIn)
   if (getusers.isSuccess) {
     console.log(getusers.data, "usuarios obtenidos");
   }
 
-
   const navigate = useNavigate();
 
-
   const handleLogin = (credentials) => {
-    console.log(credentials , "credenciales");
+    console.log(credentials, "credenciales");
     if (getusers.isSuccess) {
       let resultado = null;
       let i = 0;
@@ -69,7 +61,6 @@ export const Loginpage = () => {
         if (resultado.roleId === 3) {
           navigate("/vendedor");
         }
-        
       } else {
         setHasFailedOnce(true);
       }
@@ -78,23 +69,48 @@ export const Loginpage = () => {
 
   return (
     <div className="container-fondo-circle">
-
       <div className="container-login">
         <Helmet>
           <title>Iniciar sesión</title>
         </Helmet>
-        <Container maxWidth="xs" sx={{ width: "78%", backgroundColor: " #f3a406", borderRadius: "3%", paddingY: "30px", position: "relative" }}>
+        <Container
+          maxWidth="xs"
+          sx={{
+            width: "78%",
+            backgroundColor: " #f3a406",
+            borderRadius: "3%",
+            paddingY: "30px",
+            position: "relative",
+          }}
+        >
           <div className="container-logo-absolute">
             <img src="./yemaslogo.jpeg" alt="" />
           </div>
-          <Typography color={"black"} sx={{ marginTop: "30px", letterSpacing: '0.3em', fontWeight: "500" }} variant="h3" component="h2">
+          <Typography
+            color={"black"}
+            sx={{
+              marginTop: "30px",
+              letterSpacing: "0.3em",
+              fontWeight: "500",
+            }}
+            variant="h3"
+            component="h2"
+          >
             LOGIN
           </Typography>
           <Form
             defaultValues={{ username: "", password: "" }}
             onSubmit={handleLogin}
           >
-            <Stack spacing={4} sx={{ fontSize: 16, display: "flex", justifyContent: "center", alignItems: "center" }}>
+            <Stack
+              spacing={4}
+              sx={{
+                fontSize: 16,
+                display: "flex",
+                justifyContent: "center",
+                alignItems: "center",
+              }}
+            >
               <TextInput
                 name="username"
                 variant="standard"
@@ -102,20 +118,16 @@ export const Loginpage = () => {
                 label="Usuario"
                 type="text"
                 placeholder="Tu usuario"
-
                 sx={{
-                  width: '90%',
+                  width: "90%",
                 }}
                 InputProps={{
                   endAdornment: (
                     <InputAdornment position="end">
-
                       <PersonIcon />
-
                     </InputAdornment>
-                  )
+                  ),
                 }}
-
               />
               <TextInput
                 name="password"
@@ -125,7 +137,6 @@ export const Loginpage = () => {
                 label="Contraseña"
                 placeholder="Tu contraseña"
                 sx={{ width: "90%" }}
-
               />
               <Button
                 name="admin"
@@ -136,26 +147,34 @@ export const Loginpage = () => {
                   backgroundColor: "black",
                   fontSize: 14,
                   width: "50%",
-
-
                 }}
               >
                 ENTRAR
               </Button>
               <Collapse sx={{ width: "100%" }} in={hasFailedOnce}>
                 <Alert severity="error">
-                  Las credenciales ingresadas no coinciden. Por favor, revisa los
-                  datos ingresados e intenta de nuevo.
+                  Las credenciales ingresadas no coinciden. Por favor, revisa
+                  los datos ingresados e intenta de nuevo.
                 </Alert>
               </Collapse>
             </Stack>
           </Form>
-          <Link underline="none" href="/register" sx={{ outline: "none", textUnderlineOffset: "none" }} color="black">
+          <Link
+            underline="none"
+            href="/register"
+            sx={{ outline: "none", textUnderlineOffset: "none" }}
+            color="black"
+          >
             <Typography variant="body1" mt={1} align="center">
               Olvidaste tu contraseña ?
             </Typography>
           </Link>
-          <Typography variant="body1" mt={1} align="center" sx={{ color: "black" }}>
+          <Typography
+            variant="body1"
+            mt={1}
+            align="center"
+            sx={{ color: "black" }}
+          >
             Todavía no tienes una cuenta?{" "}
             <Link underline="none" href="/register" color="inherit">
               Regístrate
@@ -178,7 +197,6 @@ export const Loginpage = () => {
       <div className="circles-fondo-cinco">
         <img src="./circlesvg.png" width="80%" alt="" />
       </div>
-
     </div>
   );
 };
