@@ -1,5 +1,5 @@
 import DeleteIcon from "@mui/icons-material/Delete";
-import "./Table-production.css";
+import "./table-production.css";
 
 export default function TableProduction({
   array,
